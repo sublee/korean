@@ -1,18 +1,20 @@
 korean
 |- morpheme
-|  |- word
 |- grammar
-|  |- substantive
-|  |  |- noun
-|  |  |- pronoun
-|  |  |- numberword
-|  |- verb
-|  |  |- actionverb
-|  |  |- adjective
-|  |- modifier
-|  |  |- determiner
-|  |  |- adverb
-|  |- particle
+|  |- substantive:
+|  |    Substantive
+|  |    Noun
+|  |    Pronoun
+|  |    NumberWord
+|  |- predicate:
+|  |    Predicate
+|  |    Verb
+|  |    Adjective
+|  |- modifier:
+|  |    Determiner
+|  |    Adverb
+|  |- particle:
+|  |    Particle
 |- hangul
 |- localization
 |- data

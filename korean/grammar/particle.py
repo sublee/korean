@@ -8,25 +8,20 @@
 """
 from __future__ import absolute_import
 
-from ..morpheme.word import Word
+from ..helpers import Registry
+from ..morpheme import Morpheme
 
 
-class Particle(Word):
+class Particle(Morpheme, Registry):
 
-    _registry = {}
-
-    @classmethod
-    def get(cls, key):
-        return cls._registry[key]
-
-    def __new__(cls, *args, **kwargs):
-        return unicode.__new__(cls)
+    def __new__(cls,  after_consonant, after_vowel=None):
+        return unicode.__new__(cls, after_consonant)
 
     def __init__(self, after_consonant, after_vowel=None):
         self.after_consonant = after_consonant
         self.after_vowel = after_vowel
 
-    def __repr__(self):
+    def __str__(self):
         if self.after_vowel:
             rv = u'{}({})'.format(self.after_consonant, self.after_vowel)
         else:

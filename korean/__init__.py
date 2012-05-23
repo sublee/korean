@@ -10,6 +10,6 @@
 """
 from __future__ import absolute_import
 
-from .grammar.particle import Particle
-from .morpheme.word import Word
 from . import data
+from .grammar import Particle, Substantive, Noun, Pronoun, NumberWord, Verb
+from .morpheme import Morpheme

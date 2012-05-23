@@ -8,7 +8,7 @@
 """
 from __future__ import absolute_import
 
-from .hangul import final, is_hangul
+from .hangul import get_final, is_hangul
 
 
 class Morpheme(unicode):
@@ -16,6 +16,12 @@ class Morpheme(unicode):
     def has_final(self):
         char = self[-1]
         if is_hangul(char):
-            return bool(final(char))
+            return bool(get_final(char))
         else:
             return char in 'bcdfgjklmnpqrtx'
+
+    def __format__(self, suffix):
+        return u'{0!s}{1}'.format(self, suffix)
+
+    def __repr__(self):
+        return '{0}:{1}'.format(type(self).__name__, str(self))

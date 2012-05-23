@@ -13,17 +13,17 @@ from ..morpheme import Morpheme
 
 class Substantive(Morpheme):
 
-    def __format__(self, format_spec):
+    def __format__(self, suffix):
         from ..grammar.particle import Particle
         try:
-            particle = Particle.get(format_spec)
+            particle = Particle.get(suffix)
             if self.has_final():
-                particle = particle.after_consonant
+                suffix = particle.after_consonant
             else:
-                particle = particle.after_vowel
-            return u'{0!s}{1}'.format(self, particle)
-        except KeyError:
-            return super(Substantive, self).__format__(format_spec)
+                suffix = particle.after_vowel
+        except LookupError:
+            pass
+        return u'{0!s}{1}'.format(self, suffix)
 
 
 class Noun(Substantive): pass
