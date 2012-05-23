@@ -8,7 +8,7 @@
 """
 from __future__ import absolute_import
 
-from ..hangul import final, is_hangul
+from .hangul import final, is_hangul
 
 
 class Morpheme(unicode):

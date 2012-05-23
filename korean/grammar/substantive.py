@@ -1,19 +1,17 @@
 # -*- coding: utf-8 -*-
 """
-    korean
-    ~~~~~~
-
-    Processing Korean language.
+    korean.grammar.substantive
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     :copyright: (c) 2012 by Heungsub Lee
     :license: BSD, see LICENSE for more details.
 """
 from __future__ import absolute_import
 
-from . import Morpheme
+from ..morpheme import Morpheme
 
 
-class Word(Morpheme):
+class Substantive(Morpheme):
 
     def __format__(self, format_spec):
         from ..grammar.particle import Particle
@@ -25,4 +23,9 @@ class Word(Morpheme):
                 particle = particle.after_vowel
             return u'{0!s}{1}'.format(self, particle)
         except KeyError:
-            return super(Word, self).__format__(format_spec)
+            return super(Substantive, self).__format__(format_spec)
+
+
+class Noun(Substantive): pass
+class Pronoun(Substantive): pass
+class NumberWord(Substantive): pass
