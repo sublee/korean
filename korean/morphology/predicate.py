@@ -1,16 +1,16 @@
 # -*- coding: utf-8 -*-
 """
-    korean.grammar.predicate
-    ~~~~~~~~~~~~~~~~~~~~~~~~
+    korean.morphology.predicate
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     :copyright: (c) 2012 by Heungsub Lee
     :license: BSD, see LICENSE for more details.
 """
 from __future__ import absolute_import
 
+from .morpheme import Morpheme
 from ..hangul import get_final, join_char, split_char, is_final
 from ..helpers import Registry
-from ..morpheme import Morpheme
 
 
 ENDING = u'다'

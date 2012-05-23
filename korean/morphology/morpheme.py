@@ -1,14 +1,14 @@
 # -*- coding: utf-8 -*-
 """
-    korean.morpheme
-    ~~~~~~~~~~~~~~~
+    korean.morphology.morpheme
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     :copyright: (c) 2012 by Heungsub Lee
     :license: BSD, see LICENSE for more details.
 """
 from __future__ import absolute_import
 
-from .hangul import get_final, is_hangul
+from ..hangul import get_final, is_hangul
 
 
 class Morpheme(unicode):

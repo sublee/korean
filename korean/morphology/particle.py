@@ -1,15 +1,15 @@
 # -*- coding: utf-8 -*-
 """
-    korean.grammar.particle
-    ~~~~~~~~~~~~~~~~~~~~~~~
+    korean.morphology.particle
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     :copyright: (c) 2012 by Heungsub Lee
     :license: BSD, see LICENSE for more details.
 """
 from __future__ import absolute_import
 
+from .morpheme import Morpheme
 from ..helpers import Registry
-from ..morpheme import Morpheme
 
 
 class Particle(Morpheme, Registry):

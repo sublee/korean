@@ -8,7 +8,7 @@
 """
 from __future__ import absolute_import
 
-from .grammar.particle import Particle
+from .morphology.particle import Particle
 
 
 for args in [(u'과', u'와'), (u'은', u'는'), (u'을', u'를'), (u'이', u'가')]:

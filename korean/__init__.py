@@ -11,5 +11,5 @@
 from __future__ import absolute_import
 
 from . import data
-from .grammar import Particle, Substantive, Noun, Pronoun, NumberWord, Verb
-from .morpheme import Morpheme
+from .morphology import Morpheme, Noun, NumberWord, Particle, Pronoun, \
+                        Substantive, Verb

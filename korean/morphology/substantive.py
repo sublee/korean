@@ -1,20 +1,20 @@
 # -*- coding: utf-8 -*-
 """
-    korean.grammar.substantive
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~
+    korean.morphology.substantive
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     :copyright: (c) 2012 by Heungsub Lee
     :license: BSD, see LICENSE for more details.
 """
 from __future__ import absolute_import
 
-from ..morpheme import Morpheme
+from .morpheme import Morpheme
+from .particle import Particle
 
 
 class Substantive(Morpheme):
 
     def __format__(self, suffix):
-        from ..grammar.particle import Particle
         try:
             particle = Particle.get(suffix)
             if self.has_final():
