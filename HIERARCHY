@@ -1,6 +1,10 @@
 korean
-|- morpheme
-|- grammar
+|- morphology
+|  |- morpheme:
+|  |    Morpheme
+|  |    Allomorpheme
+|  |- conjugation
+|  |    conjugate
 |  |- substantive:
 |  |    Substantive
 |  |    Noun
