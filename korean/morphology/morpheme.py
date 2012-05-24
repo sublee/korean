@@ -11,7 +11,23 @@ from __future__ import absolute_import
 from ..hangul import get_final, is_hangul
 
 
-class Morpheme(unicode):
+class Morpheme(object):
+
+    def __init__(self, text):
+        assert isinstance(text, unicode)
+        self.text = text
+
+    def __unicode__(self):
+        return self.text
+
+    def __str__(self):
+        return unicode(self).encode('utf-8')
+
+    def __getitem__(self, i):
+        return unicode(self)[i]
+
+    def __getslice__(self, start, stop, step=None):
+        return unicode(self)[start:stop:step]
 
     def has_final(self):
         char = self[-1]

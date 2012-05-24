@@ -1,9 +1,12 @@
 # -*- coding: utf-8 -*-
 """
-Korean
-------
+Korean -- A library for Korean morphology
+=========================================
 
-Korean is a library for Korean morphology.
+Sometimes you should localize your project to Korean. But common i18n solutions
+such as gettext are not working with non Indo-European language well. Korean
+also has many morphological difference. "korean" a Python module provides
+useful Korean morphological functions.
 
 Do not use "을(를)" anymore
 ```````````````````````````
@@ -14,8 +17,8 @@ Do not use "을(를)" anymore
     >>> fmt = u'{:은} {:을} 먹었다.'
     >>> print fmt.format(Noun(u'나'), Noun(u'밥'))
     나는 밥을 먹었다.
-    >>> print fmt.format(Noun(u'우리 형'), Noun(u'파스타'))
-    우리 형은 파스타를 먹었다.
+    >>> print fmt.format(Noun(u'학생'), Noun(u'돈까스'))
+    학생은 돈까스를 먹었다.
 
 Links
 `````

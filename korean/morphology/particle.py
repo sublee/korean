@@ -14,9 +14,6 @@ from ..helpers import Registry
 
 class Particle(Morpheme, Registry):
 
-    def __new__(cls,  after_consonant, after_vowel=None):
-        return unicode.__new__(cls, after_consonant)
-
     def __init__(self, after_consonant, after_vowel=None):
         self.after_consonant = after_consonant
         self.after_vowel = after_vowel

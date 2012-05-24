@@ -1,21 +1,21 @@
 korean
-|- morphology
+|- morphology -- 형태론
 |  |- morpheme:
-|  |    Morpheme
-|  |    Allomorpheme
+|  |    Morpheme -- 형태소
+|  |    Allomorpheme -- 이형태
 |  |- conjugation
-|  |    conjugate
+|  |    conjugate -- 굴절
 |  |- substantive:
 |  |    Substantive
-|  |    Noun
-|  |    Pronoun
-|  |    NumberWord
+|  |    Noun -- 명사
+|  |    NumberWord -- 수사
 |  |- predicate:
 |  |    Predicate
-|  |    Verb
-|  |    Adjective
+|  |    Verb -- 동사
+|  |    Adjective -- 형용사
 |  |- particle:
-|  |    Particle
-|- hangul
-|- localization
-|- data
+|  |    Particle -- 조사
+|- hangul -- 한글 처리
+|- localization -- 현지화 유틸리티
+|- data -- 사전 정의된 형태소
+|- helpers

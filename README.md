@@ -1,4 +1,4 @@
-korean -- A library for Korean morphology
+Korean -- A library for Korean morphology
 =========================================
 
 Sometimes you should localize your project to Korean. But common i18n

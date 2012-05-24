@@ -11,4 +11,4 @@ from __future__ import absolute_import
 from .morpheme import Morpheme
 from .particle import Particle
 from .predicate import Predicate, Verb, Adjective
-from .substantive import Substantive, Noun, Pronoun, NumberWord
+from .substantive import Substantive, Noun, NumberWord

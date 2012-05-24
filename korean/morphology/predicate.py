@@ -18,13 +18,11 @@ ENDING = u'다'
 
 class Predicate(Morpheme):
 
-    def __new__(cls, origin):
-        return unicode.__new__(cls, origin)
-
     def __init__(self, origin):
         assert origin.endswith(ENDING)
         assert len(origin) > len(ENDING)
         self.source = origin[:-len(ENDING)]
+        super(Predicate, self).__init__(origin)
 
     def __format__(self, suffix):
         glue = self.source[-1]
