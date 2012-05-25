@@ -8,11 +8,20 @@
 """
 from __future__ import absolute_import
 
+import json
+import os
+
 from .morphology.particle import Particle
 
 
-for args in [(u'과', u'와'), (u'은', u'는'), (u'을', u'를'), (u'이', u'가')]:
-    particle = Particle(*args)
-    Particle.register(particle.after_consonant, particle)
-    if particle.after_vowel:
-        Particle.register(particle.after_vowel, particle)
+def load_data():
+    with open(os.path.join(os.path.dirname(__file__), 'data.json')) as f:
+        data = json.load(f)
+    # register allomorphic particles
+    for forms in data['allomorphic_particles'].itervalues():
+        particle = Particle(*forms)
+        for form in forms:
+            Particle.register(form, particle)
+
+
+load_data()

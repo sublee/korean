@@ -1,20 +1,16 @@
 korean
+|- inflection -- 굴절
+|  * 앞선 명사의 받침에 따른 조사의 변화 (ex. 사과를, 파인애플을)
+|  * 뒷따르는 단위에 따른 수사의 변화 (ex. 첫째, 둘째, 한개, 스무명)
 |- morphology -- 형태론
 |  |- morpheme:
-|  |    Morpheme -- 형태소
-|  |    Allomorpheme -- 이형태
-|  |- conjugation
-|  |    conjugate -- 굴절
+|  |  * Morpheme -- 형태소
 |  |- substantive:
-|  |    Substantive
-|  |    Noun -- 명사
-|  |    NumberWord -- 수사
-|  |- predicate:
-|  |    Predicate
-|  |    Verb -- 동사
-|  |    Adjective -- 형용사
+|  |  * Substantive
+|  |  * Noun -- 명사
+|  |  * NumberWord -- 수사
 |  |- particle:
-|  |    Particle -- 조사
+|  |  * Particle -- 조사
 |- hangul -- 한글 처리
 |- localization -- 현지화 유틸리티
 |- data -- 사전 정의된 형태소

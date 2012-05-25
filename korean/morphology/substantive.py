@@ -33,6 +33,7 @@ class Noun(Substantive):
 
 class NumberWord(Substantive):
 
+    '''
     NATIVE_DIGITS = [u'영', u'한', u'두', u'세', u'네', u'다섯', u'여섯', \
                      u'일곱', u'여덟', u'아홉'[
     NATIVE_TENS = [u'열', u'스무', u'서른', u'마흔', u'쉰', u'예순', u'일흔', \
@@ -76,3 +77,4 @@ class NumberWord(Substantive):
             return unicode(self.number)
         else:
             return super(NumberWord, self).__format__(suffix)
+    '''

@@ -13,12 +13,15 @@ from ..hangul import get_final, is_hangul
 
 class Morpheme(object):
 
-    def __init__(self, text):
-        assert isinstance(text, unicode)
-        self.text = text
+    def __init__(self, *forms):
+        assert all([isinstance(form, unicode) for form in forms])
+        self.forms = forms
+
+    def basic(self):
+        return self.forms[0]
 
     def __unicode__(self):
-        return self.text
+        return self.basic()
 
     def __str__(self):
         return unicode(self).encode('utf-8')

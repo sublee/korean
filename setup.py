@@ -57,5 +57,6 @@ setup(
         'Topic :: Software Development :: Libraries :: Python Modules',
         'Topic :: Software Development :: Localization',
         'Topic :: Text Processing :: Linguistic',
-    ]
+    ],
+    test_suite='tests.test_suite'
 )

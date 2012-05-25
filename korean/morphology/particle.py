@@ -14,13 +14,11 @@ from ..helpers import Registry
 
 class Particle(Morpheme, Registry):
 
-    def __init__(self, after_consonant, after_vowel=None):
-        self.after_consonant = after_consonant
-        self.after_vowel = after_vowel
+    def after_vowel(self):
+        return self.forms[0]
 
-    def __str__(self):
-        if self.after_vowel:
-            rv = u'{}({})'.format(self.after_consonant, self.after_vowel)
-        else:
-            rv = self.after_consonant
-        return rv.encode('utf-8')
+    def after_consonant(self):
+        return self.forms[1]
+
+    def after_rieul(self):
+        return self.forms[2]
