@@ -14,10 +14,10 @@ Do not use "을(를)" anymore
 ::
 
     >>> from korean import Noun
-    >>> fmt = u'{:은} {:을} 먹었다.'
-    >>> print fmt.format(Noun(u'나'), Noun(u'밥'))
+    >>> fmt = u'{subj:은} {obj:을} 먹었다.'
+    >>> print fmt.format(subj=Noun(u'나'), obj=Noun(u'밥'))
     나는 밥을 먹었다.
-    >>> print fmt.format(Noun(u'학생'), Noun(u'돈까스'))
+    >>> print fmt.format(subj=Noun(u'학생'), obj=Noun(u'돈까스'))
     학생은 돈까스를 먹었다.
 
 Links
