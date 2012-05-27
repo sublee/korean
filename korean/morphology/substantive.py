@@ -9,7 +9,6 @@
 from __future__ import absolute_import
 
 from .morpheme import Morpheme
-from .particle import Particle
 
 
 class Substantive(Morpheme):
@@ -20,12 +19,11 @@ class Substantive(Morpheme):
 class Noun(Substantive):
 
     def __format__(self, suffix):
+        from .particle import Particle
+        from ..inflection import inflect
         try:
-            particle = Particle.get(suffix)
-            if self.has_final():
-                suffix = particle.after_consonant
-            else:
-                suffix = particle.after_vowel
+            particle = Particle(suffix)
+            suffix = inflect(particle, suffix_of=self)
         except LookupError:
             pass
         return u'{0!s}{1}'.format(self, suffix)

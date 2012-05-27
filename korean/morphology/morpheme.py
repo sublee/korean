@@ -11,7 +11,38 @@ from __future__ import absolute_import
 from ..hangul import get_final, is_hangul
 
 
+class MorphemeMetaclass(type):
+
+    def __new__(meta, name, bases, attrs):
+        from .. import inflection
+        try:
+            inflection_definitions = attrs.pop('$inflections')
+        except KeyError:
+            pass
+        cls = type.__new__(meta, name, bases, attrs)
+        cls._registry = {}
+        try:
+            inflection.register(cls, inflection_definitions)
+        except UnboundLocalError:
+            pass
+        return cls
+
+    def __call__(cls, *forms):
+        try:
+            if len(forms) == 1:
+                key = forms[0]
+                return cls._registry[key]
+        except KeyError:
+            pass
+        return super(MorphemeMetaclass, cls).__call__(*forms)
+
+    def register(cls, key, obj):
+        cls._registry[key] = obj
+
+
 class Morpheme(object):
+
+    __metaclass__ = MorphemeMetaclass
 
     def __init__(self, *forms):
         assert all([isinstance(form, unicode) for form in forms])
