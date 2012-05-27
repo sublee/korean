@@ -12,6 +12,6 @@ korean
 |  |- particle:
 |  |  * Particle -- 조사
 |- hangul -- 한글 처리
-|- localization -- 현지화 유틸리티
+|- l10n -- 현지화 유틸리티
 |- data -- 사전 정의된 형태소
 |- helpers

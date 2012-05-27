@@ -30,8 +30,17 @@ class ParticleTestCase(unittest.TestCase):
         self.assertEqual(u'한국어를', u'{0:을}'.format(Noun(u'한국어')))
 
 
+class LocalizationTestCase(unittest.TestCase):
+
+    def test_maybe_korean(self):
+        l10n = Localization()
+        maybe_korean = l10n.maybe_korean
+        self.assertEqual(u'코를', maybe_korean(u'{:을}').format(u'코'))
+
+
 def test_suite():
     loader = unittest.TestLoader()
     suite = unittest.TestSuite()
     suite.addTests(loader.loadTestsFromTestCase(ParticleTestCase))
+    suite.addTests(loader.loadTestsFromTestCase(LocalizationTestCase))
     return suite

@@ -12,4 +12,5 @@ from __future__ import absolute_import
 
 from . import data
 from .inflection import define, register, inflect
+from .l10n import Localization
 from .morphology import Morpheme, Noun, NumberWord, Particle, Substantive
