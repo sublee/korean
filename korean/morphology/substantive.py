@@ -9,6 +9,7 @@
 from __future__ import absolute_import
 
 from .morpheme import Morpheme
+from ..hangul import is_hangul
 
 
 class Substantive(Morpheme):
@@ -18,15 +19,24 @@ class Substantive(Morpheme):
 
 class Noun(Substantive):
 
-    def __format__(self, suffix):
+    def __format__(self, spec):
         from .particle import Particle
         from ..inflection import inflect
+        separated_spec = spec.split(':')
+        if is_hangul(separated_spec[0][0]):
+            try:
+                particle = Particle(separated_spec.pop(0))
+                suffix = inflect(particle, suffix_of=self)
+                text = u'{0!s}{1}'.format(self, suffix)
+            except LookupError:
+                raise ValueError('Invalid format spec')
+        else:
+            text = unicode(self)
         try:
-            particle = Particle(suffix)
-            suffix = inflect(particle, suffix_of=self)
-        except LookupError:
-            pass
-        return u'{0!s}{1}'.format(self, suffix)
+            spec = separated_spec[0]
+        except IndexError:
+            spec = ''
+        return format(text, spec)
 
 
 class NumberWord(Substantive):
