@@ -16,7 +16,7 @@ from itertools import chain, product
 from .morphology import Noun
 
 
-class KoreanTemplate(object):
+class Template(object):
 
     def __init__(self, template):
         self.template = template
@@ -38,7 +38,7 @@ def patch_translations(translations, get_locale):
         def patched(orig, *args, **kwargs):
             text = orig(*args, **kwargs)
             if get_locale().startswith('ko'):
-                return KoreanTemplate(text)
+                return Template(text)
             else:
                 return text
         patched.__name__ = meth

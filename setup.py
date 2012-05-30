@@ -42,9 +42,10 @@ setup(
     author_email='h@subl.ee',
     description='A library for Korean morphology',
     long_description=__doc__,
+    url='http://github.com/sublee/korean',
     platforms='any',
     packages=['korean'],
-    package_dir={'korean': 'korean'},
+    data_files=[('korean', ['korean/data.json'])],
     classifiers=[
         'Development Status :: 4 - Beta',
         'Environment :: Console',
