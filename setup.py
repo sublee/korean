@@ -45,6 +45,7 @@ setup(
     url='http://github.com/sublee/korean',
     platforms='any',
     packages=['korean', 'korean.morphology'],
+    include_package_data=True,
     classifiers=[
         'Development Status :: 4 - Beta',
         'Environment :: Console',
