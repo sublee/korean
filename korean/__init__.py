@@ -13,4 +13,4 @@ from __future__ import absolute_import
 from . import data
 from .inflection import define, register, inflect
 from .l10n import KoreanTemplate, patch_translations
-from .morphology import Morpheme, Noun, NumberWord, Particle, Substantive
+from .morphology import Morpheme, Noun, Particle, Substantive

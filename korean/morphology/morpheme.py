@@ -28,16 +28,12 @@ class MorphemeMetaclass(type):
         return cls
 
     def __call__(cls, *forms):
-        try:
-            if len(forms) == 1:
-                key = forms[0]
-                return cls._registry[key]
-        except KeyError:
-            pass
+        if len(forms) == 1:
+            try:
+                return cls.get(forms[0])
+            except KeyError:
+                pass
         return super(MorphemeMetaclass, cls).__call__(*forms)
-
-    def register(cls, key, obj):
-        cls._registry[key] = obj
 
 
 class Morpheme(object):
@@ -47,6 +43,14 @@ class Morpheme(object):
     def __init__(self, *forms):
         assert all([isinstance(form, unicode) for form in forms])
         self.forms = forms
+
+    @classmethod
+    def get(cls, key):
+        return cls._registry[key]
+
+    @classmethod
+    def register(cls, key, obj):
+        cls._registry[key] = obj
 
     def basic(self):
         return self.forms[0]

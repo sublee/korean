@@ -24,6 +24,7 @@ class ParticleTestCase(unittest.TestCase):
         self.assertEqual(u'가', inflect(P(u'가'), suffix_of=N(u'나비')))
         self.assertEqual(u'로', inflect(P(u'로'), suffix_of=N(u'마을')))
         self.assertEqual(u'으로', inflect(P(u'로'), suffix_of=N(u'파이썬')))
+        self.assertEqual(u'이다', inflect(P(u'다'), suffix_of=N(u'파이썬')))
 
 
 class NounTestCase(unittest.TestCase):
@@ -37,6 +38,16 @@ class NounTestCase(unittest.TestCase):
         self.assertEqual(u'소년은', u'{0:는}'.format(Noun(u'소년')))
         self.assertEqual(u'소녀는', u'{0:는}'.format(Noun(u'소녀')))
         self.assertEqual(u'한국어를', u'{0:을}'.format(Noun(u'한국어')))
+
+    def test_undefined_particle_format(self):
+        self.assertEqual(u'소년에게', u'{0:에게}'.format(Noun(u'소년')))
+
+    def test_guessable_particle_format(self):
+        self.assertEqual(u'학생으로서', u'{0:로서}'.format(Noun(u'학생')))
+        self.assertEqual(u'컴퓨터로써', u'{0:로써}'.format(Noun(u'컴퓨터')))
+        self.assertEqual(u'칼로써', u'{0:로써}'.format(Noun(u'칼')))
+        self.assertEqual(u'음식으로써', u'{0:로써}'.format(Noun(u'음식')))
+        self.assertEqual(u'녀석이랑은', u'{0:랑은}'.format(Noun(u'녀석')))
 
     def test_combination_format(self):
         with self.assertRaises(ValueError):
@@ -80,7 +91,7 @@ class LocalizationTestCase(unittest.TestCase):
         self._locale = None
 
     def test_patch_translations(self):
-        t = l10n.patch_translations(self.translations, self.get_locale)
+        t = patch_translations(self.translations, self.get_locale)
         with self.locale('ko_KR'):
             self.assertIsInstance(t.ugettext(u''), KoreanTemplate)
             self.assertEqual(u'나는 바나나를 좋아합니다.',

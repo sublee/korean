@@ -15,17 +15,38 @@ from .. import hangul, inflection
 
 class Particle(Morpheme):
 
+    @classmethod
+    def get(cls, key):
+        try:
+            return super(Particle, cls).get(key)
+        except KeyError:
+            return cls.guess(key)
+
+    @classmethod
+    def guess(cls, key):
+        for other_key, particle in cls._registry.iteritems():
+            if key.startswith(other_key):
+                suffix = key[len(other_key):]
+                return cls(*(form + suffix for form in particle.forms))
+        raise KeyError('There is no guessable particle')
+
     @property
     def after_vowel(self):
-        return self.forms[0]
+        return self.basic()
 
     @property
     def after_consonant(self):
-        return self.forms[1]
+        try:
+            return self.forms[1]
+        except IndexError:
+            return self.basic()
 
     @property
     def after_rieul(self):
-        return self.forms[2]
+        try:
+            return self.forms[2]
+        except IndexError:
+            return self.basic()
 
     @inflection.define(suffix_of=Noun)
     def inflect_after_noun(self, noun):
