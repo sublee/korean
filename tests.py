@@ -57,6 +57,25 @@ class NounTestCase(unittest.TestCase):
         self.assertEqual(u' 한국어를', u'{0:을:>5}'.format(Noun(u'한국어')))
 
 
+class NumberWordTestCase(unittest.TestCase):
+
+    def test_reading(self):
+        self.assertEqual(u'영', NumberWord.read(0))
+        self.assertEqual(u'일', NumberWord.read(1))
+        self.assertEqual(u'십', NumberWord.read(10))
+        self.assertEqual(u'십일', NumberWord.read(11))
+        self.assertEqual(u'백육십칠', NumberWord.read(167))
+        self.assertEqual(u'만이십', NumberWord.read(10020))
+        self.assertEqual(u'삼십구만천', NumberWord.read(391000))
+        self.assertEqual(u'육억칠천이백만구천팔백오십이',
+                         NumberWord.read(672009852))
+
+    def test_particle_format(self):
+        self.assertEqual(u'레벨 4가', u'레벨 {0:이}'.format(NumberWord(4)))
+        self.assertEqual(u'레벨 3이', u'레벨 {0:이}'.format(NumberWord(3)))
+        self.assertEqual(u'레벨 15가', u'레벨 {0:이}'.format(NumberWord(15)))
+
+
 class LocalizationTestCase(unittest.TestCase):
 
     def get_locale(self):
@@ -93,7 +112,7 @@ class LocalizationTestCase(unittest.TestCase):
     def test_patch_translations(self):
         t = patch_translations(self.translations, self.get_locale)
         with self.locale('ko_KR'):
-            self.assertIsInstance(t.ugettext(u''), KoreanTemplate)
+            self.assertIsInstance(t.ugettext(u''), Template)
             self.assertEqual(u'나는 바나나를 좋아합니다.',
                              t.ugettext(u'I like {0}.').format(u'바나나'))
             def text(obj, n):
@@ -102,11 +121,11 @@ class LocalizationTestCase(unittest.TestCase):
             self.assertEqual(u'여기 콩이 있습니다.', text(u'콩', 1))
             self.assertEqual(u'여기 사과가 2개 있습니다.', text(u'사과', 2))
         with self.locale('ko'):
-            self.assertIsInstance(t.ugettext(u''), KoreanTemplate)
+            self.assertIsInstance(t.ugettext(u''), Template)
             self.assertEqual(u'나는 딸기를 좋아합니다.',
                              t.ugettext(u'I like {0}.').format(u'딸기'))
         with self.locale('en_US'):
-            self.assertNotIsInstance(t.ugettext(u''), KoreanTemplate)
+            self.assertNotIsInstance(t.ugettext(u''), Template)
             with self.assertRaises(ValueError):
                 self.translations.ugettext(u'I like {0}.').format(u'딸기')
 
@@ -116,5 +135,6 @@ def test_suite():
     suite = unittest.TestSuite()
     suite.addTests(loader.loadTestsFromTestCase(ParticleTestCase))
     suite.addTests(loader.loadTestsFromTestCase(NounTestCase))
+    suite.addTests(loader.loadTestsFromTestCase(NumberWordTestCase))
     suite.addTests(loader.loadTestsFromTestCase(LocalizationTestCase))
     return suite

@@ -9,7 +9,7 @@
 from __future__ import absolute_import
 
 from .morpheme import Morpheme
-from .substantive import Noun
+from .substantive import Noun, NumberWord
 from .. import hangul, inflection
 
 
@@ -48,12 +48,19 @@ class Particle(Morpheme):
         except IndexError:
             return self.basic()
 
-    @inflection.define(suffix_of=Noun)
-    def inflect_after_noun(self, noun):
-        final_of_noun = hangul.get_final(noun[-1])
-        if not final_of_noun:
+    def inflect_by_final(self, final):
+        if not final:
             return self.after_vowel
-        elif final_of_noun == u'ㄹ':
+        elif final == u'ㄹ':
             return self.after_rieul
         else:
             return self.after_consonant
+
+    @inflection.define(suffix_of=Noun)
+    def inflect_after_noun(self, noun):
+        return self.inflect_by_final(hangul.get_final(noun[-1]))
+
+    @inflection.define(suffix_of=NumberWord)
+    def inflect_after_noun(self, number_word):
+        final = hangul.get_final(NumberWord.read(number_word.number)[-1])
+        return self.inflect_by_final(final)

@@ -10,4 +10,4 @@ from __future__ import absolute_import
 
 from .morpheme import Morpheme
 from .particle import Particle
-from .substantive import Substantive, Noun
+from .substantive import Substantive, Noun, NumberWord

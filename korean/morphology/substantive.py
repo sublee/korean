@@ -13,13 +13,7 @@ from ..hangul import is_hangul
 
 
 class Substantive(Morpheme):
-    """A class for Korean substantive ("체언")."""
-
-    pass
-
-
-class Noun(Substantive):
-    """A class for Korean noun ("명사")."""
+    """A class for Korean substantive that is called "체언" in Korean."""
 
     def __format__(self, spec):
         """This custom formatter can choose the correct particle:
@@ -45,3 +39,45 @@ class Noun(Substantive):
         except IndexError:
             spec = ''
         return format(text, spec)
+
+
+class Noun(Substantive):
+    """A class for Korean noun that is called "명사" in Korean."""
+
+    pass
+
+
+class NumberWord(Substantive):
+    """A class for Korean number word that is called "수사" in Korean."""
+
+    __numbers__ = {}
+    __digits__ = {}
+
+    def __init__(self, number):
+        self.number = number
+        super(NumberWord, self).__init__(unicode(number))
+
+    @classmethod
+    def read(cls, number):
+        rv = []
+        digit = 0
+        while True:
+            single = number % 10
+            if digit >= 4:
+                try:
+                    rv.append(cls.__digits__[digit])
+                except KeyError:
+                    pass
+            if single:
+                try:
+                    rv.append(cls.__digits__[digit % 4])
+                except KeyError:
+                    pass
+            number /= 10
+            if not single and not number or \
+               single == 1 and not digit or single > 1:
+                rv.append(cls.__numbers__[single])
+            if not number:
+                break
+            digit += 1
+        return ''.join(rv[::-1])
