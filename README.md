@@ -8,11 +8,14 @@ useful Korean morphological functions. (in the future)
 
 Here is an example for using Korean particle (postposition) formatter:
 
-    >>> from korean import Noun
+    >>> from korean import Noun, NumberWord
     >>> fmt = u'{subj:은} {obj:을} 먹었다.'
+    >>> fmt2 = u'{subj:은} 레벨 {level:이} 되었다.'
     >>> print fmt.format(subj=Noun(u'나'), obj=Noun(u'밥'))
     나는 밥을 먹었다.
     >>> print fmt.format(subj=Noun(u'학생'), obj=Noun(u'돈까스'))
     학생은 돈까스를 먹었다.
+    >>> print fmt2.format(subj=Noun(u'용사'), level=NumberWord(4))
+    용사는 레벨 4가 되었다.
 
 Do not use "을(를)" anymore.
