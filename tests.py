@@ -70,6 +70,10 @@ class NumberWordTestCase(unittest.TestCase):
         self.assertEqual(u'육억칠천이백만구천팔백오십이',
                          NumberWord.read(672009852))
 
+    def test_number_format(self):
+        self.assertEqual(u'4.0', u'{0:.1f}'.format(NumberWord(4)))
+        self.assertEqual(u'  4', u'{0:3d}'.format(NumberWord(4)))
+
     def test_particle_format(self):
         self.assertEqual(u'레벨 4가', u'레벨 {0:이}'.format(NumberWord(4)))
         self.assertEqual(u'레벨 3이', u'레벨 {0:이}'.format(NumberWord(3)))

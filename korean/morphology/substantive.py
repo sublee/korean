@@ -55,7 +55,6 @@ class NumberWord(Substantive):
 
     def __init__(self, number):
         self.number = number
-        super(NumberWord, self).__init__(unicode(number))
 
     @classmethod
     def read(cls, number):
@@ -81,3 +80,12 @@ class NumberWord(Substantive):
                 break
             digit += 1
         return ''.join(rv[::-1])
+
+    def basic(self):
+        return unicode(self.number)
+
+    def __format__(self, spec):
+        try:
+            return super(NumberWord, self).__format__(spec)
+        except ValueError:
+            return format(self.number, spec)
