@@ -33,14 +33,10 @@ class Template(object):
         return '<%s %r>' % (type(self).__name__, self.template)
 
 
-def patch_translations(translations, get_locale):
+def patch(translations):
     for meth in ['ugettext', 'ungettext']:
         def patched(orig, *args, **kwargs):
-            text = orig(*args, **kwargs)
-            if get_locale().startswith('ko'):
-                return Template(text)
-            else:
-                return text
+            return Template(orig(*args, **kwargs))
         patched.__name__ = meth
         orig = getattr(translations, meth)
         setattr(translations, meth, partial(patched, orig))

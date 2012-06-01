@@ -18,4 +18,20 @@ Here is an example for using Korean particle (postposition) formatter:
     >>> print fmt2.format(subj=Noun(u'용사'), level=NumberWord(4))
     용사는 레벨 4가 되었다.
 
+It also can be worked with gettext:
+
+    # ko_KR
+    msgid "I like a {0}."
+    msgstr "나는 {0:을} 좋아합니다.'
+    
+    msgid "banana"
+    msgstr "바나나"
+
+    >>> from babel.support import Translations
+    >>> import korean
+    >>> translations = korean.l10n.patch(Translations.load('i18n', 'ko_KR'))
+    >>> _ = translations.ugettext
+    >>> _(u'I like a {0}.').format(_(u'banana'))
+    나는 바나나를 좋아합니다.
+
 Do not use "을(를)" anymore.

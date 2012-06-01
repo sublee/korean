@@ -10,8 +10,8 @@
 """
 from __future__ import absolute_import
 
+from . import l10n
 from .inflection import define, register, inflect
-from .l10n import Template, patch_translations
 from .morphology import Morpheme, Noun, NumberWord, Particle, Substantive
 
 

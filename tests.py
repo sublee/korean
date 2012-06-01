@@ -82,15 +82,6 @@ class NumberWordTestCase(unittest.TestCase):
 
 class LocalizationTestCase(unittest.TestCase):
 
-    def get_locale(self):
-        return self._locale
-
-    @contextlib.contextmanager
-    def locale(self, locale):
-        self._locale = locale
-        yield
-        self._locale = None
-
     def setUp(self):
         from StringIO import StringIO
         from babel.messages import Catalog, mofile, pofile
@@ -98,7 +89,7 @@ class LocalizationTestCase(unittest.TestCase):
         catalog = Catalog(locale='ko_KR')
         po = '''
         # ugettext
-        msgid "I like {0}."
+        msgid "I like a {0}."
         msgstr "나는 {0:을} 좋아합니다.'
         # ungettext
         msgid "Here is a {0}."
@@ -111,27 +102,17 @@ class LocalizationTestCase(unittest.TestCase):
         mofile.write_mo(buf, catalog)
         buf.seek(0)
         self.translations = Translations(buf)
-        self._locale = None
 
     def test_patch_translations(self):
-        t = patch_translations(self.translations, self.get_locale)
-        with self.locale('ko_KR'):
-            self.assertIsInstance(t.ugettext(u''), Template)
-            self.assertEqual(u'나는 바나나를 좋아합니다.',
-                             t.ugettext(u'I like {0}.').format(u'바나나'))
-            def text(obj, n):
-                fmt = t.ungettext(u'Here is a {0}.', u'Here are {1} {8}.', n)
-                return fmt.format(obj, n)
-            self.assertEqual(u'여기 콩이 있습니다.', text(u'콩', 1))
-            self.assertEqual(u'여기 사과가 2개 있습니다.', text(u'사과', 2))
-        with self.locale('ko'):
-            self.assertIsInstance(t.ugettext(u''), Template)
-            self.assertEqual(u'나는 딸기를 좋아합니다.',
-                             t.ugettext(u'I like {0}.').format(u'딸기'))
-        with self.locale('en_US'):
-            self.assertNotIsInstance(t.ugettext(u''), Template)
-            with self.assertRaises(ValueError):
-                self.translations.ugettext(u'I like {0}.').format(u'딸기')
+        t = l10n.patch(self.translations)
+        self.assertIsInstance(t.ugettext(u''), l10n.Template)
+        self.assertEqual(u'나는 바나나를 좋아합니다.',
+                         t.ugettext(u'I like a {0}.').format(u'바나나'))
+        def text(obj, n):
+            fmt = t.ungettext(u'Here is a {0}.', u'Here are {1} {8}.', n)
+            return fmt.format(obj, n)
+        self.assertEqual(u'여기 콩이 있습니다.', text(u'콩', 1))
+        self.assertEqual(u'여기 사과가 2개 있습니다.', text(u'사과', 2))
 
 
 def test_suite():
