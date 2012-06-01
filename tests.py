@@ -102,6 +102,9 @@ class LocalizationTestCase(unittest.TestCase):
         msgid_plural "Here are {1} {0}."
         msgstr[0] "여기 {0:이} 있습니다."
         msgstr[1] "여기 {0:이} {1}개 있습니다."
+        # ugettext
+        msgid "I reached level {0}."
+        msgstr "나는 레벨{0:이} 되었습니다.'
         '''
         buf = StringIO()
         catalog = pofile.read_po(StringIO(po))
@@ -119,6 +122,8 @@ class LocalizationTestCase(unittest.TestCase):
             return fmt.format(obj, n)
         self.assertEqual(u'여기 콩이 있습니다.', text(u'콩', 1))
         self.assertEqual(u'여기 사과가 2개 있습니다.', text(u'사과', 2))
+        self.assertEqual(u'나는 레벨4가 되었습니다.',
+                         t.ugettext(u'I reached level {0}.').format(4))
 
 
 def test_suite():

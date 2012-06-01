@@ -13,7 +13,7 @@ from __future__ import absolute_import
 from functools import partial
 from itertools import chain, product
 
-from .morphology import Noun
+from .morphology import Noun, NumberWord
 
 
 class Template(object):
@@ -27,6 +27,8 @@ class Template(object):
                                      product([kwargs], kwargs.items())):
             if isinstance(val, unicode):
                 seq[key] = Noun(val)
+            elif isinstance(val, int):
+                seq[key] = NumberWord(val)
         return self.template.format(*args, **kwargs)
 
     def __repr__(self):
