@@ -16,10 +16,7 @@ from itertools import chain, product
 from .morphology import Noun, NumberWord
 
 
-class Template(object):
-
-    def __init__(self, template):
-        self.template = template
+class Template(unicode):
 
     def format(self, *args, **kwargs):
         args = list(args)
@@ -29,10 +26,11 @@ class Template(object):
                 seq[key] = Noun(val)
             elif isinstance(val, int):
                 seq[key] = NumberWord(val)
-        return self.template.format(*args, **kwargs)
+        return super(Template, self).format(*args, **kwargs)
 
     def __repr__(self):
-        return '<%s %r>' % (type(self).__name__, self.template)
+        return '<%s %s>' % \
+               (type(self).__name__, super(Template, self).__repr__)
 
 
 def patch(translations):

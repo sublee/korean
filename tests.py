@@ -124,6 +124,7 @@ class LocalizationTestCase(unittest.TestCase):
         self.assertEqual(u'여기 사과가 2개 있습니다.', text(u'사과', 2))
         self.assertEqual(u'나는 레벨4가 되었습니다.',
                          t.ugettext(u'I reached level {0}.').format(4))
+        self.assertEqual(u'Undefined', t.ugettext(u'Undefined'))
 
 
 def test_suite():
