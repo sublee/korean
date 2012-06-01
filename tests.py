@@ -42,6 +42,9 @@ class NounTestCase(unittest.TestCase):
     def test_undefined_particle_format(self):
         self.assertEqual(u'소년에게', u'{0:에게}'.format(Noun(u'소년')))
 
+    def test_null_format(self):
+        self.assertEqual(u'소년', u'{0}'.format(Noun(u'소년')))
+
     def test_guessable_particle_format(self):
         self.assertEqual(u'학생으로서', u'{0:로서}'.format(Noun(u'학생')))
         self.assertEqual(u'컴퓨터로써', u'{0:로써}'.format(Noun(u'컴퓨터')))
