@@ -82,6 +82,9 @@ class NumberWordTestCase(unittest.TestCase):
         self.assertEqual(u'레벨 3이', u'레벨 {0:이}'.format(NumberWord(3)))
         self.assertEqual(u'레벨 15가', u'레벨 {0:이}'.format(NumberWord(15)))
 
+    def test_null_format(self):
+        self.assertEqual(u'12', u'{0}'.format(NumberWord(12)))
+
 
 class LocalizationTestCase(unittest.TestCase):
 
