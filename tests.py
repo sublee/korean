@@ -41,6 +41,7 @@ class ParticleTestCase(TestCase):
 
     def test_proofreading(self):
         self.equal(u'사과는 맛있다.', l10n.proofread(u'사과은(는) 맛있다.'))
+        self.equal(u'집으로 가자.', l10n.proofread(u'집(으)로 가자.'))
         self.equal(u'용사는 검을 획득했다.',
                    l10n.proofread(u'용사은(는) 검을(를) 획득했다.'))
 
