@@ -6,12 +6,10 @@ korean
 |  |- morpheme:
 |  |  * Morpheme -- 형태소
 |  |- substantive:
-|  |  * Substantive
+|  |  * Substantive -- 체언
 |  |  * Noun -- 명사
 |  |  * NumberWord -- 수사
 |  |- particle:
 |  |  * Particle -- 조사
 |- hangul -- 한글 처리
 |- l10n -- 현지화 유틸리티
-|- data -- 사전 정의된 형태소
-|- helpers
