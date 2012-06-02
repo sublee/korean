@@ -20,7 +20,12 @@ Here is an example for using Korean particle (postposition) formatter:
 용사는 레벨 4가 되었다.
 ~~~~
 
-It also can be worked with Gettext:
+Do not use "을(를)" anymore.
+
+Patching Gettext
+----------------
+
+It also can be worked with Gettext. Just use `korean.l10n.patch_gettext()` function:
 
 ~~~~pot
 msgid ""
@@ -42,7 +47,7 @@ msgstr "게임"
 ~~~~pycon
 >>> from babel.support import Translations
 >>> import korean
->>> translations = korean.l10n.patch(Translations.load('i18n', 'ko_KR'))
+>>> translations = korean.l10n.patch_gettext(Translations.load('i18n', 'ko_KR'))
 >>> _ = translations.ugettext
 >>> _(u'I like a {0}.').format(_(u'banana'))
 나는 바나나를 좋아합니다.
@@ -50,4 +55,16 @@ msgstr "게임"
 나는 게임을 좋아합니다.
 ~~~~
 
-Do not use "을(를)" anymore.
+Proofreading
+------------
+
+If your legacy already has been wrote with naive particle such as "을(를)", use
+`korean.l10n.proofread()` fucntion to use correct particle:
+
+~~~~pycon
+>>> import korean
+>>> korean.l10n.proofread(u'용사은(는) 검을(를) 획득했다.')
+용사는 검을 획득했다.
+>>> korean.l10n.proofread(u'집(으)로 가자.')
+집으로 가자.
+~~~~
