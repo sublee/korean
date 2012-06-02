@@ -58,9 +58,9 @@ class Particle(Morpheme):
 
     @inflection.define(suffix_of=Noun)
     def inflect_after_noun(self, noun):
-        return self.inflect_by_final(hangul.get_final(noun[-1]))
+        return self.inflect_by_final(hangul.get_final(noun.read()[-1]))
 
     @inflection.define(suffix_of=NumberWord)
     def inflect_after_noun(self, number_word):
-        final = hangul.get_final(NumberWord.read(number_word.number)[-1])
+        final = hangul.get_final(number_word.read()[-1])
         return self.inflect_by_final(final)

@@ -52,6 +52,9 @@ class Morpheme(object):
     def register(cls, key, obj):
         cls._registry[key] = obj
 
+    def read(self):
+        return unicode(self)
+
     def basic(self):
         return self.forms[0]
 

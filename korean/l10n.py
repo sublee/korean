@@ -33,7 +33,7 @@ class Template(unicode):
                (type(self).__name__, super(Template, self).__repr__)
 
 
-def patch(translations):
+def patch_gettext(translations):
     for meth in ['ugettext', 'ungettext']:
         def patched(orig, *args, **kwargs):
             return Template(orig(*args, **kwargs))
@@ -41,3 +41,7 @@ def patch(translations):
         orig = getattr(translations, meth)
         setattr(translations, meth, partial(patched, orig))
     return translations
+
+
+def proofread(sentence):
+    pass

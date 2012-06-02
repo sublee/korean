@@ -8,6 +8,8 @@
 """
 from __future__ import absolute_import
 
+import re
+
 from .morpheme import Morpheme
 from ..hangul import is_hangul
 
@@ -44,7 +46,20 @@ class Substantive(Morpheme):
 class Noun(Substantive):
     """A class for Korean noun that is called "명사" in Korean."""
 
-    pass
+    def read(self):
+        """Reads a noun as Korean. The result will be Hangul.
+
+            >>> Noun(u'레벨42').read()
+            레벨사십이
+        """
+        regex = re.compile(r'(?P<other>[^0-9]+)?(?P<number>[0-9]+)?')
+        rv = []
+        for match in regex.finditer(unicode(self)):
+            if match.group('other'):
+                rv.append(match.group('other'))
+            if match.group('number'):
+                rv.append(NumberWord(int(match.group('number'))).read())
+        return ''.join(rv)
 
 
 class NumberWord(Substantive):
@@ -56,30 +71,39 @@ class NumberWord(Substantive):
     def __init__(self, number):
         self.number = number
 
+    def read(self):
+        return ''.join(type(self).read_phases(self.number))
+
     @classmethod
-    def read(cls, number):
-        rv = []
+    def read_phases(cls, number):
+        rv, phase = [], []
         digit = 0
         while True:
             single = number % 10
             if digit >= 4:
                 try:
-                    rv.append(cls.__digits__[digit])
+                    phase.append(cls.__digits__[digit])
                 except KeyError:
                     pass
             if single:
                 try:
-                    rv.append(cls.__digits__[digit % 4])
+                    phase.append(cls.__digits__[digit % 4])
                 except KeyError:
                     pass
             number /= 10
             if not single and not number or \
                single == 1 and not digit or single > 1:
-                rv.append(cls.__numbers__[single])
-            if not number:
-                break
+                phase.append(cls.__numbers__[single])
+            if not number or digit % 4 == 3:
+                if digit < 4 or len(phase) > 1:
+                    rv.append(''.join(phase[::-1]))
+                else:
+                    rv.append(u'')
+                phase = []
+                if not number:
+                    break
             digit += 1
-        return ''.join(rv[::-1])
+        return tuple(rv[::-1])
 
     def basic(self):
         return unicode(self.number)
