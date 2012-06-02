@@ -46,15 +46,16 @@ class Substantive(Morpheme):
 class Noun(Substantive):
     """A class for Korean noun that is called "명사" in Korean."""
 
+    READING_PATTERN = re.compile(r'(?P<other>[^0-9]+)?(?P<number>[0-9]+)?')
+
     def read(self):
         """Reads a noun as Korean. The result will be Hangul.
 
             >>> Noun(u'레벨42').read()
             레벨사십이
         """
-        regex = re.compile(r'(?P<other>[^0-9]+)?(?P<number>[0-9]+)?')
         rv = []
-        for match in regex.finditer(unicode(self)):
+        for match in self.READING_PATTERN.finditer(unicode(self)):
             if match.group('other'):
                 rv.append(match.group('other'))
             if match.group('number'):

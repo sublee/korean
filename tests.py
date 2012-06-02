@@ -35,6 +35,10 @@ class ParticleTestCase(TestCase):
         self.equal(u'으로', inflect(P(u'로'), suffix_of=N(u'파이썬')))
         self.equal(u'이다', inflect(P(u'다'), suffix_of=N(u'파이썬')))
 
+    def test_naive(self):
+        self.assertItemsEqual((u'을(를)', u'를(을)'), Particle(u'을').naive())
+        self.equal((u'(으)로',), Particle(u'로').naive())
+
     '''
     def test_proofreading(self):
         self.equal(u'사과는 맛있다.', l10n.proofread(u'사과은(는) 맛있다.'))

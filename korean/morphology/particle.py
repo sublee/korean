@@ -24,11 +24,29 @@ class Particle(Morpheme):
 
     @classmethod
     def guess(cls, key):
-        for other_key, particle in cls._registry.iteritems():
+        def compare(x, y):
+            return -cmp(len(x[0]), len(y[0]))
+        for other_key, particle in sorted(cls._registry.items(), cmp=compare):
             if key.startswith(other_key):
                 suffix = key[len(other_key):]
                 return cls(*(form + suffix for form in particle.forms))
         raise KeyError('There is no guessable particle')
+
+    def naive(self):
+        rv = []
+        unique_forms = list(set(self.forms))
+        for forms in zip(unique_forms[:-1], unique_forms[1:]):
+            length = map(len, forms)
+            if len(set(length)) == 1:
+                # such as "을(를)" or "를(을)"
+                rv.append(u'{0}({1})'.format(*forms))
+                rv.append(u'{1}({0})'.format(*forms))
+            else:
+                # such as "(으)로"
+                x = int(length[0] > length[1])
+                args = forms[1 - x].rstrip(forms[x]), forms[x]
+                rv.append(u'({0}){1}'.format(*args))
+        return tuple(rv)
 
     @property
     def after_vowel(self):

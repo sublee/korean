@@ -13,7 +13,7 @@ from __future__ import absolute_import
 from functools import partial
 from itertools import chain, product
 
-from .morphology import Noun, NumberWord
+from .morphology import Noun, NumberWord, Particle
 
 
 class Template(unicode):
@@ -44,4 +44,5 @@ def patch_gettext(translations):
 
 
 def proofread(sentence):
-    pass
+    for particle in set(Particle._registry.itervalues()):
+        pass
