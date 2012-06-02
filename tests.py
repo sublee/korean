@@ -39,12 +39,10 @@ class ParticleTestCase(TestCase):
         self.assertItemsEqual((u'을(를)', u'를(을)'), Particle(u'을').naive())
         self.equal((u'(으)로',), Particle(u'로').naive())
 
-    '''
     def test_proofreading(self):
         self.equal(u'사과는 맛있다.', l10n.proofread(u'사과은(는) 맛있다.'))
         self.equal(u'용사는 검을 획득했다.',
                    l10n.proofread(u'용사은(는) 검을(를) 획득했다.'))
-    '''
 
 
 class NounTestCase(TestCase):

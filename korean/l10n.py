@@ -13,6 +13,7 @@ from __future__ import absolute_import
 from functools import partial
 from itertools import chain, product
 
+from .inflection import inflect
 from .morphology import Noun, NumberWord, Particle
 
 
@@ -45,4 +46,13 @@ def patch_gettext(translations):
 
 def proofread(sentence):
     for particle in set(Particle._registry.itervalues()):
-        pass
+        for naive in particle.naive():
+            while True:
+                found = sentence.find(naive)
+                if found < 0:
+                    break
+                noun = Noun(sentence[found - 1])
+                inflected_particle = inflect(particle, suffix_of=noun)
+                sentence = sentence[:found] + inflected_particle + \
+                           sentence[found + len(naive):]
+    return sentence
