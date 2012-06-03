@@ -37,6 +37,13 @@ class MorphemeMetaclass(type):
 
 
 class Morpheme(object):
+    """This class presents a morpheme (형태소) or allomorph (이형태). It
+    can have one or more forms. The first form means the basic allomorph
+    (기본형).
+
+    :param forms: each forms of allomorph. the first form will be basic
+                  allomorph.
+    """
 
     __metaclass__ = MorphemeMetaclass
 
@@ -46,16 +53,22 @@ class Morpheme(object):
 
     @classmethod
     def get(cls, key):
+        """Returns a pre-defined morpheme object by the given key."""
         return cls._registry[key]
 
     @classmethod
     def register(cls, key, obj):
+        """Registers a pre-defined morpheme object to the given key."""
         cls._registry[key] = obj
 
     def read(self):
+        """Every morpheme class would implement :meth:`read` method. This
+        should make a morpheme to the valid Korean text with Hangul.
+        """
         return unicode(self)
 
     def basic(self):
+        """The basic form of allomorph."""
         return self.forms[0]
 
     def __unicode__(self):
@@ -69,13 +82,6 @@ class Morpheme(object):
 
     def __getslice__(self, start, stop, step=None):
         return unicode(self)[start:stop:step]
-
-    def has_final(self):
-        char = self[-1]
-        if is_hangul(char):
-            return bool(get_final(char))
-        else:
-            return char in 'bcdfgjklmnpqrtx'
 
     def __format__(self, suffix):
         return u'{0!s}{1}'.format(self, suffix)

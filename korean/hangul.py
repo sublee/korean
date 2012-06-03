@@ -3,7 +3,9 @@
     korean.hangul
     ~~~~~~~~~~~~~
 
-    Based on "hangul.py" of Hye-Shik Chang.
+    Processing a string written by Hangul. All code is based on `hangul.py
+    <https://raw.github.com/sublee/hangulize/master/hangulize/hangul.py>`_ by
+    `Hye-Shik Chang <http://openlook.org/>`_ at 2003.
 
     :copyright: (c) 2012 by Heungsub Lee
     :license: BSD, see LICENSE for more details.
@@ -16,8 +18,6 @@ def S(*sequences):
             return (sequence,)
         return tuple(sequence)
     return sum(map(to_tuple, sequences), ())
-
-
 VOWELS = S(u'ㅏㅐㅑㅒㅓㅔㅕㅖㅗㅘㅙㅚㅛㅜㅝㅞㅟㅠㅡㅢㅣ')
 CONSONANTS = S(u'ㄱㄲㄳㄴㄵㄶㄷㄸㄹㄺㄻㄼㄽㄾㄿㅀㅁㅂㅃㅄㅅㅆㅇㅈㅉㅊㅋㅌㅍㅎ')
 INITIALS = S(u'ㄱㄲㄴㄷㄸㄹㅁㅂㅃㅅㅆㅇㅈㅉㅊㅋㅌㅍㅎ')
@@ -25,9 +25,11 @@ FINALS = S(u'', u'ㄱㄲㄳㄴㄵㄶㄷㄹㄺㄻㄼㄽㄾㄿㅀㅁㅂㅄㅅㅆ�
 LETTER_ELEMENTS = (INITIALS, VOWELS, FINALS)
 HANGUL_RANGE = xrange(ord(u'가'), ord(u'힣') + 1)
 FIRST_HANGUL = HANGUL_RANGE[0]
+del S
 
 
 def char_offset(char):
+    """Returns Hangul character offset from "가"."""
     if isinstance(char, int):
         offset = char
     else:
@@ -39,49 +41,65 @@ def char_offset(char):
 
 
 def is_hangul(char):
+    """Checks if the given character is written in Hangul."""
     return ord(char) in HANGUL_RANGE
 
 
 def is_vowel(char):
+    """Checks if the given character is a vowel of Hangul."""
     return char in VOWELS
 
 
 def is_consonant(char):
+    """Checks if the given character is a consonant of Hangul."""
     return char in CONSONANTS
 
 
 def is_initial(char):
+    """Checks if the given character is an initial consonant of Hangul."""
     return char in INITIALS
 
 
 def is_final(char):
+    """Checks if the given character is a final consonant of Hangul. The final
+    consonants contain what a joined multiple consonant and empty character.
+    """
     return char in FINALS
 
 
 def get_initial(char):
+    """Returns an initial consonant from the given character."""
     if is_initial(char):
         return char
     return INITIALS[int(char_offset(char) / (len(VOWELS) * len(FINALS)))]
 
 
 def get_vowel(char):
+    """Returns a vowel from the given character."""
     if is_vowel(char):
         return char
     return VOWELS[int(char_offset(char) / len(FINALS)) % len(VOWELS)]
 
 
 def get_final(char):
+    """Returns a final consonant from the given character."""
     if is_final(char):
         return char
     return FINALS[char_offset(char) % len(FINALS)]
 
 
 def split_char(char):
+    """Splits the given character to a tuple where the first item is the
+    initial consonant and the second the vowel and the third the final.
+    """
     code = char_offset(char)
     return (get_initial(code), get_vowel(code), get_final(code))
 
 
 def join_char(splitted):
+    """Joins a tuple in the form ``(initial, vowel, final)`` to a Hangul
+    character.
+    """
     assert len(splitted) == len(LETTER_ELEMENTS)
     if not (splitted[0] and splitted[1]):
         return splitted[0] or splitted[1]

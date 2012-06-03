@@ -14,6 +14,19 @@ from .. import hangul, inflection
 
 
 class Particle(Morpheme):
+    """Particle (조사) is a postposition in Korean. Some particles are
+    allomorph such as 을/를, 이/가. These forms follow forward syllable ends
+    what phoneme; a vowel, a consonant, or a Rieul (ㄹ).
+    """
+
+    def __init__(self, after_vowel, after_consonant=None, after_rieul=None):
+        if after_rieul:
+            forms = (after_vowel, after_consonant, after_rieul)
+        elif after_consonant:
+            forms = (after_vowel, after_consonant)
+        else:
+            forms = (after_vowel,)
+        super(Particle, self).__init__(*forms)
 
     @classmethod
     def get(cls, key):
@@ -31,22 +44,6 @@ class Particle(Morpheme):
                 suffix = key[len(other_key):]
                 return cls(*(form + suffix for form in particle.forms))
         raise KeyError('There is no guessable particle')
-
-    def naive(self):
-        rv = []
-        unique_forms = list(set(self.forms))
-        for forms in zip(unique_forms[:-1], unique_forms[1:]):
-            length = map(len, forms)
-            if len(set(length)) == 1:
-                # such as "을(를)" or "를(을)"
-                rv.append(u'{0}({1})'.format(*forms))
-                rv.append(u'{1}({0})'.format(*forms))
-            else:
-                # such as "(으)로"
-                x = int(length[0] > length[1])
-                args = forms[1 - x].rstrip(forms[x]), forms[x]
-                rv.append(u'({0}){1}'.format(*args))
-        return tuple(rv)
 
     @property
     def after_vowel(self):
@@ -66,7 +63,24 @@ class Particle(Morpheme):
         except IndexError:
             return self.basic()
 
-    def inflect_by_final(self, final):
+    def naive(self):
+        rv = []
+        unique_forms = list(set(self.forms))
+        for forms in zip(unique_forms[:-1], unique_forms[1:]):
+            length = map(len, forms)
+            if len(set(length)) == 1:
+                # such as "을(를)" or "를(을)"
+                rv.append(u'{0}({1})'.format(*forms))
+                rv.append(u'{1}({0})'.format(*forms))
+            else:
+                # such as "(으)로"
+                x = int(length[0] > length[1])
+                args = forms[1 - x].rstrip(forms[x]), forms[x]
+                rv.append(u'({0}){1}'.format(*args))
+        return tuple(rv)
+
+    def inflect_after_char(self, char):
+        final = hangul.get_final(char)
         if not final:
             return self.after_vowel
         elif final == u'ㄹ':
@@ -75,10 +89,6 @@ class Particle(Morpheme):
             return self.after_consonant
 
     @inflection.define(suffix_of=Noun)
-    def inflect_after_noun(self, noun):
-        return self.inflect_by_final(hangul.get_final(noun.read()[-1]))
-
     @inflection.define(suffix_of=NumberWord)
-    def inflect_after_noun(self, number_word):
-        final = hangul.get_final(number_word.read()[-1])
-        return self.inflect_by_final(final)
+    def inflect_after_substantive(self, substantive):
+        return self.inflect_after_char(substantive.read()[-1])

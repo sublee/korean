@@ -18,7 +18,9 @@ class Substantive(Morpheme):
     """A class for Korean substantive that is called "체언" in Korean."""
 
     def __format__(self, spec):
-        """This custom formatter can choose the correct particle:
+        """:class:`Substantive`'s custom formatter appends the correct particle
+        after the substantive string using particle format spec such as
+        ``{0:은}`` or ``{1:로}``:
 
             >>> format(Noun(u'엄마'), u'을')
             엄마를
