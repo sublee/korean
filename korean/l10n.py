@@ -12,6 +12,8 @@ from __future__ import absolute_import
 
 from functools import partial
 from itertools import chain, product
+import re
+from StringIO import StringIO
 
 from .inflection import inflect
 from .morphology import Noun, NumberWord, Particle
@@ -92,21 +94,50 @@ def patch_gettext(translations):
     return translations
 
 
-def proofread(text):
-    """Replaces naive particles to be correct. First, it finds naive particles 
-    such as "을(를)" or "(으)로". Then it checks the forward character of the
-    particle and replace with a correct particle.
+class Proofreading(object):
 
-    :param text: the string that has been written with naive particles.
-    """
-    for particle in set(Particle._registry.itervalues()):
-        for naive in particle.naive():
-            while True:
-                found = text.find(naive)
-                if found < 0:
-                    break
-                noun = Noun(text[found - 1])
-                inflected_particle = inflect(particle, suffix_of=noun)
-                text = text[:found] + inflected_particle + \
-                       text[found + len(naive):]
-    return text
+    def __init__(self, token_types):
+        # TODO: support various token types
+        pass
+
+    def parse(self, text):
+        """Tokenizes the given text with unicode text or :class:`Particle`."""
+        tokens = []
+        naive_particles = []
+        particle_map = {}
+        for particle in set(Particle._registry.itervalues()):
+            for naive in particle.naive():
+                particle_map[naive] = particle
+                naive_particles.append(naive)
+        particle_pattern = '(%s)' % '|'.join(map(re.escape, naive_particles))
+        particle_pattern = re.compile(particle_pattern)
+        prev_span = [0, 0]
+        for match in particle_pattern.finditer(text):
+            span = match.span()
+            tokens.append(text[prev_span[1]:span[0]])
+            tokens.append(particle_map[match.group(1)])
+            prev_span = span
+        tokens.append(text[span[1]:])
+        return tuple(tokens)
+
+    def __call__(self, text):
+        """Replaces naive particles to be correct. First, it finds naive
+        particles such as "을(를)" or "(으)로". Then it checks the forward
+        character of the particle and replace with a correct particle.
+
+        :param text: the string that has been written with naive particles.
+        """
+        stream = StringIO()
+        for token in self.parse(text):
+            if isinstance(token, Particle):
+                stream.seek(-1, 2)
+                noun = Noun(stream.read())
+                inflected_particle = inflect(token, suffix_of=noun)
+                stream.write(inflected_particle)
+            else:
+                stream.write(token)
+        return stream.getvalue()
+
+
+#: Default :class:`Proofreading` object. Use it like a function.
+proofread = Proofreading([unicode, Particle])

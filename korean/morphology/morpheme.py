@@ -87,4 +87,4 @@ class Morpheme(object):
         return u'{0!s}{1}'.format(self, suffix)
 
     def __repr__(self):
-        return '{0}:{1}'.format(type(self).__name__, str(self))
+        return '{0}({1!s})'.format(type(self).__name__, str(self))

@@ -166,6 +166,9 @@ class LocalizationTestCase(TestCase):
         self.equal(u'용사는 검을 획득했다.',
                    l10n.proofread(u'용사은(는) 검을(를) 획득했다.'))
 
+    def test_complex_proofreading(self):
+        self.equal(u'말을(를)', l10n.proofread(u'말을(를)(를)'))
+
     def test_proofreading_lyrics(self):
         self.equal(textwrap.dedent(u'''
         나의 영혼 물어다줄 평화시장 비둘기 위로 떨어지는 투명한 소나기
@@ -205,6 +208,14 @@ class LocalizationTestCase(TestCase):
         빨간 꽃 노란 꽃 꽃밭 가득 피어도 하얀 나비 꽃나비 담장 위에 날아도
         따스한 봄바람이(가) 불고 또 불어도 미싱은(는) 잘도 도네 돌아가네
         ''')))
+
+    def test_parser(self):
+        self.equal(
+            (u'용사', Particle(u'은'), u' 사과', Particle(u'을'), u' 먹었다.'),
+            l10n.proofread.parse(u'용사은(는) 사과를(을) 먹었다.')
+        )
+        self.equal((u'말', Particle(u'를'), u'(를)'),
+                   l10n.proofread.parse(u'말을(를)(를)'))
 
 
 def test_suite():
