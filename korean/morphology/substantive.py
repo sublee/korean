@@ -30,11 +30,11 @@ class Substantive(Morpheme):
             아들은 산으로
         """
         from .particle import Particle
-        from ..inflection import inflect
+        from . import allomorph
         separated_spec = spec.split(':')
         if separated_spec[0] and is_hangul(separated_spec[0][0]):
             particle = Particle(separated_spec.pop(0))
-            suffix = inflect(particle, suffix_of=self)
+            suffix = allomorph(particle, suffix_of=self)
             text = u'{0!s}{1}'.format(self, suffix)
         else:
             text = unicode(self)

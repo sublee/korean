@@ -3,13 +3,19 @@
     korean.hangul
     ~~~~~~~~~~~~~
 
-    Processing a string written by Hangul. All code is based on `hangul.py
+    Processing a string written by Hangul. All code of here is based on
+    `hangul.py
     <https://raw.github.com/sublee/hangulize/master/hangulize/hangul.py>`_ by
     `Hye-Shik Chang <http://openlook.org/>`_ at 2003.
 
-    :copyright: (c) 2012 by Heungsub Lee
+    :copyright: (c) 2012 by Heungsub Lee and 2003 by Hye-Shik Chang
     :license: BSD, see LICENSE for more details.
 """
+
+
+__all__ = 'char_offset', 'is_hangul', 'is_vowel', 'is_consonant', \
+          'is_initial', 'is_final', 'get_initial', 'get_vowel', 'get_final', \
+          'split_char', 'join_char',
 
 
 def S(*sequences):

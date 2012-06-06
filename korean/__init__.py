@@ -11,8 +11,14 @@
 from __future__ import absolute_import
 
 from . import hangul, l10n
-from .inflection import define, register, inflect
 from .morphology import Morpheme, Noun, NumberWord, Particle, Substantive
+
+
+__copyright__ = 'Copyright 2012 by Heungsub Lee'
+__license__ = 'BSD License'
+__author__ = 'Heungsub Lee'
+__email__ = 'h' '@' 'subl.ee'
+__version__ = '0.0.0'
 
 
 def load_data():

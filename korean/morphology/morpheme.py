@@ -14,17 +14,10 @@ from ..hangul import get_final, is_hangul
 class MorphemeMetaclass(type):
 
     def __new__(meta, name, bases, attrs):
-        from .. import inflection
-        try:
-            inflection_definitions = attrs.pop('$inflections')
-        except KeyError:
-            pass
+        from . import Morphology
         cls = type.__new__(meta, name, bases, attrs)
         cls._registry = {}
-        try:
-            inflection.register(cls, inflection_definitions)
-        except UnboundLocalError:
-            pass
+        Morphology._register_morpheme(cls)
         return cls
 
     def __call__(cls, *forms):
@@ -47,6 +40,8 @@ class Morpheme(object):
 
     __metaclass__ = MorphemeMetaclass
 
+    _registry = None
+
     def __init__(self, *forms):
         assert all([isinstance(form, unicode) for form in forms])
         self.forms = forms
@@ -62,8 +57,8 @@ class Morpheme(object):
         cls._registry[key] = obj
 
     def read(self):
-        """Every morpheme class would implement :meth:`read` method. This
-        should make a morpheme to the valid Korean text with Hangul.
+        """Every morpheme class would implement this method. They should make a
+        morpheme to the valid Korean text with Hangul.
         """
         return unicode(self)
 
