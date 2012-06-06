@@ -13,7 +13,7 @@ import types
 
 
 __all__ = 'Morphology', 'Morpheme', 'Particle', 'Substantive', 'Noun', \
-          'NumberWord', 'allomorph', 'define_allomorphic_variation',
+          'NumberWord', 'allomorph', 'merge', 'define_allomorphic_variation',
 
 
 class Morphology(object):
@@ -60,15 +60,27 @@ class Morphology(object):
     def allomorph(cls, morpheme, prefix_of=None, suffix_of=None):
         prefix_type = prefix_of and type(prefix_of)
         suffix_type = suffix_of and type(suffix_of)
-        key = (type(morpheme), prefix_type, suffix_type)
-        func = cls._registry['$allomorphic_variations'][key]
+        keyword = (type(morpheme), prefix_type, suffix_type)
+        func = cls._registry['$allomorphic_variations'][keyword]
         bound_func = types.MethodType(func, morpheme)
         return bound_func(prefix_of or suffix_of)
+
+    @classmethod
+    def merge(cls, prefix, suffix):
+        try:
+            prefix = cls.allomorph(prefix, prefix_of=suffix)
+        except KeyError:
+            pass
+        try:
+            suffix = cls.allomorph(suffix, suffix_of=prefix)
+        except KeyError:
+            pass
+        return u'{0!s}{1}'.format(prefix, suffix)
 
 
 allomorph = Morphology.allomorph
 define_allomorphic_variation = Morphology.define_allomorphic_variation
-#merge = Morphology.merge
+merge = Morphology.merge
 
 
 #: Imports submodules on the end. Because they might need :class:`Morphology`.

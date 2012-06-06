@@ -32,20 +32,20 @@ class ParticleTestCase(TestCase):
         self.assertItemsEqual((u'을(를)', u'를(을)'), Particle(u'을').naive())
         self.equal((u'(으)로',), Particle(u'로').naive())
 
-    '''
-    def test_inflection_with_noun(self):
+    def test_allomorph_with_noun(self):
+        from korean.morphology import allomorph
         P, N = Particle, Noun
-        self.equal(u'이', inflect(P(u'가'), suffix_of=N(u'받침')))
-        self.equal(u'가', inflect(P(u'가'), suffix_of=N(u'나비')))
-        self.equal(u'로', inflect(P(u'로'), suffix_of=N(u'마을')))
-        self.equal(u'으로', inflect(P(u'로'), suffix_of=N(u'파이썬')))
-        self.equal(u'이다', inflect(P(u'다'), suffix_of=N(u'파이썬')))
+        self.equal(u'이', allomorph(P(u'가'), suffix_of=N(u'받침')))
+        self.equal(u'가', allomorph(P(u'가'), suffix_of=N(u'나비')))
+        self.equal(u'로', allomorph(P(u'로'), suffix_of=N(u'마을')))
+        self.equal(u'으로', allomorph(P(u'로'), suffix_of=N(u'파이썬')))
+        self.equal(u'이다', allomorph(P(u'다'), suffix_of=N(u'파이썬')))
 
-    def test_inflection_with_number_word(self):
+    def test_allomorph_with_number_word(self):
+        from korean.morphology import allomorph
         P, N = Particle, NumberWord
-        self.equal(u'이', inflect(P(u'가'), suffix_of=N(1)))
-        self.equal(u'가', inflect(P(u'가'), suffix_of=N(2)))
-    '''
+        self.equal(u'이', allomorph(P(u'가'), suffix_of=N(1)))
+        self.equal(u'가', allomorph(P(u'가'), suffix_of=N(2)))
 
 
 class NounTestCase(TestCase):
