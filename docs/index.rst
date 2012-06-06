@@ -2,13 +2,32 @@
  Korean -- A library for Korean morphology
 ===========================================
 
-Sometimes you should localize your project to Korean. But common i18n solutions
+Sometimes you should localize your project for Korean. But common i18n solutions
 such as `Gettext <http://docs.python.org/library/gettext.html>`_ are not
-working with non Indo-European language well. Korean also has many
-morphological difference. :mod:`korean` a Python module provides useful Korean
-morphological functions.
+working with non Indo-European language well. We would get an awkward Korean
+sentence with those solutions because Korean has many morphological difference
+with Indo-European language.
 
-Here is an example for using Korean particle (postposition) formatter:
+:mod:`korean` a Python module provides usefula Korean morphological functions
+for getting natural Korean sentences.
+
+Allomorphic particle
+~~~~~~~~~~~~~~~~~~~~
+
+In English, "be" is an allomorph. So it should be awared by the localization
+system. Fortunately Gettext offers ``ngettext`` to make a natural plural
+expression. If it didn't, you would see that awkward sentence:
+
+.. sourcecode:: pycon
+
+   >>> _('Here is(are) %d apple(s).') % 1
+   Here is(are) 1 apple(s).
+   
+It's really strange!
+
+Some Korean particle (postposition) is also an allomorph and needs different
+allomorphic selection rule; it needs check the forward phoneme. Unfortunately
+common i18n solutions don't offer about it. But :mod:`korean` does:
 
 .. sourcecode:: pycon
 
@@ -21,28 +40,6 @@ Here is an example for using Korean particle (postposition) formatter:
    학생은 돈까스를 먹었다.
    >>> print fmt2.format(subj=Noun(u'용사'), level=NumberWord(4))
    용사는 레벨 4가 되었다.
-
-Do not use "을(를)" anymore.
-
-Installation
-~~~~~~~~~~~~
-
-Install via `PyPI <http://pypi.python.org/pypi/korean>`_ with
-``easy_install`` or ``pip`` command:
-
-.. sourcecode:: bash
-
-   $ easy_install korean
-
-.. sourcecode:: bash
-
-   $ pip install korean
-
-or check out development version:
-
-.. sourcecode:: bash
-
-   $ git clone git://github.com/sublee/korean.git
 
 Working with Gettext
 ~~~~~~~~~~~~~~~~~~~~
@@ -96,57 +93,55 @@ use :func:`korean.l10n.proofread` fucntion to get correct particles:
 API
 ~~~
 
-.. module:: korean
+.. automodule:: korean.morphology
+   :members:
 
-Morphology
-''''''''''
+.. automodule:: korean.l10n
+   :members:
 
-.. autoclass:: Morpheme
-   :members: read, basic
+.. automodule:: korean.hangul
+   :members:
 
-.. autoclass:: Substantive
-   :members: __format__
+..
+    .. autofunction:: korean.hangul.char_offset
 
-.. autoclass:: Noun
-   :members: read
+    .. autofunction:: korean.hangul.is_hangul
 
-.. autoclass:: NumberWord
-   :members: read, read_phases
+    .. autofunction:: korean.hangul.is_consonant
 
-.. autoclass:: Particle
-   :members: after_consonant, after_vowel, after_rieul, naive, guess
+    .. autofunction:: korean.hangul.is_vowel
 
-Localization
-''''''''''''
+    .. autofunction:: korean.hangul.is_initial
 
-.. autoclass:: korean.l10n.Template
+    .. autofunction:: korean.hangul.is_final
 
-.. autofunction:: korean.l10n.patch_gettext
+    .. autofunction:: korean.hangul.get_initial
 
-.. autofunction:: korean.l10n.proofread
+    .. autofunction:: korean.hangul.get_final
 
-Hangul Utility
-''''''''''''''
+    .. autofunction:: korean.hangul.split_char
 
-.. autofunction:: korean.hangul.char_offset
+    .. autofunction:: korean.hangul.join_char
 
-.. autofunction:: korean.hangul.is_hangul
+Installation
+~~~~~~~~~~~~
 
-.. autofunction:: korean.hangul.is_consonant
+Install via `PyPI <http://pypi.python.org/pypi/korean>`_ with
+``easy_install`` or ``pip`` command:
 
-.. autofunction:: korean.hangul.is_vowel
+.. sourcecode:: bash
 
-.. autofunction:: korean.hangul.is_initial
+   $ easy_install korean
 
-.. autofunction:: korean.hangul.is_final
+.. sourcecode:: bash
 
-.. autofunction:: korean.hangul.get_initial
+   $ pip install korean
 
-.. autofunction:: korean.hangul.get_final
+or check out development version:
 
-.. autofunction:: korean.hangul.split_char
+.. sourcecode:: bash
 
-.. autofunction:: korean.hangul.join_char
+   $ git clone git://github.com/sublee/korean.git
 
 Licensing and Author
 ~~~~~~~~~~~~~~~~~~~~
