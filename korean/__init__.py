@@ -10,7 +10,7 @@
 """
 from __future__ import absolute_import
 
-from . import hangul, l10n
+from . import hangul, l10n, morphology
 from .morphology import Morpheme, Noun, NumberWord, Particle, Substantive
 
 

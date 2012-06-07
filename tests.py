@@ -32,20 +32,28 @@ class ParticleTestCase(TestCase):
         self.assertItemsEqual((u'을(를)', u'를(을)'), Particle(u'을').naive())
         self.equal((u'(으)로',), Particle(u'로').naive())
 
-    def test_allomorph_with_noun(self):
-        from korean.morphology import pick_allomorph
+    def test_pick_allomorph_with_noun(self):
+        pick_allomorph = morphology.pick_allomorph
         P, N = Particle, Noun
         self.equal(u'이', pick_allomorph(P(u'가'), suffix_of=N(u'받침')))
         self.equal(u'가', pick_allomorph(P(u'가'), suffix_of=N(u'나비')))
         self.equal(u'로', pick_allomorph(P(u'로'), suffix_of=N(u'마을')))
         self.equal(u'으로', pick_allomorph(P(u'로'), suffix_of=N(u'파이썬')))
         self.equal(u'이다', pick_allomorph(P(u'다'), suffix_of=N(u'파이썬')))
+        self.equal(u'일랑', pick_allomorph(P(u'일랑'), suffix_of=N(u'게임')))
+        self.equal(u'ㄹ랑', pick_allomorph(P(u'일랑'), suffix_of=N(u'서버')))
 
     def test_pick_allomorph_with_number_word(self):
-        from korean.morphology import pick_allomorph
+        pick_allomorph = morphology.pick_allomorph
         P, N = Particle, NumberWord
         self.equal(u'이', pick_allomorph(P(u'가'), suffix_of=N(1)))
         self.equal(u'가', pick_allomorph(P(u'가'), suffix_of=N(2)))
+
+    def test_merge(self):
+        merge = morphology.merge
+        P, N = Particle, Noun
+        self.equal(u'게임일랑', merge(N(u'게임'), P(u'일랑')))
+        self.equal(u'서벌랑', merge(N(u'서버'), P(u'일랑')))
 
 
 class NounTestCase(TestCase):
