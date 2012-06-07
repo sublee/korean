@@ -8,7 +8,7 @@
 """
 from __future__ import absolute_import
 
-from . import define_allomorphic_variation
+from . import define_allomorph_picker
 from .morpheme import Morpheme
 from .substantive import Noun, NumberWord
 from .. import hangul
@@ -80,7 +80,7 @@ class Particle(Morpheme):
                 rv.append(u'({0}){1}'.format(*args))
         return tuple(rv)
 
-    def allomorph_after_char(self, char):
+    def pick_allomorph_after_char(self, char):
         final = hangul.get_final(char)
         if not final:
             return self.after_vowel
@@ -89,7 +89,7 @@ class Particle(Morpheme):
         else:
             return self.after_consonant
 
-    @define_allomorphic_variation(suffix_of=Noun)
-    @define_allomorphic_variation(suffix_of=NumberWord)
-    def allomorph_after_substantive(self, substantive):
-        return self.allomorph_after_char(substantive.read()[-1])
+    @define_allomorph_picker(suffix_of=Noun)
+    @define_allomorph_picker(suffix_of=NumberWord)
+    def pick_allomorph_after_substantive(self, substantive):
+        return self.pick_allomorph_after_char(substantive.read()[-1])

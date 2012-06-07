@@ -15,7 +15,7 @@ from itertools import chain, product
 import re
 from StringIO import StringIO
 
-from .morphology import Noun, NumberWord, Particle, allomorph
+from .morphology import Noun, NumberWord, Particle, pick_allomorph
 
 
 __all__ = 'Proofreading', 'proofread', 'Template', 'patch_gettext',
@@ -67,7 +67,7 @@ class Proofreading(object):
             if isinstance(token, Particle):
                 stream.seek(-1, 2)
                 noun = Noun(stream.read())
-                particle = allomorph(token, suffix_of=noun)
+                particle = pick_allomorph(token, suffix_of=noun)
                 stream.write(particle)
             else:
                 stream.write(token)

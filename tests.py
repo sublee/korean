@@ -33,19 +33,19 @@ class ParticleTestCase(TestCase):
         self.equal((u'(으)로',), Particle(u'로').naive())
 
     def test_allomorph_with_noun(self):
-        from korean.morphology import allomorph
+        from korean.morphology import pick_allomorph
         P, N = Particle, Noun
-        self.equal(u'이', allomorph(P(u'가'), suffix_of=N(u'받침')))
-        self.equal(u'가', allomorph(P(u'가'), suffix_of=N(u'나비')))
-        self.equal(u'로', allomorph(P(u'로'), suffix_of=N(u'마을')))
-        self.equal(u'으로', allomorph(P(u'로'), suffix_of=N(u'파이썬')))
-        self.equal(u'이다', allomorph(P(u'다'), suffix_of=N(u'파이썬')))
+        self.equal(u'이', pick_allomorph(P(u'가'), suffix_of=N(u'받침')))
+        self.equal(u'가', pick_allomorph(P(u'가'), suffix_of=N(u'나비')))
+        self.equal(u'로', pick_allomorph(P(u'로'), suffix_of=N(u'마을')))
+        self.equal(u'으로', pick_allomorph(P(u'로'), suffix_of=N(u'파이썬')))
+        self.equal(u'이다', pick_allomorph(P(u'다'), suffix_of=N(u'파이썬')))
 
-    def test_allomorph_with_number_word(self):
-        from korean.morphology import allomorph
+    def test_pick_allomorph_with_number_word(self):
+        from korean.morphology import pick_allomorph
         P, N = Particle, NumberWord
-        self.equal(u'이', allomorph(P(u'가'), suffix_of=N(1)))
-        self.equal(u'가', allomorph(P(u'가'), suffix_of=N(2)))
+        self.equal(u'이', pick_allomorph(P(u'가'), suffix_of=N(1)))
+        self.equal(u'가', pick_allomorph(P(u'가'), suffix_of=N(2)))
 
 
 class NounTestCase(TestCase):
