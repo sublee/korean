@@ -11,6 +11,8 @@ from __future__ import absolute_import
 import sys
 import types
 
+from .. import hangul
+
 
 __all__ = 'Morphology', 'Morpheme', 'Particle', 'Substantive', 'Noun', \
           'NumberWord', 'pick_allomorph', 'merge', 'define_allomorph_picker',
@@ -75,7 +77,14 @@ class Morphology(object):
             suffix = cls.pick_allomorph(suffix, suffix_of=prefix)
         except KeyError:
             pass
-        return u'{0!s}{1}'.format(prefix, suffix)
+        if hangul.is_final(suffix[0]):
+            prefix = prefix.read()
+            splitted = hangul.split_char(prefix[-1])
+            assert not splitted[2]
+            mid = hangul.join_char((splitted[0], splitted[1], suffix[0]))
+            return u'{0}{1}{2}'.format(prefix[:-1], mid, suffix[1:])
+        else:
+            return u'{0}{1}'.format(prefix, suffix)
 
 
 pick_allomorph = Morphology.pick_allomorph
