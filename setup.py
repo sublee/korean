@@ -59,5 +59,6 @@ setup(
         'Topic :: Software Development :: Localization',
         'Topic :: Text Processing :: Linguistic',
     ],
-    test_suite='tests.test_suite'
+    test_suite='tests.test_suite',
+    tests_require=['Babel'],
 )
