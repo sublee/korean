@@ -11,18 +11,7 @@
 from __future__ import absolute_import
 
 from functools import partial
-from itertools import chain
-try:
-    from itertools import product
-except ImportError:
-    def product(*args, **kwargs):
-        # http://docs.python.org/library/itertools.html#itertools.product
-        pools = map(tuple, args) * kwargs.get('repeat', 1)
-        result = [[]]
-        for pool in pools:
-            result = [x + [y] for x in result for y in pool]
-        for prod in result:
-            yield tuple(prod)
+from itertools import chain, product
 import re
 from StringIO import StringIO
 
