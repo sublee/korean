@@ -54,7 +54,10 @@ class Proofreading(object):
             tokens.append(text[prev_span[1]:span[0]])
             tokens.append(particle_map[match.group(1)])
             prev_span = span
-        tokens.append(text[span[1]:])
+        try:
+            tokens.append(text[span[1]:])
+        except UnboundLocalError:
+            tokens.append(text)
         return tuple(tokens)
 
     def __call__(self, text):

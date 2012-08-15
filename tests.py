@@ -179,6 +179,10 @@ class LocalizationTestCase(TestCase):
         self.equal(u'용사는 검을 획득했다.',
                    l10n.proofread(u'용사은(는) 검을(를) 획득했다.'))
 
+    def test_meaningless_proofreading(self):
+        self.equal(u'사과다.', l10n.proofread(u'사과다.'))
+        self.equal(u'집', l10n.proofread(u'집'))
+
     def test_complex_proofreading(self):
         self.equal(u'말을(를)', l10n.proofread(u'말을(를)(를)'))
 
