@@ -70,10 +70,11 @@ class Proofreading(object):
             if isinstance(token, Particle):
                 stream.seek(-1, 2)
                 noun = Noun(stream.read())
-                particle = pick_allomorph(token, suffix_of=noun)
-                stream.write(particle)
-            else:
-                stream.write(token)
+                try:
+                    token = pick_allomorph(token, suffix_of=noun)
+                except:
+                    token = token.naive()[0]
+            stream.write(token)
         return stream.getvalue()
 
 

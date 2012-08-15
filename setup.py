@@ -36,7 +36,7 @@ except ImportError:
 
 setup(
     name='korean',
-    version='0.1.2',
+    version='0.1.3',
     license='BSD',
     author='Heungsub Lee',
     author_email='h@subl.ee',

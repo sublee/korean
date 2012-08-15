@@ -30,7 +30,8 @@ class ParticleTestCase(TestCase):
         self.same(Particle(u'나'), Particle(u'이나'))
 
     def test_naive(self):
-        self.assertItemsEqual((u'을(를)', u'를(을)'), Particle(u'을').naive())
+        self.assertItemsEqual((u'을(를)', u'를(을)', u'(을)를', u'(를)을'),
+                              Particle(u'을').naive())
         self.equal((u'(으)로',), Particle(u'로').naive())
 
     def test_pick_allomorph_with_noun(self):
@@ -182,6 +183,14 @@ class LocalizationTestCase(TestCase):
     def test_meaningless_proofreading(self):
         self.equal(u'사과다.', l10n.proofread(u'사과다.'))
         self.equal(u'집', l10n.proofread(u'집'))
+        self.equal(u'의 식 주', l10n.proofread(u'의 식 주'))
+        self.equal(u'the grammatical rules of a language',
+                   l10n.proofread(u'the grammatical rules of a language'))
+
+    def test_unworkable_proofreading(self):
+        self.equal(u'Korean를(을)', l10n.proofread(u'Korean를(을)'))
+        self.equal(u'Korean를(을)', l10n.proofread(u'Korean을(를)'))
+        self.equal(u'Korean를(을)', l10n.proofread(u'Korean(을)를'))
 
     def test_complex_proofreading(self):
         self.equal(u'말을(를)', l10n.proofread(u'말을(를)(를)'))
@@ -227,10 +236,9 @@ class LocalizationTestCase(TestCase):
         ''')))
 
     def test_parser(self):
-        self.equal(
-            (u'용사', Particle(u'은'), u' 사과', Particle(u'을'), u' 먹었다.'),
-            l10n.proofread.parse(u'용사은(는) 사과를(을) 먹었다.')
-        )
+        self.equal((u'용사', Particle(u'은'),
+                    u' 사과', Particle(u'을'), u' 먹었다.'),
+                   l10n.proofread.parse(u'용사은(는) 사과를(을) 먹었다.'))
         self.equal((u'말', Particle(u'를'), u'(를)'),
                    l10n.proofread.parse(u'말을(를)(를)'))
 

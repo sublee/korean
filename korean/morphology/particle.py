@@ -70,9 +70,11 @@ class Particle(Morpheme):
         for forms in zip(unique_forms[:-1], unique_forms[1:]):
             length = map(len, forms)
             if len(set(length)) == 1:
-                # such as "을(를)" or "를(을)"
+                # such as "을(를)", "를(을)", "(을)를", "(를)을"
                 rv.append(u'{0}({1})'.format(*forms))
                 rv.append(u'{1}({0})'.format(*forms))
+                rv.append(u'({0}){1}'.format(*forms))
+                rv.append(u'({1}){0}'.format(*forms))
             else:
                 # such as "(으)로"
                 x = int(length[0] > length[1])
