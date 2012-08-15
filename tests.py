@@ -48,6 +48,8 @@ class ParticleTestCase(TestCase):
         P, N = Particle, NumberWord
         self.equal(u'이', pick_allomorph(P(u'가'), suffix_of=N(1)))
         self.equal(u'가', pick_allomorph(P(u'가'), suffix_of=N(2)))
+        self.equal(u'일랑', pick_allomorph(P(u'일랑'), suffix_of=N(3)))
+        #self.equal(u'일랑', pick_allomorph(P(u'일랑'), suffix_of=N(4)))
 
     def test_merge(self):
         merge = morphology.merge

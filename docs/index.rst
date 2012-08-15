@@ -2,32 +2,33 @@
  Korean -- A library for Korean morphology
 ===========================================
 
-Sometimes you should localize your project for Korean. But common i18n solutions
-such as `Gettext <http://docs.python.org/library/gettext.html>`_ are not
-working with non Indo-European language well. We would get an awkward Korean
-sentence with those solutions because Korean has many morphological difference
-with Indo-European language.
+Sometimes you should localize your project for Korean. But common
+internationalization solutions such as `Gettext
+<http://docs.python.org/library/gettext.html>`_ are not working with non
+Indo-European languages well. We would get an awkward Korean sentence with
+those solutions because Korean has many morphological difference with
+Indo-European language.
 
-:mod:`korean` a Python module provides usefula Korean morphological functions
+:mod:`korean` a Python module provides useful Korean morphological functions
 for getting natural Korean sentences.
 
 Allomorphic particle
 ~~~~~~~~~~~~~~~~~~~~
 
-In English, "be" is an allomorph. So it should be awared by the localization
-system. Fortunately Gettext offers ``ngettext`` to make a natural plural
-expression. If it didn't, you would see that awkward sentence:
+In English, "be" is an allomorph. So the English localization system should can
+select the correct form such as "is", "am", "are". Fortunately Gettext offers
+``ngettext`` to make a natural plural expression. If it didn't offer, you would
+see that awkward sentence:
 
 .. sourcecode:: pycon
 
    >>> _('Here is(are) %d apple(s).') % 1
    Here is(are) 1 apple(s).
    
-It's really strange!
-
-Some Korean particle (postposition) is also an allomorph and needs different
-allomorphic selection rule; it needs check the forward phoneme. Unfortunately
-common i18n solutions don't offer about it. But :mod:`korean` does:
+Some Korean particle (postposition) is also an allomorph but they need
+different allomorphic selection rule; it needs check the forward phoneme.
+However common internationalization solutions don't offer about it. Of course,
+:mod:`korean` does:
 
 .. sourcecode:: pycon
 
@@ -40,6 +41,8 @@ common i18n solutions don't offer about it. But :mod:`korean` does:
    학생은 돈까스를 먹었다.
    >>> print fmt2.format(subj=Noun(u'용사'), level=NumberWord(4))
    용사는 레벨 4가 되었다.
+   >>> print fmt2.format(subj=Noun(u'마왕'), level=NumberWord(98))
+   마왕은 레벨 98이 되었다.
 
 Working with Gettext
 ~~~~~~~~~~~~~~~~~~~~
@@ -79,7 +82,7 @@ function:
 Proofreading legacy text
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-If your legacy already has been written with naive particle such as "을(를)",
+If your text already has been written with naive particle such as "을(를)",
 use :func:`korean.l10n.proofread` fucntion to get correct particles:
 
 .. sourcecode:: pycon
