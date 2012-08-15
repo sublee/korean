@@ -8,7 +8,7 @@
     :copyright: (c) 2012 by Heungsub Lee
     :license: BSD, see LICENSE for more details.
 """
-from __future__ import absolute_import, with_statement
+from __future__ import absolute_import
 
 from . import hangul, l10n, morphology
 from .morphology import Morpheme, Noun, NumberWord, Particle, Substantive
