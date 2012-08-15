@@ -60,5 +60,5 @@ setup(
         'Topic :: Text Processing :: Linguistic',
     ],
     test_suite='tests.test_suite',
-    tests_require=['Babel'],
+    tests_require=['unittest2', 'Babel'],
 )

@@ -2,7 +2,8 @@
 from __future__ import with_statement
 import contextlib
 import textwrap
-import unittest
+
+import unittest2 as unittest
 
 from korean import *
 
