@@ -1,0 +1,391 @@
+# Korean translations for PACKAGE package.
+# Copyright (C) 2012, Heungsub Lee
+# This file is distributed under the same license as the Korean package.
+#  <h@subl.ee>, 2012.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Korean 0.1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-08-15 13:32\n"
+"PO-Revision-Date: 2012-08-15 13:34+0900\n"
+"Last-Translator:  <h@subl.ee>\n"
+"Language-Team: Korean\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+# e7aba244358440aeadc222568468eac4
+#: ../index.rst:3
+msgid "Korean -- A library for Korean morphology"
+msgstr "Korean -- 한국어 형태론 라이브러리"
+
+# a46cca0183e144ff94bff5fd18505819
+#: ../index.rst:5
+msgid ""
+"Sometimes you should localize your project for Korean. But common "
+"internationalization solutions such as `Gettext <http://docs.python.org/"
+"library/gettext.html>`_ are not working with non Indo-European languages "
+"well. We would get an awkward Korean sentence with those solutions because "
+"Korean has many morphological difference with Indo-European language."
+msgstr ""
+"가끔 우리는 프로젝트를 국제화해야합니다. 하지만 `Gettext "
+"<http://docs.python.org/library/gettext.html>`_ 같은 국제화 도구들은 "
+"인도유럽어족이 아닌 언어에 대해선 썩 만족스럽게 동작하지 않습니다. 고립어인 "
+"한국어의 형태론적 특징들 역시 대부분의 국제화 도구들이 커버하지 못해 "
+"불가피하게도 부자연스러운 한국어 문장이 만들어지곤 합니다."
+
+# 8a6197519d314aaea5f9e05877cf3d09
+#: ../index.rst:12
+msgid ""
+":mod:`korean` a Python module provides useful Korean morphological functions "
+"for getting natural Korean sentences."
+msgstr ""
+":mod:`korean` 파이썬 모듈은 자연스러운 한국어 문장을 위해 한국어 형태론에 "
+"기반한 여러 유용한 기능을 제공합니다."
+
+# 09563b4b85694f6d86efd727ef7a5a9b
+#: ../index.rst:16
+msgid "Allomorphic particle"
+msgstr "이형태 조사"
+
+# edcb05b79d9e4b098241826167a299e7
+#: ../index.rst:18
+msgid ""
+"In English, \"be\" is an allomorph. So the English localization system "
+"should can select the correct form such as \"is\", \"am\", \"are\". "
+"Fortunately Gettext offers ``ngettext`` to make a natural plural expression. "
+"If it didn't offer, you would see that awkward sentence:"
+msgstr ""
+"영어의 \"be\" 동사는 이형태입니다. 따라서 영어 현지화 시스템들은 \"is\", "
+"\"am\", \"are\" 등 중에서 적절한 표현형을 고를 수 있어야합니다. 다행히 "
+"Gettext는 자연스러운 복수형 문장을 위한 ``ngettext`` 함수를 제공하고 "
+"있습니다. 만약 그렇지 않았다면 다음과 같은 우스꽝스러운 문장을 보게 됐을지도 "
+"모릅니다:"
+
+# b8eb6dc4512e44ceaf98e9038b3d6a98
+#: ../index.rst:28
+msgid ""
+"Some Korean particle (postposition) is also an allomorph but they need "
+"different allomorphic selection rule; it needs check the forward phoneme. "
+"However common internationalization solutions don't offer about it. Of "
+"course, :mod:`korean` does:"
+msgstr ""
+"몇몇 한국어 조사 역시 이형태입니다. 그런데 이들은 전혀 다른 선택 규칙을 "
+"필요로 합니다. 바로 앞 음소를 파악하는 것이죠. 아쉽게도 대부분의 국제화 "
+"도구들에 이런 기능은 포함되어있지 않습니다. 물론 :mod:`korean` 모듈은 "
+"포함합니다:"
+
+# f0e00471c5614cc584e34bd383d35232
+#: ../index.rst:48
+msgid "Working with Gettext"
+msgstr "Gettext와 연동하기"
+
+# 1e7cade327f9461e953898299dd6e283
+#: ../index.rst:50
+msgid ""
+"It also can be worked with Gettext. Just use :func:`korean.l10n."
+"patch_gettext` function:"
+msgstr ""
+":func:`koran.l10n.patch_gettetxt` 함수를 사용하면 간단히 Gettext와 Korean을 "
+"연동시킬 수 있습니다:"
+
+# d030ccaee03744fb916905fe510c6515
+#: ../index.rst:83
+msgid "Proofreading legacy text"
+msgstr "기존 문장 교정하기"
+
+# 9f5b953f21804b329351950a7d9a812b
+#: ../index.rst:85
+msgid ""
+"If your text already has been written with naive particle such as \"을(를)"
+"\", use :func:`korean.l10n.proofread` fucntion to get correct particles:"
+msgstr ""
+"이미 기존 문장들이 \"을(를)\" 같은 표현법을 사용하고 있었다면 "
+":func:`korean.l10n.proofread` 함수를 사용하여 자연스러운 문장으로 바꿀 수 "
+"있습니다:"
+
+# cf32453affba4aa9a814939f7e06ce7b
+#: ../index.rst:97
+msgid "API"
+msgstr ""
+
+# 93de49e265ca4951969f976209991bf9
+#: ../../korean/morphology/__init__.py:docstring of korean.morphology:2
+msgid "korean.morphology"
+msgstr ""
+
+# 63905ed046cd428baee39fcf5fec3706
+# 0fae90042e95487db683a4b8241ff880
+#: ../../korean/morphology/__init__.py:docstring of korean.morphology:4
+#: ../../korean/l10n.py:docstring korean.l10n:6
+msgid "2012 by Heungsub Lee"
+msgstr "이흥섭이 2012년에"
+
+# b551c09fb9554eea932f43ccc9b2249f
+# c1241b0d529a4469853268b34c457ded
+# c3ee3a316bf84691a80ab0eec836614e
+#: ../../korean/morphology/__init__.py:docstring of korean.morphology:5
+#: ../../korean/l10n.py:docstring korean.l10n:7
+#: ../../korean/hangul.py:docstring korean.hangul:10
+msgid "BSD, see LICENSE for more details."
+msgstr "BSD 허가서, 자세한 내용은 LICENSE 파일에"
+
+# 52b84a1db6d34b02a68289e0e7015f31
+#: ../../korean/morphology/__init__.py:docstring of
+#: korean.morphology.Morpheme:1
+msgid ""
+"This class presents a morpheme (형태소) or allomorph (이형태). It can have "
+"one or more forms. The first form means the basic allomorph (기본형)."
+msgstr ""
+"이 클래스는 형태소를 표현합니다. 형태소는 하나 또는 그 이상의 표현형을 지닐 "
+"수 있습니다. 복수의 표현형을 설정했을 때 첫 번째로 지정한 표현형이 그 "
+"이형태의 기본형이 됩니다."
+
+# 6f87c92b7f0b4f40bc5a00ed48777d48
+#: ../../korean/morphology/__init__.py:docstring of
+#: korean.morphology.Morpheme.basic:1
+msgid "The basic form of allomorph."
+msgstr "이형태의 기본형"
+
+# 84d8a37672214539acbf0937ec5b8e02
+#: ../../korean/morphology/__init__.py:docstring of
+#: korean.morphology.Morpheme.get:1
+msgid "Returns a pre-defined morpheme object by the given key."
+msgstr "미리 정의된 형태소를 찾습니다."
+
+# 9aac99d2fdb6416381130addc338131c
+#: ../../korean/morphology/__init__.py:docstring of
+#: korean.morphology.Morpheme.read:1
+msgid ""
+"Every morpheme class would implement this method. They should make a "
+"morpheme to the valid Korean text with Hangul."
+msgstr "형태소를 제대로 된 한글 문자열로 만듭니다."
+
+# 6193fbd270af41ee872f25012b0f3ded
+#: ../../korean/morphology/__init__.py:docstring of
+#: korean.morphology.Morpheme.register:1
+msgid "Registers a pre-defined morpheme object to the given key."
+msgstr ""
+
+# 297640c6bee648f48343a95e708dbd04
+#: ../../korean/morphology/__init__.py:docstring of
+#: korean.morphology.Particle:1
+msgid ""
+"Particle (조사) is a postposition in Korean. Some particles are allomorph "
+"such as 을/를, 이/가. These forms follow forward syllable ends what phoneme; "
+"a vowel, a consonant, or a Rieul (ㄹ)."
+msgstr ""
+
+# 83164674876542f4993075af8ae0ce56
+#: ../../korean/morphology/__init__.py:docstring of
+#: korean.morphology.Substantive:1
+msgid "A class for Korean substantive that is called \"체언\" in Korean."
+msgstr ""
+
+# c61abf89571c492eb63929b7707600c3
+#: ../../korean/morphology/__init__.py:docstring of korean.morphology.Noun:1
+msgid "A class for Korean noun that is called \"명사\" in Korean."
+msgstr ""
+
+# 903ccce6406e4fc484bc1b462f494f31
+#: ../../korean/morphology/__init__.py:docstring of
+#: korean.morphology.Noun.read:1
+msgid "Reads a noun as Korean. The result will be Hangul."
+msgstr ""
+
+# b1b9558ef07b4291b68267cfb655eb41
+#: ../../korean/morphology/__init__.py:docstring of
+#: korean.morphology.NumberWord:1
+msgid "A class for Korean number word that is called \"수사\" in Korean."
+msgstr ""
+
+# 995952b19596435d9e71eaea22f34da1
+#: ../../korean/l10n.py:docstring of korean.l10n:2
+msgid "korean.l10n"
+msgstr ""
+
+# 14a0d6b78ab2422d827cab62a15716bf
+#: ../../korean/l10n.py:docstring of korean.l10n:4
+msgid "Helpers for localization to Korean."
+msgstr ""
+
+# 84966ccdbc8749998f6156e764682bce
+#: ../../korean/l10n.py:docstring of korean.l10n.Proofreading:1
+msgid ""
+"A function like class. These :meth:`__call__` replaces naive particles to be "
+"correct. First, it finds naive particles such as \"을(를)\" or \"(으)로\". "
+"Then it checks the forward character of the particle and replace with a "
+"correct particle."
+msgstr ""
+
+# 4e1797547d484fde9d6946dc780b451e
+#: ../../korean/l10n.py:docstring of korean.l10n.Proofreading.parse:1
+msgid "Tokenizes the given text with unicode text or :class:`Particle`."
+msgstr ""
+
+# 2442e8a413fe42f2ac28d9d5b887b888
+#: ../../korean/l10n.py:docstring of korean.l10n.proofread:1
+msgid ""
+"Default :class:`Proofreading` object. It tokenizes ``unicode`` and :class:"
+"`korean.Particle`. Use it like a function."
+msgstr ""
+
+# 8ff00776dc96414da65b8e28f794945e
+#: ../../korean/l10n.py:docstring of korean.l10n.Template:1
+msgid ""
+"The :class:`Template` object extends :class:`unicode` and overrides :meth:"
+"`format` method. This can format particle format spec without evincive :"
+"class:`Noun` or :class:`NumberWord` arguments."
+msgstr ""
+
+# 69a6623fce8146d381975f6ad368cebe
+#: ../../korean/l10n.py:docstring of korean.l10n.Template:5
+msgid "Basically this example:"
+msgstr ""
+
+# 298b2fc3845d4b50b5abd751f8619205
+#: ../../korean/l10n.py:docstring of korean.l10n.Template:11
+msgid "Is equivalent to the following:"
+msgstr ""
+
+# 47b227b7194048a58c2186f010c9ddce
+#: ../../korean/l10n.py:docstring of korean.l10n.patch_gettext:1
+msgid ""
+"Patches Gettext translations object to wrap the result with :class:`korean."
+"l10n.Template`. Then the result can work with a particle format spec."
+msgstr ""
+
+# ff98dccc9856426888aac911d3d090a7
+#: ../../korean/l10n.py:docstring of korean.l10n.patch_gettext:5
+msgid "For example, here's a Gettext catalog for ko_KR:"
+msgstr ""
+
+# 1a8a9b7859794b2f8067e56b61fcb4c2
+#: ../../korean/l10n.py:docstring of korean.l10n.patch_gettext:18
+msgid ""
+"You can use a particle format spec in Gettext messages after translations "
+"object is patched:"
+msgstr ""
+
+# 2aa81fe304cd4b5ab0dfa0cd5918b4f9
+#: ../../korean/hangul.py:docstring of korean.hangul:2
+msgid "korean.hangul"
+msgstr ""
+
+# 37e745046fc94e13bf5c3315ec692291
+#: ../../korean/hangul.py:docstring of korean.hangul:4
+msgid ""
+"Processing a string written by Hangul. All code of here is based on `hangul."
+"py <https://raw.github.com/sublee/hangulize/master/hangulize/hangul.py>`_ by "
+"`Hye-Shik Chang <http://openlook.org/>`_ at 2003."
+msgstr ""
+
+# 4fd5a78d97c344859a74ede3fce71a93
+#: ../../korean/hangul.py:docstring of korean.hangul:9
+msgid "2012 by Heungsub Lee and 2003 by Hye-Shik Chang"
+msgstr ""
+
+# 5c9127a6d0f240b28937a7bf1b4a684a
+#: ../../korean/hangul.py:docstring of korean.hangul.char_offset:1
+msgid "Returns Hangul character offset from \"가\"."
+msgstr ""
+
+# 3af7e9a71ab848ee8975b229f7c8ec79
+#: ../../korean/hangul.py:docstring of korean.hangul.is_hangul:1
+msgid "Checks if the given character is written in Hangul."
+msgstr ""
+
+# 3fc7b6cc91fe44d5ae83d50bd79dcd4b
+#: ../../korean/hangul.py:docstring of korean.hangul.is_vowel:1
+msgid "Checks if the given character is a vowel of Hangul."
+msgstr ""
+
+# ba073ce18b0444c893d8d54e8fab08d5
+#: ../../korean/hangul.py:docstring of korean.hangul.is_consonant:1
+msgid "Checks if the given character is a consonant of Hangul."
+msgstr ""
+
+# 1db87d86363640fc8b374d4277abb50c
+#: ../../korean/hangul.py:docstring of korean.hangul.is_initial:1
+msgid "Checks if the given character is an initial consonant of Hangul."
+msgstr ""
+
+# 12db7de5736e46e89cb7bc5d1410d143
+#: ../../korean/hangul.py:docstring of korean.hangul.is_final:1
+msgid ""
+"Checks if the given character is a final consonant of Hangul. The final "
+"consonants contain what a joined multiple consonant and empty character."
+msgstr ""
+
+# 9e6581919c7e4e6780877086dd8a2c58
+#: ../../korean/hangul.py:docstring of korean.hangul.get_initial:1
+msgid "Returns an initial consonant from the given character."
+msgstr ""
+
+# fb1cf6c7428f4fce888bd06329f14b9e
+#: ../../korean/hangul.py:docstring of korean.hangul.get_vowel:1
+msgid "Returns a vowel from the given character."
+msgstr ""
+
+# 01cd0ef3381d4e9faaf2e198b978e2a3
+#: ../../korean/hangul.py:docstring of korean.hangul.get_final:1
+msgid "Returns a final consonant from the given character."
+msgstr ""
+
+# ae279a9c93fa4f57a9b202d0e9891822
+#: ../../korean/hangul.py:docstring of korean.hangul.split_char:1
+msgid ""
+"Splits the given character to a tuple where the first item is the initial "
+"consonant and the second the vowel and the third the final."
+msgstr ""
+
+# f1cf5346b4894240805be126dbc09b85
+#: ../../korean/hangul.py:docstring of korean.hangul.join_char:1
+msgid ""
+"Joins a tuple in the form ``(initial, vowel, final)`` to a Hangul character."
+msgstr ""
+
+# f2aa0ada4c0c4528803a6254cf817e5e
+#: ../index.rst:130
+msgid "Installation"
+msgstr "설치"
+
+# 472725848c0d4b3282c933ddf189d2a0
+#: ../index.rst:132
+msgid ""
+"Install via `PyPI <http://pypi.python.org/pypi/korean>`_ with "
+"``easy_install`` or ``pip`` command:"
+msgstr "``easy_install`` 또는 ``pip`` 커맨드를 이용해 설치하세요:"
+
+# 3722717e640d4621a0a7e453fce1988f
+#: ../index.rst:143
+msgid "or check out development version:"
+msgstr ""
+
+# 9e696c20734d47f19797b9b902727ef8
+#: ../index.rst:150
+msgid "Licensing and Author"
+msgstr "사용범위와 제작자"
+
+# 000e4ffeafb14771a2076ffd42afcbc6
+#: ../index.rst:152
+msgid ""
+"This project licensed with `BSD <http://en.wikipedia.org/wiki/"
+"BSD_licenses>`_, so feel free to use and manipulate as long as you respect "
+"these licenses. See `LICENSE <https://github.com/sublee/trueskill/blob/"
+"master/LICENSE>`_ for the details."
+msgstr ""
+"이 프로젝트는 `BSD <http://en.wikipedia.org/wiki/BSD_licenses>`_ 허가서를 "
+"따릅니다. BSD 허가서의 범위 내에서 자유롭게 사용해주세요. 더 자세한 내용은 "
+"`LICENSE <https://github.com/sublee/trueskill/blob/master/LICENSE>`_ 파일에 "
+"실려있습니다."
+
+# 1fcd77f3ce0344f885a5ba473a45af50
+#: ../index.rst:157
+msgid ""
+"I'm `Heungsub Lee <http://subl.ee/>`_. Any regarding questions or patches "
+"are welcomed."
+msgstr ""
+"저는 `이흥섭 <http://subl.ee/>`_ 입니다. 질문과 패치는 언제든 환영입니다."
