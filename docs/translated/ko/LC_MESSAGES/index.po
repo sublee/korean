@@ -30,11 +30,11 @@ msgid ""
 "well. We would get an awkward Korean sentence with those solutions because "
 "Korean has many morphological difference with Indo-European language."
 msgstr ""
-"가끔 우리는 프로젝트를 국제화해야합니다. 하지만 `Gettext "
-"<http://docs.python.org/library/gettext.html>`_ 같은 국제화 도구들은 "
+"우리는 프로젝트를 한글화해야 할 때가 있습니다. 하지만, `Gettext "
+"<http://docs.python.org/library/gettext.html>`_ 같은 국제화(Internationalization) 도구들은 "
 "인도유럽어족이 아닌 언어에 대해선 썩 만족스럽게 동작하지 않습니다. "
-"비(非)인도유럽어족인 한국어의 형태론적 특징 역시 국제화 도구들 대부분이 "
-"커버하지 못해, 불가피하게도 부자연스러운 한국어 문장이 만들어지곤 합니다."
+"한국어도 예외는 아니어서, 국제화 도구들 대부분이 한국어 고유의 형태론적 특징을 "
+"제대로 이해하지 못해, 불가피하게도 부자연스러운 한국어 문장이 만들어지곤 합니다."
 
 # 8a6197519d314aaea5f9e05877cf3d09
 #: ../index.rst:12
