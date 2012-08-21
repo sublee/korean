@@ -280,36 +280,39 @@ msgid ""
 "py <https://raw.github.com/sublee/hangulize/master/hangulize/hangul.py>`_ by "
 "`Hye-Shik Chang <http://openlook.org/>`_ at 2003."
 msgstr ""
+"한글로 작성된 문자열을 다루는 모듈입니다. 2003년에 `장혜식 <http://openlook."
+"org/>`_ 님이 공개한 `hangul.py <https://raw.github.com/sublee/hangulize/"
+"master/hangulize/hangul.py>`_ 를 참고했습니다."
 
 # 4fd5a78d97c344859a74ede3fce71a93
 #: ../../korean/hangul.py:docstring of korean.hangul:9
 msgid "2012 by Heungsub Lee and 2003 by Hye-Shik Chang"
-msgstr ""
+msgstr "장혜식이 2003년에, 이흥섭이 2012년에"
 
 # 5c9127a6d0f240b28937a7bf1b4a684a
 #: ../../korean/hangul.py:docstring of korean.hangul.char_offset:1
 msgid "Returns Hangul character offset from \"가\"."
-msgstr ""
+msgstr "\"가\"로부터 주어진 한글 문자가 떨어져있는 거리를 반환합니다."
 
 # 3af7e9a71ab848ee8975b229f7c8ec79
 #: ../../korean/hangul.py:docstring of korean.hangul.is_hangul:1
 msgid "Checks if the given character is written in Hangul."
-msgstr ""
+msgstr "주어진 문자가 한글인지 확인합니다."
 
 # 3fc7b6cc91fe44d5ae83d50bd79dcd4b
 #: ../../korean/hangul.py:docstring of korean.hangul.is_vowel:1
 msgid "Checks if the given character is a vowel of Hangul."
-msgstr ""
+msgstr "주어진 문자가 한글 홀소리인지 확인합니다."
 
 # ba073ce18b0444c893d8d54e8fab08d5
 #: ../../korean/hangul.py:docstring of korean.hangul.is_consonant:1
 msgid "Checks if the given character is a consonant of Hangul."
-msgstr ""
+msgstr "주어진 문자가 한글 닿소리인지 확인합니다."
 
 # 1db87d86363640fc8b374d4277abb50c
 #: ../../korean/hangul.py:docstring of korean.hangul.is_initial:1
 msgid "Checks if the given character is an initial consonant of Hangul."
-msgstr ""
+msgstr "주어진 문자를 한글 초성으로 사용할 수 있는지 확인합니다."
 
 # 12db7de5736e46e89cb7bc5d1410d143
 #: ../../korean/hangul.py:docstring of korean.hangul.is_final:1
@@ -317,34 +320,36 @@ msgid ""
 "Checks if the given character is a final consonant of Hangul. The final "
 "consonants contain what a joined multiple consonant and empty character."
 msgstr ""
+"주어진 문자를 한글 종성으로 사용할 수 있는지 확인합니다. 빈 문자도 종성으로 "
+"간주합니다."
 
 # 9e6581919c7e4e6780877086dd8a2c58
 #: ../../korean/hangul.py:docstring of korean.hangul.get_initial:1
 msgid "Returns an initial consonant from the given character."
-msgstr ""
+msgstr "주어진 문자의 한글 초성을 반환합니다."
 
 # fb1cf6c7428f4fce888bd06329f14b9e
 #: ../../korean/hangul.py:docstring of korean.hangul.get_vowel:1
 msgid "Returns a vowel from the given character."
-msgstr ""
+msgstr "주어진 문자의 한글 중성을 반환합니다."
 
 # 01cd0ef3381d4e9faaf2e198b978e2a3
 #: ../../korean/hangul.py:docstring of korean.hangul.get_final:1
 msgid "Returns a final consonant from the given character."
-msgstr ""
+msgstr "주어진 문자의 한글 종성을 반환합니다."
 
 # ae279a9c93fa4f57a9b202d0e9891822
 #: ../../korean/hangul.py:docstring of korean.hangul.split_char:1
 msgid ""
 "Splits the given character to a tuple where the first item is the initial "
 "consonant and the second the vowel and the third the final."
-msgstr ""
+msgstr "주어진 문자의 초성, 중성, 종성을 분리해 순서쌍으로 반환 반환합니다."
 
 # f1cf5346b4894240805be126dbc09b85
 #: ../../korean/hangul.py:docstring of korean.hangul.join_char:1
 msgid ""
 "Joins a tuple in the form ``(initial, vowel, final)`` to a Hangul character."
-msgstr ""
+msgstr "``(초성, 중성, 종성)``으로 구성된 순서쌍을 한글 문자로 합칩니다."
 
 # f2aa0ada4c0c4528803a6254cf817e5e
 #: ../index.rst:130
