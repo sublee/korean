@@ -22,7 +22,7 @@ __all__ = 'Proofreading', 'proofread', 'Template', 'patch_gettext',
 
 
 class Proofreading(object):
-    """A function like class. These :meth:`__call__` replaces naive particles
+    """A function-like class. These :meth:`__call__` replaces naive particles
     to be correct. First, it finds naive particles such as "을(를)" or
     "(으)로". Then it checks the forward character of the particle and replace
     with a correct particle.

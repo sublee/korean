@@ -1,4 +1,4 @@
-# Korean translations for PACKAGE package.
+# Korean translations for Korean package.
 # Copyright (C) 2012, Heungsub Lee
 # This file is distributed under the same license as the Korean package.
 #  <h@subl.ee>, 2012.
@@ -167,7 +167,7 @@ msgstr "형태소를 제대로 된 한글 문자열로 만듭니다."
 #: ../../korean/morphology/__init__.py:docstring of
 #: korean.morphology.Morpheme.register:1
 msgid "Registers a pre-defined morpheme object to the given key."
-msgstr ""
+msgstr "주어진 키에 형태소를 등록합니다."
 
 # 297640c6bee648f48343a95e708dbd04
 #: ../../korean/morphology/__init__.py:docstring of
@@ -177,29 +177,31 @@ msgid ""
 "such as 을/를, 이/가. These forms follow forward syllable ends what phoneme; "
 "a vowel, a consonant, or a Rieul (ㄹ)."
 msgstr ""
+"한국어의 조사를 표현하는 클래스로, 앞선 음소에 따라 표현형이 달라지는"
+"이형태를 지원합니다."
 
 # 83164674876542f4993075af8ae0ce56
 #: ../../korean/morphology/__init__.py:docstring of
 #: korean.morphology.Substantive:1
 msgid "A class for Korean substantive that is called \"체언\" in Korean."
-msgstr ""
+msgstr "한국어의 체언"
 
 # c61abf89571c492eb63929b7707600c3
 #: ../../korean/morphology/__init__.py:docstring of korean.morphology.Noun:1
 msgid "A class for Korean noun that is called \"명사\" in Korean."
-msgstr ""
+msgstr "한국어의 명사"
 
 # 903ccce6406e4fc484bc1b462f494f31
 #: ../../korean/morphology/__init__.py:docstring of
 #: korean.morphology.Noun.read:1
 msgid "Reads a noun as Korean. The result will be Hangul."
-msgstr ""
+msgstr "명사를 제대로 된 한글 문자열로 만듭니다."
 
 # b1b9558ef07b4291b68267cfb655eb41
 #: ../../korean/morphology/__init__.py:docstring of
 #: korean.morphology.NumberWord:1
 msgid "A class for Korean number word that is called \"수사\" in Korean."
-msgstr ""
+msgstr "한국어의 수사"
 
 # 995952b19596435d9e71eaea22f34da1
 #: ../../korean/l10n.py:docstring of korean.l10n:2
@@ -209,7 +211,7 @@ msgstr ""
 # 14a0d6b78ab2422d827cab62a15716bf
 #: ../../korean/l10n.py:docstring of korean.l10n:4
 msgid "Helpers for localization to Korean."
-msgstr ""
+msgstr "한국어 현지화 도구"
 
 # 84966ccdbc8749998f6156e764682bce
 #: ../../korean/l10n.py:docstring of korean.l10n.Proofreading:1
