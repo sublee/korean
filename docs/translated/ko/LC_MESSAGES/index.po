@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Korean 0.1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-08-15 13:32\n"
+"POT-Creation-Date: 2012-08-21 15:42\n"
 "PO-Revision-Date: 2012-08-15 13:34+0900\n"
 "Last-Translator:  <h@subl.ee>\n"
 "Language-Team: Korean\n"
@@ -30,11 +30,11 @@ msgid ""
 "well. We would get an awkward Korean sentence with those solutions because "
 "Korean has many morphological difference with Indo-European language."
 msgstr ""
-"우리는 프로젝트를 한글화해야 할 때가 있습니다. 하지만, `Gettext "
-"<http://docs.python.org/library/gettext.html>`_ 같은 국제화(Internationalization) 도구들은 "
-"인도유럽어족이 아닌 언어에 대해선 썩 만족스럽게 동작하지 않습니다. "
-"한국어도 예외는 아니어서, 국제화 도구들 대부분이 한국어 고유의 형태론적 특징을 "
-"제대로 이해하지 못해, 불가피하게도 부자연스러운 한국어 문장이 만들어지곤 합니다."
+"우리는 프로젝트를 한글화해야 할 때가 있습니다. 하지만, `Gettext <http://docs."
+"python.org/library/gettext.html>`_ 같은 국제화(Internationalization) 도구들"
+"은 인도유럽어족이 아닌 언어에 대해선 썩 만족스럽게 동작하지 않습니다. 한국어"
+"도 예외는 아니어서, 국제화 도구들 대부분이 한국어 고유의 형태론적 특징을 제대"
+"로 이해하지 못해, 불가피하게도 부자연스러운 한국어 문장이 만들어지곤 합니다."
 
 # 8a6197519d314aaea5f9e05877cf3d09
 #: ../index.rst:12
@@ -42,8 +42,8 @@ msgid ""
 ":mod:`korean` a Python module provides useful Korean morphological functions "
 "for getting natural Korean sentences."
 msgstr ""
-":mod:`korean` 파이썬 모듈은 자연스러운 한국어 문장을 위해 한국어 형태론에 "
-"기반한 여러 유용한 기능을 제공합니다."
+":mod:`korean` 파이썬 모듈은 자연스러운 한국어 문장을 위해 한국어 형태론에 기"
+"반한 여러 유용한 기능을 제공합니다."
 
 # 09563b4b85694f6d86efd727ef7a5a9b
 #: ../index.rst:16
@@ -58,11 +58,10 @@ msgid ""
 "Fortunately Gettext offers ``ngettext`` to make a natural plural expression. "
 "If it didn't offer, you would see that awkward sentence:"
 msgstr ""
-"영어의 \"be\" 동사는 이형태입니다. 따라서 영어 현지화 시스템들은 \"is\", "
-"\"am\", \"are\" 등 중에서 적절한 표현형을 고를 수 있어야합니다. 다행히 "
-"Gettext는 자연스러운 복수형 문장을 위한 ``ngettext`` 함수를 제공하고 "
-"있습니다. 만약 그렇지 않았다면 다음과 같은 우스꽝스러운 문장을 보게 됐을지도 "
-"모릅니다:"
+"영어의 \"be\" 동사는 이형태입니다. 따라서 영어 현지화 시스템들은 \"is\", \"am"
+"\", \"are\" 등 중에서 적절한 표현형을 고를 수 있어야합니다. 다행히 Gettext는 "
+"자연스러운 복수형 문장을 위한 ``ngettext`` 함수를 제공하고 있습니다. 만약 그"
+"렇지 않았다면 다음과 같은 우스꽝스러운 문장을 보게 됐을지도 모릅니다:"
 
 # b8eb6dc4512e44ceaf98e9038b3d6a98
 #: ../index.rst:28
@@ -72,10 +71,9 @@ msgid ""
 "However common internationalization solutions don't offer about it. Of "
 "course, :mod:`korean` does:"
 msgstr ""
-"몇몇 한국어 조사 역시 이형태입니다. 그런데 이들은 전혀 다른 선택 규칙을 "
-"필요로 합니다. 바로 앞 음소를 파악하는 것이죠. 아쉽게도 대부분의 국제화 "
-"도구들에 이런 기능은 포함되어있지 않습니다. 물론 :mod:`korean` 모듈은 "
-"포함합니다:"
+"몇몇 한국어 조사 역시 이형태입니다. 그런데 이들은 전혀 다른 선택 규칙을 필요"
+"로 합니다. 바로 앞 음소를 파악하는 것이죠. 아쉽게도 대부분의 국제화 도구들에 "
+"이런 기능은 포함되어있지 않습니다. 물론 :mod:`korean` 모듈은 포함합니다:"
 
 # f0e00471c5614cc584e34bd383d35232
 #: ../index.rst:48
@@ -102,9 +100,8 @@ msgid ""
 "If your text already has been written with naive particle such as \"을(를)"
 "\", use :func:`korean.l10n.proofread` fucntion to get correct particles:"
 msgstr ""
-"이미 기존 문장들이 \"을(를)\" 같은 표현법을 사용하고 있었다면 "
-":func:`korean.l10n.proofread` 함수를 사용하여 자연스러운 문장으로 바꿀 수 "
-"있습니다:"
+"이미 기존 문장들이 \"을(를)\" 같은 표현법을 사용하고 있었다면 :func:`korean."
+"l10n.proofread` 함수를 사용하여 자연스러운 문장으로 바꿀 수 있습니다:"
 
 # cf32453affba4aa9a814939f7e06ce7b
 #: ../index.rst:97
@@ -140,8 +137,8 @@ msgid ""
 "one or more forms. The first form means the basic allomorph (기본형)."
 msgstr ""
 "이 클래스는 형태소를 표현합니다. 형태소는 하나 또는 그 이상의 표현형을 지닐 "
-"수 있습니다. 복수의 표현형을 설정했을 때 첫 번째로 지정한 표현형이 그 "
-"이형태의 기본형이 됩니다."
+"수 있습니다. 복수의 표현형을 설정했을 때 첫 번째로 지정한 표현형이 그 이형태"
+"의 기본형이 됩니다."
 
 # 6f87c92b7f0b4f40bc5a00ed48777d48
 #: ../../korean/morphology/__init__.py:docstring of
@@ -177,8 +174,8 @@ msgid ""
 "such as 을/를, 이/가. These forms follow forward syllable ends what phoneme; "
 "a vowel, a consonant, or a Rieul (ㄹ)."
 msgstr ""
-"한국어의 조사를 표현하는 클래스로, 앞선 음소에 따라 표현형이 달라지는"
-"이형태를 지원합니다."
+"한국어의 조사를 표현하는 클래스로, 앞선 음소에 따라 표현형이 달라지는이형태"
+"를 지원합니다."
 
 # 83164674876542f4993075af8ae0ce56
 #: ../../korean/morphology/__init__.py:docstring of
@@ -213,10 +210,10 @@ msgstr ""
 msgid "Helpers for localization to Korean."
 msgstr "한국어 현지화 도구"
 
-# 84966ccdbc8749998f6156e764682bce
+# fdcf8ade67854c59b78f6ac378f19658
 #: ../../korean/l10n.py:docstring of korean.l10n.Proofreading:1
 msgid ""
-"A function like class. These :meth:`__call__` replaces naive particles to be "
+"A function-like class. These :meth:`__call__` replaces naive particles to be "
 "correct. First, it finds naive particles such as \"을(를)\" or \"(으)로\". "
 "Then it checks the forward character of the particle and replace with a "
 "correct particle."
@@ -364,7 +361,7 @@ msgstr "``easy_install`` 또는 ``pip`` 커맨드를 이용해 설치하세요:"
 # 3722717e640d4621a0a7e453fce1988f
 #: ../index.rst:143
 msgid "or check out development version:"
-msgstr ""
+msgstr "개발 중인 소스코드도 받을 수 있습니다:"
 
 # 9e696c20734d47f19797b9b902727ef8
 #: ../index.rst:150
@@ -379,8 +376,8 @@ msgid ""
 "these licenses. See `LICENSE <https://github.com/sublee/trueskill/blob/"
 "master/LICENSE>`_ for the details."
 msgstr ""
-"이 프로젝트는 `BSD <http://en.wikipedia.org/wiki/BSD_licenses>`_ 허가서를 "
-"따릅니다. BSD 허가서의 범위 내에서 자유롭게 사용해주세요. 더 자세한 내용은 "
+"이 프로젝트는 `BSD <http://en.wikipedia.org/wiki/BSD_licenses>`_ 허가서를 따"
+"릅니다. BSD 허가서의 범위 내에서 자유롭게 사용해주세요. 더 자세한 내용은 "
 "`LICENSE <https://github.com/sublee/trueskill/blob/master/LICENSE>`_ 파일에 "
 "실려있습니다."
 
