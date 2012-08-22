@@ -22,7 +22,7 @@ see that awkward sentence:
 
 .. sourcecode:: pycon
 
-   >>> _('Here is(are) %d apple(s).') % 1
+   >>> print _('Here is(are) %d apple(s).') % 1
    Here is(are) 1 apple(s).
    
 Some Korean particle (postposition) is also an allomorph but they need

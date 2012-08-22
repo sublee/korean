@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Korean 0.1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-08-21 15:42\n"
+"POT-Creation-Date: 2012-08-22 19:03\n"
 "PO-Revision-Date: 2012-08-15 13:34+0900\n"
 "Last-Translator:  <h@subl.ee>\n"
 "Language-Team: Korean\n"
@@ -199,6 +199,18 @@ msgstr "명사를 제대로 된 한글 문자열로 만듭니다."
 #: korean.morphology.NumberWord:1
 msgid "A class for Korean number word that is called \"수사\" in Korean."
 msgstr "한국어의 수사"
+
+# f7e05b5ee1804142b673a6682c7ff40e
+#: ../../korean/morphology/__init__.py:docstring of
+#: korean.morphology.NumberWord.read:1
+msgid "Reads number as Korean."
+msgstr "수사를 제대로 된 한글 문자열로 만듭니다."
+
+# 903ccce6406e4fc484bc1b462f494f31
+#: ../../korean/morphology/__init__.py:docstring of
+#: korean.morphology.NumberWord.read_phases:1
+msgid "Reads number as Korean but seperates the result at each 10k."
+msgstr "숫자를 만의 자리마다 끊어 읽어 제대로 된 한글 문자열로 만듭니다."
 
 # 995952b19596435d9e71eaea22f34da1
 #: ../../korean/l10n.py:docstring of korean.l10n:2
