@@ -92,13 +92,13 @@ class Template(unicode):
 
         >>> import korean
         >>> korean.l10n.Template(u'{0:을} 좋아합니다.').format(u'향수')
-        향수를 좋아합니다.
+        u'향수를 좋아합니다.'
 
     Is equivalent to the following:
 
         >>> import korean
         >>> u'{0:을 좋아합니다.}'.format(korean.Noun(u'향수'))
-        향수를 좋아합니다.
+        u'향수를 좋아합니다.'
     """
 
     def format(self, *args, **kwargs):
@@ -142,9 +142,9 @@ def patch_gettext(translations):
         >>> translations = patch_gettext(translations)
         >>> _ = translations.ugettext
         >>> _(u'{0} appears.').format(_(u'John'))
-        존이 나타났다.
+        u'존이 나타났다.'
         >>> _(u'{0} appears.').format(_(u'Christina'))
-        크리스티나가 나타났다.
+        u'크리스티나가 나타났다.'
 
     :param translations: the Gettext translations object to be patched that
                          would refer the catalog for ko_KR.

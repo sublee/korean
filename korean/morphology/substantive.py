@@ -23,11 +23,11 @@ class Substantive(Morpheme):
         ``{0:은}`` or ``{1:로}``:
 
             >>> format(Noun(u'엄마'), u'을')
-            엄마를
+            u'엄마를'
             >>> u'{0:은} {1:로}'.format(Noun(u'아들'), Noun(u'마을'))
-            아들은 마을로
+            u'아들은 마을로'
             >>> u'{0:은} {1:로}'.format(Noun(u'아들'), Noun(u'산'))
-            아들은 산으로
+            u'아들은 산으로'
         """
         from .particle import Particle
         from . import merge
@@ -52,7 +52,7 @@ class Noun(Substantive):
         """Reads a noun as Korean. The result will be Hangul.
 
             >>> Noun(u'레벨42').read()
-            레벨사십이
+            u'레벨사십이'
         """
         rv = []
         for match in self.READING_PATTERN.finditer(unicode(self)):
@@ -73,10 +73,24 @@ class NumberWord(Substantive):
         self.number = number
 
     def read(self):
+        """Reads number as Korean.
+
+            >>> NumberWord(1234567890).read()
+            u'십이억삼천사백오십육만칠천팔백구십'
+            >>> NumberWord.read_phases(0)
+            u'영'
+        """
         return ''.join(type(self).read_phases(self.number))
 
     @classmethod
     def read_phases(cls, number):
+        """Reads number as Korean but seperates the result at each 10k.
+
+            >>> NumberWord.read_phases(1234567890)
+            (u'십이억', u'삼천사백오십육만', u'칠천팔백구십')
+            >>> NumberWord.read_phases(0)
+            (u'영',)
+        """
         rv, phase = [], []
         digit = 0
         while True:
