@@ -36,7 +36,7 @@ except ImportError:
 
 setup(
     name='korean',
-    version='0.1.3',
+    version='0.1.4',
     license='BSD',
     author='Heungsub Lee',
     author_email='h@subl.ee',
@@ -59,6 +59,7 @@ setup(
         'Topic :: Software Development :: Localization',
         'Topic :: Text Processing :: Linguistic',
     ],
-    test_suite='tests.test_suite',
-    tests_require=['unittest2', 'Babel'],
+    test_suite='koreantests.suite',
+    test_loader='attest:auto_reporter.test_loader',
+    tests_require=['Attest', 'Babel'],
 )

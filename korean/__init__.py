@@ -17,8 +17,10 @@ from .morphology import Morpheme, Noun, NumberWord, Particle, Substantive
 __copyright__ = 'Copyright 2012 by Heungsub Lee'
 __license__ = 'BSD License'
 __author__ = 'Heungsub Lee'
-__email__ = 'h' '@' 'subl.ee'
-__version__ = '0.0.0'
+__email__ = 'h''@''subl.ee'
+__version__ = '0.1.4'
+__all__ = ['hangul', 'l10n', 'morphology', 'Morpheme', 'Noun', 'NumberWord',
+           'Particle', 'Substantive']
 
 
 def load_data():
