@@ -113,7 +113,7 @@ class Template(unicode):
 
     def __repr__(self):
         return '<%s %s>' % \
-               (type(self).__name__, super(Template, self).__repr__)
+               (type(self).__name__, super(Template, self).__repr__())
 
 
 def patch_gettext(translations):
