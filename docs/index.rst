@@ -151,7 +151,7 @@ Licensing and Author
 
 This project licensed with `BSD <http://en.wikipedia.org/wiki/BSD_licenses>`_,
 so feel free to use and manipulate as long as you respect these licenses. See
-`LICENSE <https://github.com/sublee/trueskill/blob/master/LICENSE>`_ for the
+`LICENSE <https://github.com/sublee/korean/blob/master/LICENSE>`_ for the
 details.
 
 I'm `Heungsub Lee <http://subl.ee/>`_. Any regarding questions or patches are
