@@ -9,11 +9,13 @@
     :license: BSD, see LICENSE for more details.
 """
 from __future__ import absolute_import
-
 from functools import partial
 from itertools import chain, product
 import re
-from StringIO import StringIO
+try:
+    from cStringIO import StringIO
+except ImportError:
+    from StringIO import StringIO
 
 from .morphology import Noun, NumberWord, Particle, pick_allomorph
 
