@@ -133,7 +133,10 @@ class NumberWord(Substantive):
 
 
 class Loanword(Substantive):
-    """A class for loanword that is called "외래어" in Korean."""
+    """A class for loanword that is called "외래어" in Korean. This depends
+    on `Hangulize <http://packages.python.org/hangulize>`_ which automatically
+    transcribes a non-Korean word into Hangul.
+    """
 
     def __init__(self, word, code=None, iso639=None, lang=None):
         try:
@@ -144,4 +147,14 @@ class Loanword(Substantive):
         super(Loanword, self).__init__(word)
 
     def read(self):
+        """Transcribes into Hangul using `Hangulize
+        <http://packages.python.org/hangulize>`_.
+
+        >>> Loanword(u'Guido van Rossum', 'nld').read()
+        u'히도 판로쉼'
+        >>> Loanword(u'საქართველო', 'kat').read()
+        u'사카르트벨로'
+        >>> Loanword(u'Leonardo da Vinci', 'ita').read()
+        u'레오나르도 다 빈치'
+        """
         return hangulize.hangulize(self.basic(), lang=self.lang)

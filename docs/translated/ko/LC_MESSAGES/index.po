@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Korean 0.1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-08-22 19:03\n"
+"POT-Creation-Date: 2012-10-10 00:35\n"
 "PO-Revision-Date: 2012-08-15 13:34+0900\n"
 "Last-Translator:  <h@subl.ee>\n"
 "Language-Team: Korean\n"
@@ -76,12 +76,12 @@ msgstr ""
 "이런 기능은 포함되어있지 않습니다. 물론 :mod:`korean` 모듈은 포함합니다:"
 
 # f0e00471c5614cc584e34bd383d35232
-#: ../index.rst:48
+#: ../index.rst:51
 msgid "Working with Gettext"
 msgstr "Gettext와 연동하기"
 
 # 1e7cade327f9461e953898299dd6e283
-#: ../index.rst:50
+#: ../index.rst:53
 msgid ""
 "It also can be worked with Gettext. Just use :func:`korean.l10n."
 "patch_gettext` function:"
@@ -90,12 +90,12 @@ msgstr ""
 "연동시킬 수 있습니다:"
 
 # d030ccaee03744fb916905fe510c6515
-#: ../index.rst:83
+#: ../index.rst:86
 msgid "Proofreading legacy text"
 msgstr "기존 문장 교정하기"
 
 # 9f5b953f21804b329351950a7d9a812b
-#: ../index.rst:85
+#: ../index.rst:88
 msgid ""
 "If your text already has been written with naive particle such as \"을(를)"
 "\", use :func:`korean.l10n.proofread` fucntion to get correct particles:"
@@ -104,7 +104,7 @@ msgstr ""
 "l10n.proofread` 함수를 사용하여 자연스러운 문장으로 바꿀 수 있습니다:"
 
 # cf32453affba4aa9a814939f7e06ce7b
-#: ../index.rst:97
+#: ../index.rst:100
 msgid "API"
 msgstr ""
 
@@ -211,6 +211,12 @@ msgstr "수사를 제대로 된 한글 문자열로 만듭니다."
 #: korean.morphology.NumberWord.read_phases:1
 msgid "Reads number as Korean but seperates the result at each 10k."
 msgstr "숫자를 만의 자리마다 끊어 읽어 제대로 된 한글 문자열로 만듭니다."
+
+# b1b9558ef07b4291b68267cfb655eb41
+#: ../../korean/morphology/__init__.py:docstring of
+#: korean.morphology.Loanword:1
+msgid "A class for loanword that is called \"외래어\" in Korean."
+msgstr "외래어."
 
 # 995952b19596435d9e71eaea22f34da1
 #: ../../korean/l10n.py:docstring of korean.l10n:2
@@ -364,34 +370,34 @@ msgid ""
 msgstr "``(초성, 중성, 종성)``으로 구성된 순서쌍을 한글 문자로 합칩니다."
 
 # f2aa0ada4c0c4528803a6254cf817e5e
-#: ../index.rst:130
+#: ../index.rst:133
 msgid "Installation"
 msgstr "설치"
 
 # 472725848c0d4b3282c933ddf189d2a0
-#: ../index.rst:132
+#: ../index.rst:135
 msgid ""
 "Install via `PyPI <http://pypi.python.org/pypi/korean>`_ with "
 "``easy_install`` or ``pip`` command:"
 msgstr "``easy_install`` 또는 ``pip`` 커맨드를 이용해 설치하세요:"
 
 # 3722717e640d4621a0a7e453fce1988f
-#: ../index.rst:143
+#: ../index.rst:146
 msgid "or check out development version:"
 msgstr "개발 중인 소스코드도 받을 수 있습니다:"
 
 # 9e696c20734d47f19797b9b902727ef8
-#: ../index.rst:150
+#: ../index.rst:153
 msgid "Licensing and Author"
 msgstr "사용범위와 제작자"
 
 # 000e4ffeafb14771a2076ffd42afcbc6
-#: ../index.rst:152
+#: ../index.rst:155
 msgid ""
 "This project licensed with `BSD <http://en.wikipedia.org/wiki/"
 "BSD_licenses>`_, so feel free to use and manipulate as long as you respect "
-"these licenses. See `LICENSE <https://github.com/sublee/trueskill/blob/"
-"master/LICENSE>`_ for the details."
+"these licenses. See `LICENSE <https://github.com/sublee/korean/blob/master/"
+"LICENSE>`_ for the details."
 msgstr ""
 "이 프로젝트는 `BSD <http://en.wikipedia.org/wiki/BSD_licenses>`_ 허가서를 따"
 "릅니다. BSD 허가서의 범위 내에서 자유롭게 사용해주세요. 더 자세한 내용은 "
@@ -399,7 +405,7 @@ msgstr ""
 "실려있습니다."
 
 # 1fcd77f3ce0344f885a5ba473a45af50
-#: ../index.rst:157
+#: ../index.rst:160
 msgid ""
 "I'm `Heungsub Lee <http://subl.ee/>`_. Any regarding questions or patches "
 "are welcomed."

@@ -32,7 +32,7 @@ However common internationalization solutions don't offer about it. Of course,
 
 .. sourcecode:: pycon
 
-   >>> from korean import Noun, NumberWord
+   >>> from korean import Noun, NumberWord, Loanword
    >>> fmt = u'{subj:은} {obj:을} 먹었다.'
    >>> fmt2 = u'{subj:은} 레벨 {level:이} 되었다.'
    >>> print fmt.format(subj=Noun(u'나'), obj=Noun(u'밥'))
@@ -43,6 +43,9 @@ However common internationalization solutions don't offer about it. Of course,
    용사는 레벨 4가 되었다.
    >>> print fmt2.format(subj=Noun(u'마왕'), level=NumberWord(98))
    마왕은 레벨 98이 되었다.
+   >>> print fmt2.format(subj=Loanword(u'Leonardo da Vinci', 'ita'),
+   ...                   level=NumberWord(67))
+   Leonardo da Vinci는 레벨 67이 되었다.
 
 Working with Gettext
 ~~~~~~~~~~~~~~~~~~~~
