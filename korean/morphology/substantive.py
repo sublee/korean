@@ -138,11 +138,20 @@ class Loanword(Substantive):
     transcribes a non-Korean word into Hangul.
     """
 
-    def __init__(self, word, code=None, iso639=None, lang=None):
+    def _import_hangulize(self):
+        try:
+            return self._hangulize
+        except AttributeError:
+            pass
         try:
             import hangulize
         except ImportError:
             raise ImportError('%s needs hangulize>=0.0.5' % type(self).__name__)
+        self._hangulize = hangulize
+        return hangulize
+
+    def __init__(self, word, code=None, iso639=None, lang=None):
+        hangulize = self._import_hangulize()
         self.lang = lang or hangulize.get_lang(code, iso639)
         super(Loanword, self).__init__(word)
 
@@ -157,4 +166,5 @@ class Loanword(Substantive):
         >>> Loanword(u'Leonardo da Vinci', 'ita').read()
         u'레오나르도 다 빈치'
         """
+        hangulize = self._import_hangulize()
         return hangulize.hangulize(self.basic(), lang=self.lang)
