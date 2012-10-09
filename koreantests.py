@@ -50,6 +50,12 @@ class ParticleTest(TestBase):
         #assert pick_allomorph(P(u'일랑'), suffix_of=Nw(4)) == u'일랑'
 
     @test
+    def pick_allomorph_with_loanword(self):
+        pick_allomorph = morphology.pick_allomorph
+        P, Lw = Particle, Loanword
+        assert pick_allomorph(P(u'가'), suffix_of=Lw(u'Emil', 'ron')) == u'이'
+
+    @test
     def merge_with_noun(self):
         merge = morphology.merge
         P, N = Particle, Noun

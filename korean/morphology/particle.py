@@ -10,7 +10,7 @@ from __future__ import absolute_import
 
 from . import define_allomorph_picker
 from .morpheme import Morpheme
-from .substantive import Noun, NumberWord
+from .substantive import Noun, NumberWord, Loanword
 from .. import hangul
 
 
@@ -96,5 +96,6 @@ class Particle(Morpheme):
 
     @define_allomorph_picker(suffix_of=Noun)
     @define_allomorph_picker(suffix_of=NumberWord)
+    @define_allomorph_picker(suffix_of=Loanword)
     def pick_allomorph_after_substantive(self, substantive):
         return self.pick_allomorph_after_char(substantive.read()[-1])
