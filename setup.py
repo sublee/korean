@@ -60,5 +60,5 @@ setup(
     ],
     test_suite='koreantests.suite',
     test_loader='attest:auto_reporter.test_loader',
-    tests_require=['Attest', 'Babel'],
+    tests_require=['Attest', 'Babel', 'hangulize'],
 )

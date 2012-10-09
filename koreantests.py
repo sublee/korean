@@ -149,13 +149,6 @@ class NumberWordTest(TestBase):
         assert u'레벨 {0:이}'.format(NumberWord(15)) == u'레벨 15가'
 
 
-try:
-    import hangulize
-except:
-    hangulize = None
-
-
-@test_if(hangulize)
 class LoanwordTest(TestBase):
 
     @test
