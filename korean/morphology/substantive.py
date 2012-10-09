@@ -13,6 +13,9 @@ from .morpheme import Morpheme
 from ..hangul import is_hangul
 
 
+__all__ = ['Substantive', 'Noun', 'NumberWord', 'Loanword']
+
+
 class Substantive(Morpheme):
     """A class for Korean substantive that is called "체언" in Korean."""
 
@@ -127,3 +130,18 @@ class NumberWord(Substantive):
             return super(NumberWord, self).__format__(spec)
         except ValueError:
             return format(self.number, spec)
+
+
+class Loanword(Substantive):
+    """A class for loanword that is called "외래어" in Korean."""
+
+    def __init__(self, word, code=None, iso639=None, lang=None):
+        try:
+            import hangulize
+        except ImportError:
+            raise ImportError('%s needs hangulize>=0.0.5' % type(self).__name__)
+        self.lang = lang or hangulize.get_lang(code, iso639)
+        super(Loanword, self).__init__(word)
+
+    def read(self):
+        return hangulize.hangulize(self.basic(), lang=self.lang)

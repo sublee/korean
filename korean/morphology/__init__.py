@@ -13,8 +13,9 @@ import types
 from .. import hangul
 
 
-__all__ = 'Morphology', 'Morpheme', 'Particle', 'Substantive', 'Noun', \
-          'NumberWord', 'pick_allomorph', 'merge', 'define_allomorph_picker',
+__all__ = ['Morphology', 'Morpheme', 'Particle', 'Substantive', 'Noun',
+           'NumberWord', 'Loanword', 'pick_allomorph', 'merge',
+           'define_allomorph_picker']
 
 
 class Morphology(object):
@@ -94,4 +95,4 @@ merge = Morphology.merge
 #: Imports submodules on the end. Because they might need :class:`Morphology`.
 from .morpheme import Morpheme
 from .particle import Particle
-from .substantive import Substantive, Noun, NumberWord
+from .substantive import Substantive, Noun, NumberWord, Loanword

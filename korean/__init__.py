@@ -11,16 +11,18 @@
 from __future__ import absolute_import
 
 from . import hangul, l10n, morphology
-from .morphology import Morpheme, Noun, NumberWord, Particle, Substantive
+from .morphology import Morpheme, Noun, NumberWord, Loanword, Particle, \
+                        Substantive
 
 
 __copyright__ = 'Copyright 2012 by Heungsub Lee'
-__license__ = 'BSD License'
-__author__ = 'Heungsub Lee'
-__email__ = 'h''@''subl.ee'
 __version__ = '0.1.4'
+__license__ = 'BSD'
+__author__ = 'Heungsub Lee'
+__author_email__ = 'h''@''subl.ee'
+__url__ = 'http://packages.python.org/korean'
 __all__ = ['hangul', 'l10n', 'morphology', 'Morpheme', 'Noun', 'NumberWord',
-           'Particle', 'Substantive']
+           'Loanword', 'Particle', 'Substantive']
 
 
 def load_data():

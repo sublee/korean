@@ -2,7 +2,8 @@
 import contextlib
 import textwrap
 
-from attest import TestBase, Tests, assert_hook, raises, test
+from attest import TestBase, Tests, assert_hook, disable_imports, raises, \
+                   test, test_if
 
 from korean import *
 
@@ -140,6 +141,41 @@ class NumberWordTest(TestBase):
         assert u'레벨 {0:이}'.format(NumberWord(4)) == u'레벨 4가'
         assert u'레벨 {0:이}'.format(NumberWord(3)) == u'레벨 3이'
         assert u'레벨 {0:이}'.format(NumberWord(15)) == u'레벨 15가'
+
+
+try:
+    import hangulize
+except:
+    hangulize = None
+
+
+@test_if(hangulize)
+class LoanwordTest(TestBase):
+
+    @test
+    def need_hangulize(self):
+        with disable_imports('hangulize'):
+            with raises(ImportError):
+                Loanword(u'štěstí', 'ces')
+
+    @test
+    def read(self):
+        assert Loanword(u'italia', 'ita').read() == u'이탈리아'
+        assert Loanword(u'gloria', 'ita').read() == u'글로리아'
+        assert Loanword(u'Αλεξάνδρεια', 'ell').read() == u'알렉산드리아'
+
+    @test
+    def null_format(self):
+        assert u'{0}'.format(Loanword(u'Вадзім Махнеў', 'bel')) == \
+               u'Вадзім Махнеў'
+
+    @test
+    def particle_format(self):
+        assert u'{0:으로} 여행 가자'.format(Loanword(u'Italia', 'ita')) == \
+               u'Italia로 여행 가자'
+        van_gogh = Loanword(u'Vincent Willem van Gogh', 'nld')
+        assert u'이 작품은 {0:이} 그렸다'.format(van_gogh) == \
+               u'이 작품은 Vincent Willem van Gogh가 그렸다.'
 
 
 class LocalizationTest(TestBase):

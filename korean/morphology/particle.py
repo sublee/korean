@@ -14,6 +14,9 @@ from .substantive import Noun, NumberWord
 from .. import hangul
 
 
+__all__ = ['Particle']
+
+
 class Particle(Morpheme):
     """Particle (조사) is a postposition in Korean. Some particles are
     allomorph such as 을/를, 이/가. These forms follow forward syllable ends

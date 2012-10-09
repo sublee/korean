@@ -11,6 +11,9 @@ from __future__ import absolute_import
 from ..hangul import get_final, is_hangul
 
 
+__all__ = ['Morpheme']
+
+
 class MorphemeMetaclass(type):
 
     def __new__(meta, name, bases, attrs):

@@ -17,7 +17,7 @@ from StringIO import StringIO
 from .morphology import Noun, NumberWord, Particle, pick_allomorph
 
 
-__all__ = 'Proofreading', 'proofread', 'Template', 'patch_gettext',
+__all__ = ['Proofreading', 'proofread', 'Template', 'patch_gettext']
 
 
 class Proofreading(object):

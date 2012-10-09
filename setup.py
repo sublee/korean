@@ -28,21 +28,20 @@ Links
   <http://github.com/sublee/korean/zipball/master#egg=korean-dev>`_
 
 """
-try:
-    from setuptools import setup
-except ImportError:
-    from distutils.core import setup
+from setuptools import setup
+
+import korean
 
 
 setup(
-    name='korean',
-    version='0.1.4',
-    license='BSD',
-    author='Heungsub Lee',
-    author_email='h@subl.ee',
+    name=korean.__name__,
+    version=korean.__version__,
+    license=korean.__license__,
+    author=korean.__author__,
+    author_email=korean.__author_email__,
+    url=korean.__url__,
     description='A library for Korean morphology',
     long_description=__doc__,
-    url='http://github.com/sublee/korean',
     platforms='any',
     packages=['korean', 'korean.morphology'],
     include_package_data=True,

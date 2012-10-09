@@ -13,9 +13,9 @@
 """
 
 
-__all__ = 'char_offset', 'is_hangul', 'is_vowel', 'is_consonant', \
-          'is_initial', 'is_final', 'get_initial', 'get_vowel', 'get_final', \
-          'split_char', 'join_char',
+__all__ = ['char_offset', 'is_hangul', 'is_vowel', 'is_consonant',
+           'is_initial', 'is_final', 'get_initial', 'get_vowel', 'get_final',
+           'split_char', 'join_char']
 
 
 def S(*sequences):
