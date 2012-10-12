@@ -18,9 +18,9 @@ __all__ = ['Particle']
 
 
 class Particle(Morpheme):
-    """Particle (조사) is a postposition in Korean. Some particles are
-    allomorph such as 을/를, 이/가. These forms follow forward syllable ends
-    what phoneme; a vowel, a consonant, or a Rieul (ㄹ).
+    """Particle (조사) is a postposition in Korean. Some particles have
+    different allomorphs such as 을/를, 이/가. These forms follow forward
+    syllable ends what phoneme; a vowel, a consonant, or a Rieul (ㄹ).
     """
 
     def __init__(self, after_vowel, after_consonant=None, after_rieul=None):

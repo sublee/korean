@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Korean 0.1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-10-10 00:35\n"
+"POT-Creation-Date: 2012-10-12 10:30\n"
 "PO-Revision-Date: 2012-08-15 13:34+0900\n"
 "Last-Translator:  <h@subl.ee>\n"
 "Language-Team: Korean\n"
@@ -66,10 +66,10 @@ msgstr ""
 # b8eb6dc4512e44ceaf98e9038b3d6a98
 #: ../index.rst:28
 msgid ""
-"Some Korean particle (postposition) is also an allomorph but they need "
-"different allomorphic selection rule; it needs check the forward phoneme. "
-"However common internationalization solutions don't offer about it. Of "
-"course, :mod:`korean` does:"
+"Some Korean particles (postposition) also have different allomorphs but they "
+"need different allomorphic selection rule; it needs check the preceding "
+"phoneme. However common internationalization solutions don't offer about it. "
+"Of course, `:mod:`korean` does:"
 msgstr ""
 "몇몇 한국어 조사 역시 이형태입니다. 그런데 이들은 전혀 다른 선택 규칙을 필요"
 "로 합니다. 바로 앞 음소를 파악하는 것이죠. 아쉽게도 대부분의 국제화 도구들에 "
@@ -170,12 +170,12 @@ msgstr "주어진 키에 형태소를 등록합니다."
 #: ../../korean/morphology/__init__.py:docstring of
 #: korean.morphology.Particle:1
 msgid ""
-"Particle (조사) is a postposition in Korean. Some particles are allomorph "
-"such as 을/를, 이/가. These forms follow forward syllable ends what phoneme; "
-"a vowel, a consonant, or a Rieul (ㄹ)."
+"Particle (조사) is a postposition in Korean. Some particles have different "
+"allomorphs such as 을/를, 이/가. These forms follow forward syllable ends "
+"what phoneme; a vowel, a consonant, or a Rieul (ㄹ)."
 msgstr ""
-"한국어의 조사를 표현하는 클래스로, 앞선 음소에 따라 표현형이 달라지는이형태"
-"를 지원합니다."
+"한국어의 조사를 표현하는 클래스로, 앞선 음소에 따라 달라지는 이형태를 "
+"지원합니다."
 
 # 83164674876542f4993075af8ae0ce56
 #: ../../korean/morphology/__init__.py:docstring of
@@ -212,11 +212,24 @@ msgstr "수사를 제대로 된 한글 문자열로 만듭니다."
 msgid "Reads number as Korean but seperates the result at each 10k."
 msgstr "숫자를 만의 자리마다 끊어 읽어 제대로 된 한글 문자열로 만듭니다."
 
-# b1b9558ef07b4291b68267cfb655eb41
+# 84067939ac234fa0b0f056933bd2f80e
 #: ../../korean/morphology/__init__.py:docstring of
 #: korean.morphology.Loanword:1
-msgid "A class for loanword that is called \"외래어\" in Korean."
-msgstr "외래어."
+msgid ""
+"A class for loanword that is called \"외래어\" in Korean. This depends on "
+"`Hangulize <http://packages.python.org/hangulize>`_ which automatically "
+"transcribes a non-Korean word into Hangul."
+msgstr ""
+"한국어의 외래어. 한글 전사를 위해 `한글라이즈 <http://packages.python.org"
+"/hangulize>`_ 모듈이 필요합니다."
+
+# 49af6c8d89ff48e2a9451383f9eb12dc
+#: ../../korean/morphology/__init__.py:docstring of
+#: korean.morphology.Loanword.read:1
+msgid ""
+"Transcribes into Hangul using `Hangulize <http://packages.python.org/"
+"hangulize>`_."
+msgstr "외래어를 한글로 전사합니다."
 
 # 995952b19596435d9e71eaea22f34da1
 #: ../../korean/l10n.py:docstring of korean.l10n:2

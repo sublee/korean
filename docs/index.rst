@@ -25,10 +25,10 @@ see that awkward sentence:
    >>> print _('Here is(are) %d apple(s).') % 1
    Here is(are) 1 apple(s).
    
-Some Korean particle (postposition) is also an allomorph but they need
-different allomorphic selection rule; it needs check the forward phoneme.
-However common internationalization solutions don't offer about it. Of course,
-:mod:`korean` does:
+Some Korean particles (postposition) also have different allomorphs but they
+need different allomorphic selection rule; it needs check the preceding
+phoneme. However common internationalization solutions don't offer about it. Of
+course, `:mod:`korean` does:
 
 .. sourcecode:: pycon
 
