@@ -12,6 +12,7 @@ from __future__ import absolute_import, unicode_literals
 from functools import partial
 from itertools import chain, product
 import re
+import sys
 
 from .morphology import Noun, NumberWord, Particle, pick_allomorph
 
@@ -146,7 +147,10 @@ def patch_gettext(translations):
     :param translations: the Gettext translations object to be patched that
                          would refer the catalog for ko_KR.
     """
-    for meth in ['ugettext', 'ungettext']:
+    methods_to_patch = ['gettext', 'ngettext']
+    if hasattr(translations, 'ugettext'):
+        methods_to_patch = ['u' + meth for meth in methods_to_patch]
+    for meth in methods_to_patch:
         def patched(orig, *args, **kwargs):
             return Template(orig(*args, **kwargs))
         patched.__name__ = str(meth)
