@@ -6,7 +6,7 @@
     :copyright: (c) 2012 by Heungsub Lee
     :license: BSD, see LICENSE for more details.
 """
-from __future__ import absolute_import
+from __future__ import absolute_import, unicode_literals
 import sys
 import types
 
@@ -82,9 +82,9 @@ class Morphology(object):
             splitted = hangul.split_char(prefix[-1])
             assert not splitted[2]
             mid = hangul.join_char((splitted[0], splitted[1], suffix[0]))
-            return u'{0}{1}{2}'.format(prefix[:-1], mid, suffix[1:])
+            return '{0}{1}{2}'.format(prefix[:-1], mid, suffix[1:])
         else:
-            return u'{0}{1}'.format(prefix, suffix)
+            return '{0}{1}'.format(prefix, suffix)
 
 
 pick_allomorph = Morphology.pick_allomorph

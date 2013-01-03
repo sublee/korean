@@ -28,18 +28,37 @@ Links
   <http://github.com/sublee/korean/zipball/master#egg=korean-dev>`_
 
 """
+from __future__ import with_statement
+import re
 from setuptools import setup
+from setuptools.command.test import test
+import sys
 
-import korean
+
+# detect the current version
+with open('korean/__init__.py') as f:
+    version = re.search(r'__version__\s*=\s*\'(.+?)\'', f.read()).group(1)
+assert version
 
 
+# use pytest instead
+def run_tests(self):
+    pyc = re.compile(r'\.pyc|\$py\.class')
+    test_file = pyc.sub('.py', __import__(self.test_suite).__file__)
+    raise SystemExit(__import__('pytest').main([test_file]))
+test.run_tests = run_tests
+
+
+tests_require = ['pytest', 'Babel']
+if sys.version_info < (3,):
+    tests_require.append('hangulize')
 setup(
-    name=korean.__name__,
-    version=korean.__version__,
-    license=korean.__license__,
-    author=korean.__author__,
-    author_email=korean.__author_email__,
-    url=korean.__url__,
+    name='korean',
+    version=version,
+    license='BSD',
+    author='Heungsub Lee',
+    author_email='h@subl.ee',
+    url='http://packages.python.org/korean',
     description='A library for Korean morphology',
     long_description=__doc__,
     platforms='any',
@@ -54,11 +73,21 @@ setup(
         'Natural Language :: Korean',
         'Operating System :: OS Independent',
         'Programming Language :: Python',
+        'Programming Language :: Python :: 2',
+        'Programming Language :: Python :: 2.6',
+        'Programming Language :: Python :: 2.7',
+        'Programming Language :: Python :: 3',
+        'Programming Language :: Python :: 3.1',
+        'Programming Language :: Python :: 3.2',
+        'Programming Language :: Python :: 3.3',
+        'Programming Language :: Python :: Implementation :: CPython',
+        'Programming Language :: Python :: Implementation :: PyPy',
         'Topic :: Software Development :: Libraries :: Python Modules',
         'Topic :: Software Development :: Localization',
         'Topic :: Text Processing :: Linguistic',
     ],
-    test_suite='koreantests.suite',
-    test_loader='attest:auto_reporter.test_loader',
-    tests_require=['Attest', 'Babel', 'hangulize'],
+    install_requires=['distribute'],
+    test_suite='koreantests',
+    tests_require=tests_require,
+    use_2to3=(sys.version_info >= (3,)),
 )

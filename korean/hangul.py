@@ -11,6 +11,7 @@
     :copyright: (c) 2012 by Heungsub Lee and 2003 by Hye-Shik Chang
     :license: BSD, see LICENSE for more details.
 """
+from __future__ import unicode_literals
 
 
 __all__ = ['char_offset', 'is_hangul', 'is_vowel', 'is_consonant',
@@ -24,12 +25,12 @@ def S(*sequences):
             return (sequence,)
         return tuple(sequence)
     return sum(map(to_tuple, sequences), ())
-VOWELS = S(u'ㅏㅐㅑㅒㅓㅔㅕㅖㅗㅘㅙㅚㅛㅜㅝㅞㅟㅠㅡㅢㅣ')
-CONSONANTS = S(u'ㄱㄲㄳㄴㄵㄶㄷㄸㄹㄺㄻㄼㄽㄾㄿㅀㅁㅂㅃㅄㅅㅆㅇㅈㅉㅊㅋㅌㅍㅎ')
-INITIALS = S(u'ㄱㄲㄴㄷㄸㄹㅁㅂㅃㅅㅆㅇㅈㅉㅊㅋㅌㅍㅎ')
-FINALS = S(u'', u'ㄱㄲㄳㄴㄵㄶㄷㄹㄺㄻㄼㄽㄾㄿㅀㅁㅂㅄㅅㅆㅇㅈㅊㅋㅌㅍㅎ')
+VOWELS = S('ㅏㅐㅑㅒㅓㅔㅕㅖㅗㅘㅙㅚㅛㅜㅝㅞㅟㅠㅡㅢㅣ')
+CONSONANTS = S('ㄱㄲㄳㄴㄵㄶㄷㄸㄹㄺㄻㄼㄽㄾㄿㅀㅁㅂㅃㅄㅅㅆㅇㅈㅉㅊㅋㅌㅍㅎ')
+INITIALS = S('ㄱㄲㄴㄷㄸㄹㅁㅂㅃㅅㅆㅇㅈㅉㅊㅋㅌㅍㅎ')
+FINALS = S('', 'ㄱㄲㄳㄴㄵㄶㄷㄹㄺㄻㄼㄽㄾㄿㅀㅁㅂㅄㅅㅆㅇㅈㅊㅋㅌㅍㅎ')
 LETTER_ELEMENTS = (INITIALS, VOWELS, FINALS)
-HANGUL_RANGE = xrange(ord(u'가'), ord(u'힣') + 1)
+HANGUL_RANGE = xrange(ord('가'), ord('힣') + 1)
 FIRST_HANGUL = HANGUL_RANGE[0]
 del S
 

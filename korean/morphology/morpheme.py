@@ -6,7 +6,8 @@
     :copyright: (c) 2012 by Heungsub Lee
     :license: BSD, see LICENSE for more details.
 """
-from __future__ import absolute_import
+from __future__ import absolute_import, unicode_literals
+import sys
 
 from ..hangul import get_final, is_hangul
 
@@ -75,6 +76,10 @@ class Morpheme(object):
     def __str__(self):
         return unicode(self).encode('utf-8')
 
+    if sys.version_info >= (3,):
+        __str__ = __unicode__
+        del __unicode__
+
     def __getitem__(self, i):
         return unicode(self)[i]
 
@@ -82,7 +87,7 @@ class Morpheme(object):
         return unicode(self)[start:stop:step]
 
     def __format__(self, suffix):
-        return u'{0!s}{1}'.format(self, suffix)
+        return '{0!s}{1}'.format(self, suffix)
 
     def __repr__(self):
-        return '{0}({1!s})'.format(type(self).__name__, str(self))
+        return '{0}({1!s})'.format(type(self).__name__, unicode(self))

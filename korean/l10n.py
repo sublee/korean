@@ -8,11 +8,10 @@
     :copyright: (c) 2012 by Heungsub Lee
     :license: BSD, see LICENSE for more details.
 """
-from __future__ import absolute_import
+from __future__ import absolute_import, unicode_literals
 from functools import partial
 from itertools import chain, product
 import re
-from StringIO import StringIO
 
 from .morphology import Noun, NumberWord, Particle, pick_allomorph
 
@@ -64,17 +63,16 @@ class Proofreading(object):
 
         :param text: the string that has been written with naive particles.
         """
-        stream = StringIO()
+        buf = []
         for token in self.parse(text):
             if isinstance(token, Particle):
-                stream.seek(-1, 2)
-                noun = Noun(stream.read())
+                noun = Noun(buf[-1])
                 try:
                     token = pick_allomorph(token, suffix_of=noun)
                 except:
                     token = token.naive()[0]
-            stream.write(token)
-        return stream.getvalue()
+            buf.append(token)
+        return ''.join(buf)
 
 
 #: Default :class:`Proofreading` object. It tokenizes ``unicode`` and
@@ -90,14 +88,14 @@ class Template(unicode):
     Basically this example:
 
         >>> import korean
-        >>> korean.l10n.Template(u'{0:을} 좋아합니다.').format(u'향수')
-        u'향수를 좋아합니다.'
+        >>> korean.l10n.Template('{0:을} 좋아합니다.').format('향수')
+        '향수를 좋아합니다.'
 
     Is equivalent to the following:
 
         >>> import korean
-        >>> u'{0:을 좋아합니다.}'.format(korean.Noun(u'향수'))
-        u'향수를 좋아합니다.'
+        >>> '{0:을 좋아합니다.}'.format(korean.Noun('향수'))
+        '향수를 좋아합니다.'
     """
 
     def format(self, *args, **kwargs):
@@ -140,10 +138,10 @@ def patch_gettext(translations):
 
         >>> translations = patch_gettext(translations)
         >>> _ = translations.ugettext
-        >>> _(u'{0} appears.').format(_(u'John'))
-        u'존이 나타났다.'
-        >>> _(u'{0} appears.').format(_(u'Christina'))
-        u'크리스티나가 나타났다.'
+        >>> _('{0} appears.').format(_('John'))
+        '존이 나타났다.'
+        >>> _('{0} appears.').format(_('Christina'))
+        '크리스티나가 나타났다.'
 
     :param translations: the Gettext translations object to be patched that
                          would refer the catalog for ko_KR.
@@ -151,7 +149,7 @@ def patch_gettext(translations):
     for meth in ['ugettext', 'ungettext']:
         def patched(orig, *args, **kwargs):
             return Template(orig(*args, **kwargs))
-        patched.__name__ = meth
+        patched.__name__ = str(meth)
         orig = getattr(translations, meth)
         setattr(translations, meth, partial(patched, orig))
     return translations

@@ -8,24 +8,31 @@
     :copyright: (c) 2012 by Heungsub Lee
     :license: BSD, see LICENSE for more details.
 """
-from __future__ import absolute_import
+from __future__ import absolute_import, unicode_literals
+import sys
 
 from . import hangul, l10n, morphology
-from .morphology import Morpheme, Noun, NumberWord, Loanword, Particle, \
-                        Substantive
+from .morphology import (Morpheme, Noun, NumberWord, Loanword, Particle,
+                         Substantive)
 
 
-__copyright__ = 'Copyright 2012 by Heungsub Lee'
-__version__ = '0.1.4'
-__license__ = 'BSD'
-__author__ = 'Heungsub Lee'
-__author_email__ = 'h''@''subl.ee'
-__url__ = 'http://packages.python.org/korean'
+__version__ = '0.1.5-dev'
 __all__ = ['hangul', 'l10n', 'morphology', 'Morpheme', 'Noun', 'NumberWord',
            'Loanword', 'Particle', 'Substantive']
 
 
-def load_data():
+# Python 2's import seems to do not work with unicode __all__.
+# __future__.unicode_literals could make a TypeError with "from __ import *".
+if sys.version_info < (3,):
+    for mod in [globals(), hangul, l10n, morphology]:
+        if isinstance(mod, dict):
+            mod['__all__'] = map(str, mod['__all__'])
+        else:
+            mod.__all__ = map(str, mod.__all__)
+
+
+def _load_data():
+    """Loads allomorphic particles and number words from :file:`data.json`."""
     import json
     import os
     with open(os.path.join(os.path.dirname(__file__), 'data.json')) as f:
@@ -42,4 +49,4 @@ def load_data():
         NumberWord.__digits__[int(digit)] = form
 
 
-load_data()
+_load_data()
