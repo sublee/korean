@@ -334,6 +334,27 @@ class TestLocalization(object):
         assert l10n.proofread.parse('용사은(는) 감를(을) 먹었다.') == \
                ('용사', Particle('은'), ' 감', Particle('을'), ' 먹었다.')
 
+    def test_jinja2_ext(self):
+        from jinja2 import Environment
+        env = Environment(extensions=['korean.l10n.jinja2ext.proofread'])
+        context = dict(name='용사', obj='검')
+        expectation = '용사는 검을 획득했다.'
+        assert 'proofread' in env.filters
+        templ1 = env.from_string('''
+        {{ (name ~ '은(는) ' ~ obj ~ '을(를) 획득했다.')|proofread }}
+        ''')
+        assert templ1.render(**context).strip() == expectation
+        templ2 = env.from_string('''
+        {{ '%s은(는) %s을(를) 획득했다.'|format(name, obj)|proofread }}
+        ''')
+        assert templ2.render(**context).strip() == expectation
+        templ3 = env.from_string('''
+        {% autoproofread %}
+          {{ name }}은(는) {{ obj }}을(를) 획득했다.
+        {% endautoproofread %}
+        ''')
+        assert templ3.render(**context).strip() == expectation
+
 
 try:
     __import__('hangulize')

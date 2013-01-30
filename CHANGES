@@ -1,0 +1,41 @@
+Version 0.1.5
+-------------
+
+Released on Jan 30th 2013.
+
+- Supports Python 3 and Jython.
+- Adds :class:`korean.l10n.jinja2ext.ProofreadingExtension` for Jinja template
+  engine.
+
+Version 0.1.4
+-------------
+
+Released on Aug 26th 2012.
+
+Minor patches.
+
+Version 0.1.3
+-------------
+
+Released on Aug 15th 2012.
+
+:class:`korean.l10n.Proofreading` supports more various naive particle forms.
+
+Version 0.1.2
+-------------
+
+Released on Aug 15th 2012.
+
+Fixes an error on :class:`korean.l10n.Proofreading`.
+
+Version 0.1.1
+-------------
+
+Released on Aug 15th 2012.
+
+Stop supporting Python 2.5.
+
+Version 0.1
+-----------
+
+First public preview release.

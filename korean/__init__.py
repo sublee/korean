@@ -5,7 +5,7 @@
 
     A library for Korean morphology.
 
-    :copyright: (c) 2012 by Heungsub Lee
+    :copyright: (c) 2012-2013 by Heungsub Lee
     :license: BSD, see LICENSE for more details.
 """
 from __future__ import absolute_import, unicode_literals
@@ -16,7 +16,7 @@ from .morphology import (Morpheme, Noun, NumberWord, Loanword, Particle,
                          Substantive)
 
 
-__version__ = '0.1.5-dev'
+__version__ = '0.1.5'
 __all__ = ['hangul', 'l10n', 'morphology', 'Morpheme', 'Noun', 'NumberWord',
            'Loanword', 'Particle', 'Substantive']
 

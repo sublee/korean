@@ -5,7 +5,7 @@
 
     Helpers for localization to Korean.
 
-    :copyright: (c) 2012 by Heungsub Lee
+    :copyright: (c) 2012-2013 by Heungsub Lee
     :license: BSD, see LICENSE for more details.
 """
 from __future__ import absolute_import, unicode_literals
@@ -14,7 +14,7 @@ from itertools import chain, product
 import re
 import sys
 
-from .morphology import Noun, NumberWord, Particle, pick_allomorph
+from ..morphology import Noun, NumberWord, Particle, pick_allomorph
 
 
 __all__ = ['Proofreading', 'proofread', 'Template', 'patch_gettext']

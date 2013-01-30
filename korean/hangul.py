@@ -8,7 +8,7 @@
     <https://raw.github.com/sublee/hangulize/master/hangulize/hangul.py>`_ by
     `Hye-Shik Chang <http://openlook.org/>`_ at 2003.
 
-    :copyright: (c) 2012 by Heungsub Lee and 2003 by Hye-Shik Chang
+    :copyright: (c) 2012-2013 by Heungsub Lee and 2003 by Hye-Shik Chang
     :license: BSD, see LICENSE for more details.
 """
 from __future__ import unicode_literals

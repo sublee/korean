@@ -49,7 +49,7 @@ def run_tests(self):
 test.run_tests = run_tests
 
 
-tests_require = ['pytest']
+tests_require = ['pytest', 'jinja2']
 if sys.version_info < (3,):
     tests_require.append('hangulize')
 setup(
@@ -62,7 +62,7 @@ setup(
     description='A library for Korean morphology',
     long_description=__doc__,
     platforms='any',
-    packages=['korean', 'korean.morphology'],
+    packages=['korean', 'korean.l10n', 'korean.morphology'],
     include_package_data=True,
     classifiers=[
         'Development Status :: 4 - Beta',
