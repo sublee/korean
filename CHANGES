@@ -12,7 +12,7 @@ Version 0.1.4
 
 Released on Aug 26th 2012.
 
-Minor patches.
+Adds :class:`korean.morphology.Loanword`.
 
 Version 0.1.3
 -------------

@@ -136,6 +136,8 @@ class Loanword(Substantive):
     """A class for loanword that is called "외래어" in Korean. This depends
     on `Hangulize <http://packages.python.org/hangulize>`_ which automatically
     transcribes a non-Korean word into Hangul.
+
+    .. versionadded:: 0.1.4
     """
 
     def _import_hangulize(self):
