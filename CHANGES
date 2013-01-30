@@ -4,7 +4,7 @@ Version 0.1.5
 Released on Jan 30th 2013.
 
 - Supports Python 3 and Jython.
-- Adds :class:`korean.l10n.jinja2ext.ProofreadingExtension` for Jinja template
+- Adds :class:`korean.l10n.jinja2ext.ProofreadingExtension` for Jinja2 template
   engine.
 
 Version 0.1.4
