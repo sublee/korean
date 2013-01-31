@@ -3,7 +3,12 @@
     korean.ext.gettext
     ~~~~~~~~~~~~~~~~~~
 
-    Helpers for localization to Korean.
+    `Gettext <http://www.gnu.org/software/gettext>`_ is an internationalization
+    and localization system commonly used for writing multilingual programs on
+    Unix-like OS. This module contains utilities to integrate Korean and the
+    Gettext system. It also works well with Babel_.
+
+    .. _Babel: http://babel.edgewall.org/
 
     :copyright: (c) 2012-2013 by Heungsub Lee
     :license: BSD, see LICENSE for more details.
