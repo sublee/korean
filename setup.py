@@ -48,6 +48,9 @@ def run_tests(self):
     raise SystemExit(__import__('pytest').main([test_file]))
 test.run_tests = run_tests
 
+# django template packages
+packages_for_django = ['korean.l10n.django', 'korean.l10n.django.templatetags']
+
 
 tests_require = ['pytest', 'jinja2']
 if sys.version_info < (3,):
@@ -62,7 +65,7 @@ setup(
     description='A library for Korean morphology',
     long_description=__doc__,
     platforms='any',
-    packages=['korean', 'korean.l10n', 'korean.morphology'],
+    packages=['korean', 'korean.l10n', 'korean.morphology']+packages_for_django,
     include_package_data=True,
     classifiers=[
         'Development Status :: 4 - Beta',
