@@ -105,6 +105,9 @@ API
 .. automodule:: korean.l10n
    :members:
 
+.. automodule:: korean.ext.gettext
+   :members:
+
 .. automodule:: korean.ext.jinja2
    :members:
 

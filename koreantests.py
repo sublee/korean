@@ -172,80 +172,6 @@ class TestLoanword(object):
 
 class TestLocalization(object):
 
-    def generate_translations(self):
-        # from io import BytesIO
-        # from babel.messages import Catalog, mofile, pofile
-        # from babel.support import Translations
-        # catalog = Catalog(locale='ko_KR')
-        # po = '''
-        # # ugettext
-        # msgid "I like a {0}."
-        # msgstr "나는 {0:을} 좋아합니다.'
-        # # ungettext
-        # msgid "Here is a {0}."
-        # msgid_plural "Here are {1} {0}."
-        # msgstr[0] "여기 {0:이} 있습니다."
-        # msgstr[1] "여기 {0:이} {1}개 있습니다."
-        # # ugettext
-        # msgid "I reached level {0}."
-        # msgstr "나는 레벨{0:이} 되었습니다.'
-        # '''
-        # catalog = pofile.read_po(BytesIO(po.encode('utf-8')))
-        # buf = BytesIO()
-        # mofile.write_mo(buf, catalog)
-        # buf.seek(0)
-        # return Translations(buf)
-        from io import BytesIO
-        import gettext
-        # .mo binary generated from the above .po string
-        buf = BytesIO(b'\xde\x12\x04\x95\x00\x00\x00\x00\x04\x00\x00\x00\x1c'
-                      b'\x00\x00\x00<\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00'
-                      b'\x00\x00\x00\x00\x00\\\x00\x00\x00 \x00\x00\x00]\x00'
-                      b'\x00\x00\r\x00\x00\x00~\x00\x00\x00\x14\x00\x00\x00'
-                      b'\x8c\x00\x00\x00\\\x01\x00\x00\xa1\x00\x00\x00@\x00'
-                      b'\x00\x00\xfe\x01\x00\x00\x1f\x00\x00\x00?\x02\x00\x00%'
-                      b'\x00\x00\x00_\x02\x00\x00\x00Here is a {0}.\x00Here '
-                      b'are {1} {0}.\x00I like a {0}.\x00I reached level {0}.'
-                      b'\x00Project-Id-Version: PROJECT VERSION\nReport-Msgid-'
-                      b'Bugs-To: EMAIL@ADDRESS\nPOT-Creation-Date: 2013-01-03 '
-                      b'22:35+0900\nPO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n'
-                      b'Last-Translator: FULL NAME <EMAIL@ADDRESS>\nLanguage-'
-                      b'Team: LANGUAGE <LL@li.org>\nMIME-Version: 1.0\nContent'
-                      b'-Type: text/plain; charset=utf-8\nContent-Transfer-'
-                      b'Encoding: 8bit\nGenerated-By: Babel 0.9.6\n\x00\xec'
-                      b'\x97\xac\xea\xb8\xb0 {0:\xec\x9d\xb4} \xec\x9e\x88\xec'
-                      b'\x8a\xb5\xeb\x8b\x88\xeb\x8b\xa4.\x00\xec\x97\xac\xea'
-                      b'\xb8\xb0 {0:\xec\x9d\xb4} {1}\xea\xb0\x9c \xec\x9e\x88'
-                      b'\xec\x8a\xb5\xeb\x8b\x88\xeb\x8b\xa4.\x00\xeb\x82\x98'
-                      b'\xeb\x8a\x94 {0:\xec\x9d\x84} \xec\xa2\x8b\xec\x95\x84'
-                      b'\xed\x95\xa9\xeb\x8b\x88\xeb\x8b\xa4.\x00\xeb\x82\x98'
-                      b'\xeb\x8a\x94 \xeb\xa0\x88\xeb\xb2\xa8{0:\xec\x9d\xb4} '
-                      b'\xeb\x90\x98\xec\x97\x88\xec\x8a\xb5\xeb\x8b\x88\xeb'
-                      b'\x8b\xa4.\x00')
-        return gettext.GNUTranslations(buf)
-
-    def test_patched_gettext(self):
-        t = l10n.patch_gettext(self.generate_translations())
-        try:
-            _ = t.ugettext
-        except AttributeError:
-            # gettext.GNUTranslations on Python 3 hasn't ugettext
-            _ = t.gettext
-            ngettext = t.ngettext
-        else:
-            ngettext = t.ungettext
-        assert isinstance(_(''), l10n.Template)
-        assert _('I like a {0}.').format('바나나') == \
-               '나는 바나나를 좋아합니다.'
-        assert _('I reached level {0}.').format(4) == \
-               '나는 레벨4가 되었습니다.'
-        assert _('Undefined') == 'Undefined'
-        def gen_text(obj, n):
-            fmt = ngettext('Here is a {0}.', 'Here are {1} {8}.', n)
-            return fmt.format(obj, n)
-        assert gen_text('콩', 1) == '여기 콩이 있습니다.'
-        assert gen_text('사과', 2) == '여기 사과가 2개 있습니다.'
-
     def test_proofreading(self):
         assert l10n.proofread('사과은(는) 맛있다.') == '사과는 맛있다.'
         assert l10n.proofread('집(으)로 가자.') == '집으로 가자.'
@@ -333,6 +259,93 @@ class TestLocalization(object):
                ('말', Particle('를'), '(를)')
         assert l10n.proofread.parse('용사은(는) 감를(을) 먹었다.') == \
                ('용사', Particle('은'), ' 감', Particle('을'), ' 먹었다.')
+
+
+class TestExtensions(object):
+
+    def generate_translations(self):
+        # from io import BytesIO
+        # from babel.messages import Catalog, mofile, pofile
+        # from babel.support import Translations
+        # catalog = Catalog(locale='ko_KR')
+        # po = '''
+        # # ugettext
+        # msgid "I like a {0}."
+        # msgstr "나는 {0:을} 좋아합니다.'
+        # # ungettext
+        # msgid "Here is a {0}."
+        # msgid_plural "Here are {1} {0}."
+        # msgstr[0] "여기 {0:이} 있습니다."
+        # msgstr[1] "여기 {0:이} {1}개 있습니다."
+        # # ugettext
+        # msgid "I reached level {0}."
+        # msgstr "나는 레벨{0:이} 되었습니다.'
+        # '''
+        # catalog = pofile.read_po(BytesIO(po.encode('utf-8')))
+        # buf = BytesIO()
+        # mofile.write_mo(buf, catalog)
+        # buf.seek(0)
+        # return Translations(buf)
+        from io import BytesIO
+        import gettext
+        # .mo binary generated from the above .po string
+        buf = BytesIO(b'\xde\x12\x04\x95\x00\x00\x00\x00\x04\x00\x00\x00\x1c'
+                      b'\x00\x00\x00<\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00'
+                      b'\x00\x00\x00\x00\x00\\\x00\x00\x00 \x00\x00\x00]\x00'
+                      b'\x00\x00\r\x00\x00\x00~\x00\x00\x00\x14\x00\x00\x00'
+                      b'\x8c\x00\x00\x00\\\x01\x00\x00\xa1\x00\x00\x00@\x00'
+                      b'\x00\x00\xfe\x01\x00\x00\x1f\x00\x00\x00?\x02\x00\x00%'
+                      b'\x00\x00\x00_\x02\x00\x00\x00Here is a {0}.\x00Here '
+                      b'are {1} {0}.\x00I like a {0}.\x00I reached level {0}.'
+                      b'\x00Project-Id-Version: PROJECT VERSION\nReport-Msgid-'
+                      b'Bugs-To: EMAIL@ADDRESS\nPOT-Creation-Date: 2013-01-03 '
+                      b'22:35+0900\nPO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n'
+                      b'Last-Translator: FULL NAME <EMAIL@ADDRESS>\nLanguage-'
+                      b'Team: LANGUAGE <LL@li.org>\nMIME-Version: 1.0\nContent'
+                      b'-Type: text/plain; charset=utf-8\nContent-Transfer-'
+                      b'Encoding: 8bit\nGenerated-By: Babel 0.9.6\n\x00\xec'
+                      b'\x97\xac\xea\xb8\xb0 {0:\xec\x9d\xb4} \xec\x9e\x88\xec'
+                      b'\x8a\xb5\xeb\x8b\x88\xeb\x8b\xa4.\x00\xec\x97\xac\xea'
+                      b'\xb8\xb0 {0:\xec\x9d\xb4} {1}\xea\xb0\x9c \xec\x9e\x88'
+                      b'\xec\x8a\xb5\xeb\x8b\x88\xeb\x8b\xa4.\x00\xeb\x82\x98'
+                      b'\xeb\x8a\x94 {0:\xec\x9d\x84} \xec\xa2\x8b\xec\x95\x84'
+                      b'\xed\x95\xa9\xeb\x8b\x88\xeb\x8b\xa4.\x00\xeb\x82\x98'
+                      b'\xeb\x8a\x94 \xeb\xa0\x88\xeb\xb2\xa8{0:\xec\x9d\xb4} '
+                      b'\xeb\x90\x98\xec\x97\x88\xec\x8a\xb5\xeb\x8b\x88\xeb'
+                      b'\x8b\xa4.\x00')
+        return gettext.GNUTranslations(buf)
+
+    def gettext_functions(self, translations):
+        try:
+            gettext = translations.ugettext
+        except AttributeError:
+            # gettext.GNUTranslations on Python 3 hasn't ugettext
+            gettext = translations.gettext
+            ngettext = translations.ngettext
+        else:
+            ngettext = translations.ungettext
+        return (gettext, ngettext)
+
+    def test_patched_gettext(self):
+        from korean.ext.gettext import patch_gettext
+        t = patch_gettext(self.generate_translations())
+        _, ngettext = self.gettext_functions(t)
+        assert isinstance(_(''), l10n.Template)
+        assert _('I like a {0}.').format('바나나') == \
+               '나는 바나나를 좋아합니다.'
+        assert _('I reached level {0}.').format(4) == \
+               '나는 레벨4가 되었습니다.'
+        assert _('Undefined') == 'Undefined'
+        def gen_text(obj, n):
+            fmt = ngettext('Here is a {0}.', 'Here are {1} {8}.', n)
+            return fmt.format(obj, n)
+        assert gen_text('콩', 1) == '여기 콩이 있습니다.'
+        assert gen_text('사과', 2) == '여기 사과가 2개 있습니다.'
+
+    def test_deprecated_patch_gettext(self):
+        t = deprecated_call(l10n.patch_gettext, self.generate_translations())
+        _, ngettext = self.gettext_functions(t)
+        assert isinstance(_(''), l10n.Template)
 
     def test_jinja2_ext(self):
         from jinja2 import Environment
