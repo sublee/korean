@@ -3,7 +3,7 @@ from __future__ import unicode_literals, with_statement
 import contextlib
 import textwrap
 
-from pytest import raises
+from pytest import deprecated_call, raises
 
 from korean import *
 
@@ -336,7 +336,7 @@ class TestLocalization(object):
 
     def test_jinja2_ext(self):
         from jinja2 import Environment
-        env = Environment(extensions=['korean.l10n.jinja2ext.proofread'])
+        env = Environment(extensions=['korean.ext.jinja2.proofread'])
         context = dict(name='용사', obj='검')
         expectation = '용사는 검을 획득했다.'
         assert 'proofread' in env.filters
@@ -354,6 +354,30 @@ class TestLocalization(object):
         {% endautoproofread %}
         ''')
         assert templ3.render(**context).strip() == expectation
+        templ4 = env.from_string('''
+        {% autoproofread true %}
+          {{ name }}은(는) {{ obj }}을(를) 획득했다.
+        {% endautoproofread %}
+        ''')
+        assert templ4.render(**context).strip() == expectation
+        templ5 = env.from_string('''
+        {% autoproofread false %}
+          {{ name }}은(는) {{ obj }}을(를) 획득했다.
+        {% endautoproofread %}
+        ''')
+        assert templ5.render(**context).strip() != expectation
+        templ6 = env.from_string('''
+        {% autoproofread locale.startswith('ko') %}
+          {{ name }}은(는) {{ obj }}을(를) 획득했다.
+        {% endautoproofread %}
+        ''')
+        assert templ6.render(locale='ko_KR', **context).strip() == expectation
+
+    def test_deprecated_jinja2_ext_location(self):
+        from jinja2 import Environment
+        old_ext_name = 'korean.l10n.jinja2ext.proofread'
+        env = deprecated_call(Environment, extensions=[old_ext_name])
+        assert 'proofread' in env.filters
 
 
 try:

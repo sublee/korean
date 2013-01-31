@@ -108,8 +108,9 @@ class NumberWord(Substantive):
                 except KeyError:
                     pass
             number //= 10
-            if not single and not number or \
-               single == 1 and not digit or single > 1:
+            if (single or number) and (single != 1 or digit) and (single <= 1):
+                pass
+            else:
                 phase.append(cls.__numbers__[single])
             if not number or digit % 4 == 3:
                 if digit < 4 or len(phase) > 1:
@@ -148,7 +149,8 @@ class Loanword(Substantive):
         try:
             import hangulize
         except ImportError:
-            raise ImportError('%s needs hangulize>=0.0.5' % type(self).__name__)
+            raise ImportError('%s needs hangulize>=0.0.5' %
+                              type(self).__name__)
         self._hangulize = hangulize
         return hangulize
 
