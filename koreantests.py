@@ -392,6 +392,30 @@ class TestExtensions(object):
         env = deprecated_call(Environment, extensions=[old_ext_name])
         assert 'proofread' in env.filters
 
+    def test_django_ext(self):
+        from django.template import Template, Context
+        from django.conf import settings
+
+        settings.configure(
+            INSTALLED_APPS=(
+                'korean.ext.django',
+            ),
+        ) 
+        
+        context = Context({'name':'용사', 'obj':'검'})
+        expectation = '용사는 검을 획득했다.'
+        templ1 = Template('''
+        {% load korean %}
+        {{ "용사은(는) 검을(를) 획득했다."|proofread }}
+        ''')
+        assert templ1.render(Context()).strip() == expectation
+        templ2 = Template('''
+        {% load korean %}
+        {% autoproofread %}
+          {{ name }}은(는) {{ obj }}을(를) 획득했다.
+        {% endautoproofread %}
+        ''')
+        assert templ2.render(context).strip() == expectation
 
 try:
     __import__('hangulize')
