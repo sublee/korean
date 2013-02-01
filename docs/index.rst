@@ -82,31 +82,6 @@ function:
    >>> _(u'I like a {0}.').format(_(u'game'))
    나는 게임을 좋아합니다.
 
-{#
-Template engine extensions
-~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-If you're already using existing template engine, the extensions would help
-you. Korean provides :class:`korean.l10n.jinja2ext.ProofreadingExtension` for
-Jinja2 template engine. It registers the ``proofread`` filter and the
-``autoproofread`` block:
-
-.. sourcecode:: jinja
-
-   <h1><code>ProofreadingExtension</code> Usage</h1>
-
-   <h2>Single filter</h2>
-   {{ (name ~ '은(는) ' ~ obj ~ '을(를) 획득했다.')|proofread }}
-
-   <h2>Filter chaining</h2>
-   {{ '%s은(는) %s을(를) 획득했다.'|format(name, obj)|proofread }}
-
-   <h2><code>autoproofread</code> block</h2>
-   {% autoproofread %}
-     {{ name }}은(는) {{ obj }}을(를) 획득했다.
-   {% endautoproofread %}
-#}
-
 Proofreading legacy text
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -130,7 +105,10 @@ API
 .. automodule:: korean.l10n
    :members:
 
-.. automodule:: korean.l10n.jinja2ext
+.. automodule:: korean.ext.gettext
+   :members:
+
+.. automodule:: korean.ext.jinja2
    :members:
 
 .. automodule:: korean.hangul
