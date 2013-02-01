@@ -362,29 +362,35 @@ class TestExtensions(object):
         ''')
         assert templ2.render(**context).strip() == expectation
         templ3 = env.from_string('''
-        {% autoproofread %}
+        {% proofread %}
           {{ name }}은(는) {{ obj }}을(를) 획득했다.
-        {% endautoproofread %}
+        {% endproofread %}
         ''')
         assert templ3.render(**context).strip() == expectation
         templ4 = env.from_string('''
-        {% autoproofread true %}
+        {% proofread true %}
           {{ name }}은(는) {{ obj }}을(를) 획득했다.
-        {% endautoproofread %}
+        {% endproofread %}
         ''')
         assert templ4.render(**context).strip() == expectation
         templ5 = env.from_string('''
-        {% autoproofread false %}
+        {% proofread false %}
           {{ name }}은(는) {{ obj }}을(를) 획득했다.
-        {% endautoproofread %}
+        {% endproofread %}
         ''')
         assert templ5.render(**context).strip() != expectation
         templ6 = env.from_string('''
+        {% proofread locale.startswith('ko') %}
+          {{ name }}은(는) {{ obj }}을(를) 획득했다.
+        {% endproofread %}
+        ''')
+        assert templ6.render(locale='ko_KR', **context).strip() == expectation
+        templ7 = env.from_string('''
         {% autoproofread locale.startswith('ko') %}
           {{ name }}은(는) {{ obj }}을(를) 획득했다.
         {% endautoproofread %}
         ''')
-        assert templ6.render(locale='ko_KR', **context).strip() == expectation
+        assert templ7.render(locale='ko_KR', **context).strip() == expectation
 
     def test_deprecated_jinja2_ext_location(self):
         from jinja2 import Environment

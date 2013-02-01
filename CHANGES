@@ -2,6 +2,7 @@ Version 0.1.6
 -------------
 
 - Moves :mod:`korean.l10n.jinja2ext` to :mod:`korean.ext.jinja2`.
+- Renames ``{% autoproofread %}`` to ``{% proofread %}``.
 - Moves :func:`korean.l10n.patch_gettext` to
   :func:`korean.ext.gettext.patch_gettext`.
 - Adds a condition argument to enable behind autoproofread Jinja2 block.

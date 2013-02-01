@@ -28,7 +28,7 @@ from .. import l10n
 
 class ProofreadingExtension(Extension):
     """A Jinja2 extention which registers the ``proofread`` filter and the
-    ``autoproofread`` block:
+    ``proofread`` block:
 
     .. sourcecode:: jinja
 
@@ -40,15 +40,15 @@ class ProofreadingExtension(Extension):
        <h2>Filter chaining</h2>
        {{ '%s은(는) %s을(를) 획득했다.'|format(name, obj)|proofread }}
 
-       <h2><code>autoproofread</code> block</h2>
-       {% autoproofread %}
+       <h2><code>proofread</code> block</h2>
+       {% proofread %}
          {{ name }}은(는) {{ obj }}을(를) 획득했다.
-       {% endautoproofread %}
+       {% endproofread %}
 
-       <h2>Conditional <code>autoproofread</code> block</h2>
-       {% autoproofread locale.startswith('ko') %}
+       <h2>Conditional <code>proofread</code> block</h2>
+       {% proofread locale.startswith('ko') %}
          {{ name }}은(는) {{ obj }}을(를) 획득했다.
-       {% endautoproofread %}
+       {% endproofread %}
 
     The import name is ``korean.ext.jinja2.proofread``. Just add it into
     your Jinja2 environment by the following code::
@@ -59,10 +59,10 @@ class ProofreadingExtension(Extension):
     .. versionadded:: 0.1.5
 
     .. versionchanged:: 0.1.6
-       Added ``enabled`` argument to ``{% autoproofread %}``.
+       Added ``enabled`` argument to ``{% proofread %}``.
     """
 
-    tags = ['autoproofread']
+    tags = ['proofread', 'autoproofread']
 
     def __init__(self, environment):
         environment.filters['proofread'] = l10n.proofread
@@ -71,13 +71,13 @@ class ProofreadingExtension(Extension):
         return l10n.proofread(caller()) if enabled else caller()
 
     def parse(self, parser):
+        tag = parser.stream.current.value
         lineno = next(parser.stream).lineno
         if parser.stream.current.type == 'block_end':
             args = [nodes.Const(True)]
         else:
             args = [parser.parse_expression()]
-        body = parser.parse_statements(['name:end%s' % self.tags[0]],
-                                       drop_needle=True)
+        body = parser.parse_statements(['name:end%s' % tag], drop_needle=True)
         call = self.call_method('_proofread', args)
         return nodes.CallBlock(call, [], [], body, lineno=lineno)
 
