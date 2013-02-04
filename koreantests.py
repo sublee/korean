@@ -399,32 +399,31 @@ class TestExtensions(object):
         assert 'proofread' in env.filters
 
     def test_django_ext(self):
-        from django.template import Template, Context
         from django.conf import settings
-
-        settings.configure(
-            INSTALLED_APPS=(
-                'korean.ext.django',
-            ),
-        ) 
-        
-        context = Context({'name':'용사', 'obj':'검'})
+        from django.template import Context, Template
+        settings.configure(INSTALLED_APPS=('korean.ext.django',)) 
+        context = Context({'name': '용사', 'obj': '검'})
         expectation = '용사는 검을 획득했다.'
         templ1 = Template('''
         {% load korean %}
-        {{ "용사은(는) 검을(를) 획득했다."|proofread }}
+        {{ '용사은(는) 검을(를) 획득했다.'|proofread }}
         ''')
         assert templ1.render(Context()).strip() == expectation
         templ2 = Template('''
         {% load korean %}
-        {% autoproofread %}
+        {% proofread %}
           {{ name }}은(는) {{ obj }}을(를) 획득했다.
-        {% endautoproofread %}
+        {% endproofread %}
         ''')
         assert templ2.render(context).strip() == expectation
+
 
 try:
     __import__('hangulize')
 except ImportError:
     del TestParticle.test_pick_allomorph_with_loanword
     del TestLoanword
+try:
+    __import__('django')
+except ImportError:
+    del TestExtensions.test_django_ext

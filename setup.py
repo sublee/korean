@@ -49,9 +49,9 @@ def run_tests(self):
 test.run_tests = run_tests
 
 
-tests_require = ['pytest', 'jinja2', 'django']
+tests_require = ['pytest', 'jinja2']
 if sys.version_info < (3,):
-    tests_require.append('hangulize')
+    tests_require.extend(['hangulize', 'django'])
 setup(
     name='korean',
     version=version,

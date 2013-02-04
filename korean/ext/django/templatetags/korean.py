@@ -12,7 +12,36 @@ from django.template.defaultfilters import stringfilter
 
 from .... import l10n
 
+
 register = template.Library()
+
+
+class ProofReadNode(template.Node):
+
+    def __init__(self, nodelist):
+        self.nodelist = nodelist
+
+    def render(self, context):
+        output = self.nodelist.render(context)
+        return l10n.proofread(output)
+
+
+@register.tag(name='proofread')
+def do_autoproofread(parser, token):
+    """A Django tag for ``autoproofread``
+
+    .. sourcecode:: django
+
+       <h1>autoproofread tag Usage</h1>
+
+       {% load korean %}
+       {% autoproofread %}
+         {{ name }}은(는) {{ obj }}을(를) 획득했다.
+       {% endautoproofread %}
+    """
+    nodelist = parser.parse(['endproofread'])
+    parser.delete_first_token()
+    return ProofReadNode(nodelist)
 
 
 @register.filter
@@ -28,27 +57,3 @@ def proofread(value):
        {{ 용사은(는) 검을(를) 획득했다.|proofread }}
     """
     return l10n.proofread(value)
-
-@register.tag(name="autoproofread")
-def do_autoproofread(parser, token):
-    """A Django tag for ``autoproofread``
-
-    .. sourcecode:: django
-
-       <h1>autoproofread tag Usage</h1>
-
-       {% load korean %}
-       {% autoproofread %}
-         {{ name }}은(는) {{ obj }}을(를) 획득했다.
-       {% endautoproofread %}
-    """
-    nodelist = parser.parse(('endautoproofread',))
-    parser.delete_first_token()
-    return ProofReadNode(nodelist)
-
-class ProofReadNode(template.Node):
-    def __init__(self, nodelist):
-        self.nodelist = nodelist
-    def render(self, context):
-        output = self.nodelist.render(context)
-        return l10n.proofread(output)
