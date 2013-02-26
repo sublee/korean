@@ -127,10 +127,18 @@ class NumberWord(Substantive):
         return unicode(self.number)
 
     def __format__(self, spec):
+        if ':' in spec:
+            number_spec, spec = spec.split(':', 1)
+            formatted_number = format(self.number, number_spec)
+        else:
+            formatted_number = None
         try:
-            return super(NumberWord, self).__format__(spec)
+            rv = super(NumberWord, self).__format__(spec)
         except ValueError:
             return format(self.number, spec)
+        if formatted_number is not None:
+            rv = formatted_number + rv[len(str(self.number)):]
+        return rv
 
 
 class Loanword(Substantive):

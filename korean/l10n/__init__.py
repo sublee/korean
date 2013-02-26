@@ -104,8 +104,8 @@ class Template(unicode):
                                      product([kwargs], kwargs.items())):
             if isinstance(val, unicode):
                 seq[key] = Noun(val)
-            elif isinstance(val, int):
-                seq[key] = NumberWord(val)
+            elif isinstance(val, (long, int)):
+                seq[key] = NumberWord(int(val))
         return super(Template, self).format(*args, **kwargs)
 
     def __repr__(self):

@@ -145,6 +145,11 @@ class TestNumberWord(object):
         assert '레벨 {0:이}'.format(NumberWord(3)) == '레벨 3이'
         assert '레벨 {0:이}'.format(NumberWord(15)) == '레벨 15가'
 
+    def test_combination_format(self):
+        with raises(ValueError):
+            '{0:을:를}'.format(NumberWord(19891212))
+        assert '{0:,:을}'.format(NumberWord(19891212)) == '19,891,212를'
+
 
 class TestLoanword(object):
 
@@ -171,6 +176,12 @@ class TestLoanword(object):
 
 
 class TestLocalization(object):
+
+    def test_template(self):
+        try:
+            assert l10n.Template('{:로}').format(long(123)) == '123으로'
+        except NameError:
+            pass
 
     def test_proofreading(self):
         assert l10n.proofread('사과은(는) 맛있다.') == '사과는 맛있다.'
