@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals, with_statement
 import contextlib
+import sys
 import textwrap
 
 from pytest import deprecated_call, raises
@@ -148,7 +149,9 @@ class TestNumberWord(object):
     def test_combination_format(self):
         with raises(ValueError):
             '{0:을:를}'.format(NumberWord(19891212))
-        assert '{0:,:을}'.format(NumberWord(19891212)) == '19,891,212를'
+        if sys.version_info > (2, 7):
+            # Python 2.6 doesn't support PEP 378
+            assert '{0:,:을}'.format(NumberWord(19891212)) == '19,891,212를'
 
 
 class TestLoanword(object):
@@ -178,10 +181,9 @@ class TestLoanword(object):
 class TestLocalization(object):
 
     def test_template(self):
-        try:
-            assert l10n.Template('{:로}').format(long(123)) == '123으로'
-        except NameError:
-            pass
+        assert l10n.Template('{0:로}').format(123) == '123으로'
+        if sys.version_info < (3,):
+            assert l10n.Template('{0:로}').format(long(123)) == '123으로'
 
     def test_proofreading(self):
         assert l10n.proofread('사과은(는) 맛있다.') == '사과는 맛있다.'
