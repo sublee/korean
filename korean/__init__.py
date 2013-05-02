@@ -16,7 +16,7 @@ from .morphology import (Morpheme, Noun, NumberWord, Loanword, Particle,
                          Substantive)
 
 
-__version__ = '0.1.6'
+__version__ = '0.1.7'
 __all__ = ['hangul', 'l10n', 'morphology', 'Morpheme', 'Noun', 'NumberWord',
            'Loanword', 'Particle', 'Substantive']
 
@@ -47,6 +47,8 @@ def _load_data():
         NumberWord.__numbers__[int(number)] = form
     for digit, form in data['digits'].iteritems():
         NumberWord.__digits__[int(digit)] = form
+    for operation, form in data['unary_operations'].iteritems():
+        NumberWord.__unary_operations__[operation] = form
 
 
 _load_data()

@@ -70,6 +70,7 @@ class NumberWord(Substantive):
 
     __numbers__ = {}
     __digits__ = {}
+    __unary_operations__ = {}
 
     def __init__(self, number):
         self.number = number
@@ -79,7 +80,7 @@ class NumberWord(Substantive):
 
             >>> NumberWord(1234567890).read()
             '십이억삼천사백오십육만칠천팔백구십'
-            >>> NumberWord.read_phases(0)
+            >>> NumberWord.read(0)
             '영'
         """
         return ''.join(type(self).read_phases(self.number))
@@ -95,6 +96,8 @@ class NumberWord(Substantive):
         """
         rv, phase = [], []
         digit = 0
+        negative = number < 0
+        number = abs(number)
         while True:
             single = number % 10
             if digit >= 4:
@@ -121,6 +124,8 @@ class NumberWord(Substantive):
                 if not number:
                     break
             digit += 1
+        if negative:
+            rv.append(cls.__unary_operations__['-'])
         return tuple(rv[::-1])
 
     def basic(self):

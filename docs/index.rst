@@ -1,6 +1,12 @@
-===========================================
- Korean -- A library for Korean morphology
-===========================================
+Korean
+======
+
+A library for Korean morphology
+
+.. currentmodule:: korean
+
+Introduction
+~~~~~~~~~~~~
 
 Sometimes you should localize your project for Korean. But common
 internationalization solutions such as `Gettext

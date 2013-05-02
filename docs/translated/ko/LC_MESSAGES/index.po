@@ -138,9 +138,8 @@ msgstr ""
 #: ../../korean/morphology/__init__.py:docstring of korean.morphology:4
 #: ../../korean/l10n/__init__.py:docstring korean.l10n:6
 #: ../../korean/l10n/jinja2ext.py:docstring korean.l10n.jinja2ext:4
-#, fuzzy
 msgid "2012-2013 by Heungsub Lee"
-msgstr "이흥섭이 2012년에"
+msgstr "이흥섭이 2012-2013년에"
 
 # b551c09fb9554eea932f43ccc9b2249f
 # c1241b0d529a4469853268b34c457ded
@@ -357,13 +356,12 @@ msgid ""
 msgstr ""
 "한글로 작성된 문자열을 다루는 모듈입니다. 2003년에 `장혜식 <http://openlook."
 "org/>`_ 님이 공개한 `hangul.py <https://raw.github.com/sublee/hangulize/"
-"master/hangulize/hangul.py>`_ 를 참고했습니다."
+"master/hangulize/hangul.py>`_\를 참고했습니다."
 
 # 4fd5a78d97c344859a74ede3fce71a93
 #: ../../korean/hangul.py:docstring of korean.hangul:9
-#, fuzzy
 msgid "2012-2013 by Heungsub Lee and 2003 by Hye-Shik Chang"
-msgstr "장혜식이 2003년에, 이흥섭이 2012년에"
+msgstr "장혜식이 2003년에, 이흥섭이 2012-2013년에"
 
 # 5c9127a6d0f240b28937a7bf1b4a684a
 #: ../../korean/hangul.py:docstring of korean.hangul.char_offset:1
