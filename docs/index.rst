@@ -117,6 +117,9 @@ API
 .. automodule:: korean.ext.jinja2
    :members:
 
+.. automodule:: korean.ext.django.templatetags.korean
+   :members:
+
 .. automodule:: korean.hangul
    :members:
 

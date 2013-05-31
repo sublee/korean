@@ -4,6 +4,13 @@
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     A module containing Django template tag and filter for korean.
+
+    .. versionadded:: 0.1.7
+
+    .. _Django: https://www.djangoproject.com/
+
+    :copyright: (c) 2012-2013 by Heungsub Lee, Hyunwoo Park
+    :license: BSD, see LICENSE for more details.
 """
 from __future__ import absolute_import, unicode_literals
 
@@ -27,17 +34,17 @@ class ProofReadNode(template.Node):
 
 
 @register.tag(name='proofread')
-def do_autoproofread(parser, token):
-    """A Django tag for ``autoproofread``
+def do_proofread(parser, token):
+    """A Django tag for ``proofread``
 
     .. sourcecode:: django
 
-       <h1>autoproofread tag Usage</h1>
+       <h1>proofread tag Usage</h1>
 
        {% load korean %}
-       {% autoproofread %}
+       {% proofread %}
          {{ name }}은(는) {{ obj }}을(를) 획득했다.
-       {% endautoproofread %}
+       {% endproofread %}
     """
     nodelist = parser.parse(['endproofread'])
     parser.delete_first_token()
