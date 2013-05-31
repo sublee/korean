@@ -12,6 +12,12 @@
 
     .. versionadded:: 0.1.6
 
+    - :mod:`korean.ext.django.templatetags.korean` -- extensions for the Django template engine
+
+    .. _Django: https://www.djangoproject.com/
+
+    .. versionadded:: 0.1.7
+
     :copyright: (c) 2012-2013 by Heungsub Lee
     :license: BSD, see LICENSE for more details.
 """

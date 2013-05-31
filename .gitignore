@@ -28,3 +28,7 @@ pip-log.txt
 
 # Vim
 .*.sw[op]
+
+# Sphinx
+docs/_build
+docs/Makefile
