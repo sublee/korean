@@ -53,6 +53,8 @@ class TestParticle(object):
         assert pick_allomorph(P('다'), suffix_of=N('파이썬')) == '이다'
         assert pick_allomorph(P('일랑'), suffix_of=N('게임')) == '일랑'
         assert pick_allomorph(P('일랑'), suffix_of=N('서버')) == 'ㄹ랑'
+        assert pick_allomorph(P('란'), suffix_of=N('자바')) == '란'
+        assert pick_allomorph(P('란'), suffix_of=N('파이썬')) == '이란'
 
     def test_pick_allomorph_with_number_word(self):
         pick_allomorph = morphology.pick_allomorph
@@ -416,7 +418,7 @@ class TestExtensions(object):
     def test_django_ext(self):
         from django.conf import settings
         from django.template import Context, Template
-        settings.configure(INSTALLED_APPS=('korean.ext.django',)) 
+        settings.configure(INSTALLED_APPS=('korean.ext.django',))
         context = Context({'name': '용사', 'obj': '검'})
         expectation = '용사는 검을 획득했다.'
         templ1 = Template('''
