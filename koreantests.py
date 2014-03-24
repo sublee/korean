@@ -194,6 +194,10 @@ class TestLocalization(object):
         assert l10n.proofread('집(으)로 가자.') == '집으로 가자.'
         assert l10n.proofread('용사은(는) 검을(를) 획득했다.') == \
                '용사는 검을 획득했다.'
+        assert l10n.proofread('마법서 "파이어 볼"을(를) 얻었습니다.') == \
+               '마법서 "파이어 볼"을 얻었습니다.'
+        assert l10n.proofread('가나다순에서 "쥐"은(는) "줘" 다음에 온다.') == \
+               '가나다순에서 "쥐"는 "줘" 다음에 온다.'
 
     def test_meaningless_proofreading(self):
         assert l10n.proofread('사과다.') == '사과다.'
@@ -206,6 +210,7 @@ class TestLocalization(object):
         assert l10n.proofread('Korean를(을)') == 'Korean를(을)'
         assert l10n.proofread('Korean을(를)') == 'Korean를(을)'
         assert l10n.proofread('Korean(을)를') == 'Korean를(을)'
+        assert l10n.proofread('한국인 혹은 Korean(을)를') == '한국인 혹은 Korean를(을)'
 
     def test_complex_proofreading(self):
         assert l10n.proofread('말을(를)(를)') == '말을(를)'
