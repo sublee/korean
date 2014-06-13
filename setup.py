@@ -86,7 +86,7 @@ setup(
         'Topic :: Software Development :: Localization',
         'Topic :: Text Processing :: Linguistic',
     ],
-    install_requires=['distribute'],
+    install_requires=['setuptools'],
     test_suite='koreantests',
     tests_require=tests_require,
     use_2to3=(sys.version_info >= (3,)),
