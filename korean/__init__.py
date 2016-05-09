@@ -16,7 +16,7 @@ from .morphology import (Morpheme, Noun, NumberWord, Loanword, Particle,
                          Substantive)
 
 
-__version__ = '0.1.7'
+__version__ = '0.1.8'
 __all__ = ['hangul', 'l10n', 'morphology', 'Morpheme', 'Noun', 'NumberWord',
            'Loanword', 'Particle', 'Substantive']
 
