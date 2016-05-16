@@ -80,6 +80,8 @@ class NumberWord(Substantive):
 
             >>> NumberWord(1234567890).read()
             '십이억삼천사백오십육만칠천팔백구십'
+            >>> NumberWord.read(10000)
+            '만'
             >>> NumberWord.read(0)
             '영'
         """
@@ -91,6 +93,8 @@ class NumberWord(Substantive):
 
             >>> NumberWord.read_phases(1234567890)
             ('십이억', '삼천사백오십육만', '칠천팔백구십')
+            >>> NumberWord.read_phases(10000)
+            ('만', '')
             >>> NumberWord.read_phases(0)
             ('영',)
         """
@@ -116,7 +120,7 @@ class NumberWord(Substantive):
             else:
                 phase.append(cls.__numbers__[single])
             if not number or digit % 4 == 3:
-                if digit < 4 or len(phase) > 1:
+                if digit < 4 or len(phase) > 1 or not number:
                     rv.append(''.join(phase[::-1]))
                 else:
                     rv.append('')
