@@ -9,6 +9,7 @@
     :license: BSD, see LICENSE for more details.
 """
 from __future__ import absolute_import, unicode_literals
+import codecs
 import sys
 
 from . import hangul, l10n, morphology
@@ -35,7 +36,8 @@ def _load_data():
     """Loads allomorphic particles and number words from :file:`data.json`."""
     import json
     import os
-    with open(os.path.join(os.path.dirname(__file__), 'data.json')) as f:
+    path = os.path.join(os.path.dirname(__file__), 'data.json')
+    with codecs.open(path, 'r', encoding='utf-8') as f:
         data = json.load(f)
     # register allomorphic particles
     for forms in data['allomorphic_particles'].itervalues():
