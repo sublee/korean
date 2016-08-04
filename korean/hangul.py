@@ -13,6 +13,7 @@
 """
 from __future__ import unicode_literals
 
+from six.moves import xrange
 
 __all__ = ['char_offset', 'is_hangul', 'is_vowel', 'is_consonant',
            'is_initial', 'is_final', 'get_initial', 'get_vowel', 'get_final',

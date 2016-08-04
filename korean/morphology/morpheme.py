@@ -9,6 +9,8 @@
 from __future__ import absolute_import, unicode_literals
 import sys
 
+import six
+
 from ..hangul import get_final, is_hangul
 
 
@@ -33,6 +35,7 @@ class MorphemeMetaclass(type):
         return super(MorphemeMetaclass, cls).__call__(*forms)
 
 
+@six.add_metaclass(MorphemeMetaclass)
 class Morpheme(object):
     """This class presents a morpheme (형태소) or allomorph (이형태). It
     can have one or more forms. The first form means the basic allomorph
@@ -42,12 +45,10 @@ class Morpheme(object):
                   allomorph.
     """
 
-    __metaclass__ = MorphemeMetaclass
-
     _registry = None
 
     def __init__(self, *forms):
-        assert all([isinstance(form, unicode) for form in forms])
+        assert all([isinstance(form, six.text_type) for form in forms])
         self.forms = forms
 
     @classmethod
@@ -64,7 +65,7 @@ class Morpheme(object):
         """Every morpheme class would implement this method. They should make a
         morpheme to the valid Korean text with Hangul.
         """
-        return unicode(self)
+        return six.text_type(self)
 
     def basic(self):
         """The basic form of allomorph."""
@@ -74,20 +75,20 @@ class Morpheme(object):
         return self.basic()
 
     def __str__(self):
-        return unicode(self).encode('utf-8')
+        return six.text_type(self).encode('utf-8')
 
     if sys.version_info >= (3,):
         __str__ = __unicode__
         del __unicode__
 
     def __getitem__(self, i):
-        return unicode(self)[i]
+        return six.text_type(self)[i]
 
     def __getslice__(self, start, stop, step=None):
-        return unicode(self)[start:stop:step]
+        return six.text_type(self)[start:stop:step]
 
     def __format__(self, suffix):
         return '{0!s}{1}'.format(self, suffix)
 
     def __repr__(self):
-        return '{0}({1!s})'.format(type(self).__name__, unicode(self))
+        return '{0}({1!s})'.format(type(self).__name__, six.text_type(self))

@@ -11,6 +11,7 @@
 from __future__ import absolute_import, unicode_literals
 from itertools import chain, product
 import re
+import six
 import warnings
 
 from ..morphology import Noun, NumberWord, Particle, pick_allomorph
@@ -77,10 +78,10 @@ class Proofreading(object):
 
 #: Default :class:`Proofreading` object. It tokenizes ``unicode`` and
 #: :class:`korean.Particle`. Use it like a function.
-proofread = Proofreading([unicode, Particle])
+proofread = Proofreading([six.text_type, Particle])
 
 
-class Template(unicode):
+class Template(six.text_type):
     """The :class:`Template` object extends :class:`unicode` and overrides
     :meth:`format` method. This can format particle format spec without
     evincive :class:`Noun` or :class:`NumberWord` arguments.
@@ -102,7 +103,7 @@ class Template(unicode):
         args = list(args)
         for seq, (key, val) in chain(product([args], enumerate(args)),
                                      product([kwargs], kwargs.items())):
-            if isinstance(val, unicode):
+            if isinstance(val, six.text_type):
                 seq[key] = Noun(val)
             elif isinstance(val, (long, int)):
                 seq[key] = NumberWord(int(val))
