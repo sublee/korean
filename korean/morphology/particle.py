@@ -7,6 +7,7 @@
     :license: BSD, see LICENSE for more details.
 """
 from __future__ import absolute_import, unicode_literals
+import unicodedata
 
 from . import define_allomorph_picker
 from .morpheme import Morpheme
@@ -100,4 +101,11 @@ class Particle(Morpheme):
     @define_allomorph_picker(suffix_of=NumberWord)
     @define_allomorph_picker(suffix_of=Loanword)
     def pick_allomorph_after_substantive(self, substantive):
-        return self.pick_allomorph_after_char(substantive.read()[-1])
+        reading = substantive.read()
+        for char in reversed(reading):
+            cat = unicodedata.category(char)
+            if cat[0] == 'P' or cat[0] == 'S':
+                # skip punctuations and symbols
+                continue
+            return self.pick_allomorph_after_char(char)
+        raise AssertionError()
