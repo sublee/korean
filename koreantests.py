@@ -131,6 +131,8 @@ class TestNumberWord(object):
         assert NumberWord(72009852).read() == '칠천이백만구천팔백오십이'
         assert NumberWord(-8).read() == '마이너스팔'
         assert NumberWord(10000).read() == '만'
+        assert NumberWord(110000).read() == '십일만'
+        assert NumberWord(113386).read() == '십일만삼천삼백팔십육'
 
     def test_read_phases(self):
         assert NumberWord.read_phases(32) == ('삼십이',)

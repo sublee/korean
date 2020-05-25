@@ -7,6 +7,8 @@
     :license: BSD, see LICENSE for more details.
 """
 from __future__ import absolute_import, unicode_literals
+from collections import deque
+import itertools
 import re
 
 from .morpheme import Morpheme
@@ -98,39 +100,50 @@ class NumberWord(Substantive):
             >>> NumberWord.read_phases(0)
             ('영',)
         """
-        rv, phase = [], []
-        digit = 0
+        phase = deque()
+        chunks = deque()
+
         negative = number < 0
         number = abs(number)
-        while True:
-            single = number % 10
-            if digit >= 4:
-                try:
-                    phase.append(cls.__digits__[digit])
-                except KeyError:
-                    pass
-            if single:
-                try:
-                    phase.append(cls.__digits__[digit % 4])
-                except KeyError:
-                    pass
+
+        for digit in itertools.count():
+            unit = number % 10
             number //= 10
-            if (single or number) and (single != 1 or digit) and (single <= 1):
-                pass
-            else:
-                phase.append(cls.__numbers__[single])
+
+            if digit >= 4 and digit % 4 == 0:
+                # 만, 억, 조, ...
+                phase.appendleft(cls.__digits__[digit])
+
+            if unit:
+                if digit % 4 != 0:
+                    # 십, 백, 척
+                    phase.appendleft(cls.__digits__[digit % 4])
+
+                if unit != 1 or digit % 4 == 0:
+                    # 일, 이, 삼, ...
+                    phase.appendleft(cls.__numbers__[unit])
+
             if not number or digit % 4 == 3:
-                if digit < 4 or len(phase) > 1 or not number:
-                    rv.append(''.join(phase[::-1]))
+                if not number or digit < 4 or len(phase) > 1:
+                    chunks.appendleft(''.join(phase))
                 else:
-                    rv.append('')
-                phase = []
-                if not number:
-                    break
-            digit += 1
+                    chunks.appendleft('')
+                phase.clear()
+
+            if not number:
+                break
+
+        # 일만, 일억 -> 만, 억
+        one = cls.__numbers__[1]
+        for place in cls.__digits__.values():
+            if chunks[0].startswith(one + place):
+                chunks[0] = chunks[0][len(one):]
+                break
+
         if negative:
-            rv.append(cls.__unary_operations__['-'])
-        return tuple(rv[::-1])
+            chunks.appendleft(cls.__unary_operations__['-'])
+
+        return tuple(chunks)
 
     def basic(self):
         return unicode(self.number)
